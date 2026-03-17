@@ -8,36 +8,56 @@
 /* === CUSTOM: Reset & Base === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
-body { font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif; background: #fff; color: #333; -webkit-font-smoothing: antialiased; }
+body { font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #fff; color: #333; -webkit-font-smoothing: antialiased; padding-bottom: 60px; }
 
 /* === CUSTOM: PC max-width (Naver blog style) === */
 @media (min-width: 768px) {
   .tablet_end { max-width: 768px; margin: 0 auto; }
 }
 
+/* === CUSTOM: GNB Header — simplified like real Naver === */
+.Ngnb { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 44px; background: #fff; border-bottom: 1px solid #e5e5e5; display: flex; align-items: center; justify-content: space-between; }
+@media (min-width: 768px) {
+  .Ngnb { max-width: 768px; margin: 0 auto; left: 0; right: 0; }
+}
+.Ngnb_service { display: flex; align-items: center; flex: 1; min-width: 0; height: 44px; }
+.Ngnb_service .Nservice_item { flex-shrink: 0; }
+.Ngnb_service .Nservice_item a { text-decoration: none; color: #1EC800; font-size: 18px; font-weight: 700; padding-left: 16px; }
+.Ngnb_service .gnb_title { flex: 1; text-align: center; min-width: 0; overflow: hidden; }
+.Ngnb_service .gnb_title .ell { font-size: 15px; font-weight: 500; color: #333; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.Ngnb_service .gnb_title a { text-decoration: none; color: #333; }
+.Ngnb_tool { display: flex; align-items: center; gap: 4px; padding-right: 12px; flex-shrink: 0; }
+.Ngnb_tool .Ntool_button { background: none; border: none; padding: 6px; cursor: pointer; display: flex; align-items: center; }
+
 /* === CUSTOM: Fixed header offset === */
-.ct_wrap { padding-top: 65px; }
+.ct_wrap { padding-top: 52px; }
 
-/* === CUSTOM: Category + Post Title === */
-.blog_category { font-size: 13px; color: #1EC800; font-weight: 600; padding: 16px 16px 0; }
-h3.post_title { font-size: 22px; font-weight: 700; color: #333; line-height: 1.4; padding: 8px 16px 0; }
+/* === CUSTOM: Category — gray, not green === */
+.blog_category { font-size: 13px; color: #999; font-weight: 400; padding: 16px 16px 0; }
 
-/* === CUSTOM: Author/Profile area === */
+/* === CUSTOM: Post Title — bigger, bolder === */
+h3.post_title { font-size: 26px; font-weight: 700; color: #333; line-height: 1.4; padding: 8px 16px 0; margin-bottom: 16px; }
+
+/* === CUSTOM: Author/Profile area with inline buddy button === */
 .blog_authorArea { display: flex; align-items: center; gap: 10px; padding: 12px 16px; }
-.blog_authorArea .text_area { display: flex; flex-direction: column; }
+.blog_authorArea .text_area { display: flex; flex-direction: column; flex: 1; }
 .blog_author .ell { font-size: 13px; font-weight: 700; color: #333; }
 .blog_date { font-size: 12px; color: #999; margin-top: 2px; }
+.btn_buddy_inline { border: 1px solid #1EC800; color: #1EC800; background: #fff; font-size: 12px; padding: 4px 10px; border-radius: 2px; cursor: pointer; flex-shrink: 0; white-space: nowrap; margin-left: auto; }
 
-/* === CUSTOM: Button area === */
-.blog_btnArea { padding: 0 16px 8px; }
-.post_function_t1 { display: flex; gap: 8px; }
-.btn_function { background: none; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 8px; cursor: default; }
+/* === CUSTOM: Button area — hidden (real Naver doesn't show this) === */
+.blog_btnArea { display: none; }
 
-/* === CUSTOM: Social Proof — Likes Bar === */
-.social_area { display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
+/* === CUSTOM: Social Bar — fixed at bottom === */
+.social_area { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: #fff; border-top: 1px solid #f0f0f0; display: flex; align-items: center; gap: 16px; padding: 10px 16px; }
+@media (min-width: 768px) {
+  .social_area { max-width: 768px; margin: 0 auto; left: 50%; transform: translateX(-50%); }
+}
 .social_item { display: flex; align-items: center; gap: 4px; font-size: 13px; color: #666; cursor: pointer; }
 .social_item.like .count { color: #ff3d47; font-weight: bold; }
 .social_item .icon { width: 20px; height: 20px; }
+.social_item .icon_emoji { font-size: 18px; line-height: 1; }
+.social_item .icon_emoji.filled { margin-left: -2px; }
 
 /* === CUSTOM: Comments Section === */
 .comment_area { padding: 16px; border-top: 8px solid #f5f5f5; }
@@ -52,15 +72,17 @@ h3.post_title { font-size: 22px; font-weight: 700; color: #333; line-height: 1.4
 .comment_like { font-size: 11px; color: #bbb; padding-left: 36px; margin-top: 4px; }
 .comment_input { background: #f5f5f5; border-radius: 20px; padding: 10px 16px; font-size: 13px; color: #bbb; margin-top: 12px; border: none; width: 100%; }
 
-/* === CUSTOM: Buddy Add Button === */
-.buddy_area { display: flex; align-items: center; justify-content: center; padding: 16px; border-top: 1px solid #f0f0f0; }
-.btn_buddy { background: #1EC800; color: white; font-size: 13px; font-weight: bold; padding: 8px 24px; border-radius: 4px; border: none; cursor: default; }
+/* === CUSTOM: Buddy Add Button (old separate section — hidden) === */
+.buddy_area { display: none; }
 
 /* === CUSTOM: CTA Link === */
 a[data-cta] { color: #1EC800; text-decoration: underline; font-weight: bold; }
 
 /* === CUSTOM: Profile avatar fallback (no image) === */
 .blog_thumbnail .avatar_fallback { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; font-weight: bold; }
+
+/* === CUSTOM: SE editor content padding === */
+.se-main-container { padding: 0 20px; }
 
 /* === CUSTOM: Image placeholder === */
 .se-module-image-link img { width: 100%; height: auto; display: block; border-radius: 0; }
@@ -69,7 +91,7 @@ a[data-cta] { color: #1EC800; text-decoration: underline; font-weight: bold; }
 .se-module-image-link img[src=""] { display: none; }
 .se-module-image-link:has(img[src*="placeholder"]),
 .se-module-image-link:has(img:not([src])) { background: #f5f5f5; min-height: 200px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; border-radius: 4px; margin: 8px 0; }
-.se-module-image-link:has(img[src*="placeholder"])::after { content: '📷 이미지 준비 중'; }
+.se-module-image-link:has(img[src*="placeholder"])::after { content: 'image placeholder'; }
 .image-placeholder { background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; min-height: 200px; border-radius: 4px; margin: 8px 0; }
 
 /* === CUSTOM: Broken image fallback === */

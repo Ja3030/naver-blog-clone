@@ -18,12 +18,12 @@ body { margin: 0; padding: 0; }
 <div class="Ngnb gnb_bg_white">
   <div class="Ngnb_service logo_blog_green">
     <h1 class="Nservice_item">
-      <a href="/"><img src="/assets/icons/blog-logo.svg" width="18" height="18" alt=""> <span class="Nicon_service">블로그</span></a>
+      <a href="/"><span class="Nicon_service">blog</span></a>
     </h1>
     <h2 class="gnb_title">
       <div class="center">
         <span class="td">
-          <a href="/"><span class="ell" data-bind="blog-title">블로그 이름</span></a>
+          <span class="ell" data-bind="blog-title">블로그 이름</span>
         </span>
       </div>
     </h2>
@@ -54,6 +54,7 @@ body { margin: 0; padding: 0; }
       </div>
       <p class="blog_date">날짜</p>
     </div>
+    <button class="btn_buddy_inline">+ 이웃추가</button>
   </div>
 
   <!-- 기능 바 -->
@@ -1138,25 +1139,21 @@ body { margin: 0; padding: 0; }
     </div>
   </div>
 
-  <!-- ===== 좋아요/공감 바 ===== -->
+  <!-- ===== 좋아요/공감 바 (하단 고정) ===== -->
   <div class="social_area">
     <div class="social_item like">
-      <img src="/assets/icons/like-active.svg" width="20" height="20" alt="좋아요" class="icon">
-      <span class="count" data-bind="likes">0</span>
+      <span class="icon_emoji">&#9825;</span>
+      <span class="icon_emoji filled">&#10084;&#65039;</span>
+      <span class="count" data-bind="likes">847</span>
     </div>
     <div class="social_item comment">
-      <img src="/assets/icons/comment.svg" width="20" height="20" alt="댓글" class="icon">
-      <span class="count" data-bind="comments-count">0</span>
+      <span class="icon_emoji">&#128172;</span>
+      <span class="count" data-bind="comments-count">5</span>
     </div>
     <div class="social_item share">
-      <img src="/assets/icons/share.svg" width="20" height="20" alt="공유" class="icon">
-      <span class="count" data-bind="shares">0</span>
+      <span class="icon_emoji">&#9992;&#65039;</span>
+      <span class="count" data-bind="shares">56</span>
     </div>
-  </div>
-
-  <!-- 이웃추가 -->
-  <div class="buddy_area">
-    <button class="btn_buddy">이웃추가</button>
   </div>
 
   <!-- ===== 댓글 섹션 ===== -->
