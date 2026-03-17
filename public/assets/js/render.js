@@ -2,7 +2,8 @@
 (async function () {
   let config;
   try {
-    config = await fetch('./config.json').then(r => r.json());
+    var base = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
+    config = await fetch(base + 'config.json').then(r => r.json());
   } catch (e) {
     console.warn('config.json not found or invalid');
     return;
