@@ -236,8 +236,10 @@ function parseBlocks(html) {
           const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
           if (cls) fontSize = cls.replace('se-fs-', '');
         }
+        // 빈 줄 감지: <br>만 있거나, span 안에 <br>만 있거나, 텍스트가 빈 경우
         const hasBr = !!p.querySelector('br');
-        const text = hasBr ? '' : p.textContent.trim();
+        const rawText = p.textContent.replace(/\u200B/g, '').trim();
+        const text = (hasBr && !rawText) ? '' : rawText;
         paragraphs.push({ text, bold, fontSize });
       });
       blocks.push({ id: genId(), type: 'text', paragraphs });
@@ -256,6 +258,9 @@ function parseBlocks(html) {
   });
 }
 
+// Enter 키 일관성: 모든 contenteditable에서 <div>로 줄바꿈
+try { document.execCommand('defaultParagraphSeparator', false, 'div'); } catch(e) {}
+
 // ===== Block Renderer =====
 function renderBlocks() {
   const container = document.getElementById('blocks-container');
@@ -271,9 +276,10 @@ function renderBlocks() {
       const fsOptions = ['fs11','fs13','fs15','fs17','fs19','fs24','fs28','fs34'].map(f =>
         '<option value="' + f + '"' + (b.paragraphs[0]?.fontSize === f ? ' selected' : '') + '>' + f.replace('fs','') + 'px</option>'
       ).join('');
-      const html = b.paragraphs.map(p =>
-        (p.bold ? '<b>' : '') + esc(p.text || '\u200B') + (p.bold ? '</b>' : '')
-      ).join('\n');
+      const html = b.paragraphs.map(p => {
+        const content = p.text ? ((p.bold ? '<b>' : '') + esc(p.text) + (p.bold ? '</b>' : '')) : '<br>';
+        return '<div>' + content + '</div>';
+      }).join('');
       return `<div class="block block-text" data-idx="${idx}">
         ${controls}
         <div class="text-toolbar">
@@ -337,10 +343,42 @@ function moveBlock(idx, dir) {
 }
 
 function updateTextBlock(idx, el) {
-  const lines = el.innerText.split('\n');
   const b = blocks[idx];
   const baseBold = b.paragraphs[0]?.bold || false;
   const baseFontSize = b.paragraphs[0]?.fontSize || 'fs15';
+
+  // contenteditable에서 각 줄은 <div> 안에 들어감 (Chrome 기본 동작)
+  const children = el.childNodes;
+  const lines = [];
+
+  if (children.length === 0) {
+    // 빈 블록
+    lines.push('');
+  } else {
+    for (const node of children) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        // 첫 줄이 div로 안 감싸진 경우
+        const text = node.textContent.replace(/\u200B/g, '');
+        lines.push(text);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === 'br') {
+          // 단독 <br>은 빈 줄
+          lines.push('');
+        } else {
+          // <div>, <p> 등
+          const text = node.textContent.replace(/\u200B/g, '');
+          // <div><br></div>는 빈 줄
+          if (!text && node.querySelector('br')) {
+            lines.push('');
+          } else {
+            lines.push(text);
+          }
+        }
+      }
+    }
+  }
+
   b.paragraphs = lines.map(line => ({
     text: line,
     bold: baseBold,
