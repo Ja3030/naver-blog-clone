@@ -97,7 +97,11 @@ async function uploadImage(file) {
         })
       });
       if (r.ok) resolve('./images/' + name);
-      else reject(new Error('Image upload failed'));
+      else {
+        const err = await r.json().catch(() => ({}));
+        console.error('Image upload error:', r.status, err);
+        reject(new Error('Image upload failed: ' + (err.message || r.status)));
+      }
     };
     reader.readAsDataURL(file);
   });
@@ -371,7 +375,7 @@ document.getElementById('image-upload')?.addEventListener('change', async functi
     renderBlocks();
     toast('이미지 업로드 완료', 'success');
   } catch (err) {
-    toast('이미지 업로드 실패', 'error');
+    toast('이미지 업로드 실패: ' + err.message, 'error');
   }
   hideLoading();
   this.value = '';
