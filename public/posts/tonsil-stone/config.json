@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "건강덕후_수진",
+    "title": "수진이의 건강 이야기",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "편도결석 5년차가 알려주는 면봉 없이 사는 법",
+    "category": "건강·의학",
+    "date": "2026. 3. 15. 14:32"
+  },
+  "social": {
+    "likes": 847,
+    "shares": 56,
+    "views": 2341
+  },
+  "comments": [
+    {
+      "author": "미니멈라이프",
+      "profile_color": "#f8b4c8",
+      "time": "3시간 전",
+      "text": "저도 편도결석 3년째인데... 공감 ㅠㅠ 면봉 루프 너무 공감돼요",
+      "likes": 12
+    },
+    {
+      "author": "직장인민서",
+      "profile_color": "#b4d8f8",
+      "time": "5시간 전",
+      "text": "와 가글이 편도까지 안 닿는다는 거 처음 알았어요. 저도 리스테린만 믿고 있었는데...",
+      "likes": 8
+    },
+    {
+      "author": "엄마는건강러버",
+      "profile_color": "#d8f8b4",
+      "time": "1일 전",
+      "text": "프로폴리스 스프레이 저도 쓰고 있어요! 진짜 까끌까끌한 느낌이 안 올라와요 👍",
+      "likes": 23
+    },
+    {
+      "author": "코코넛라떼",
+      "profile_color": "#f8d8b4",
+      "time": "2일 전",
+      "text": "수술 고민하다가 이 글 보고 스프레이 먼저 써봤는데 대박... 후기 또 올려주세요!",
+      "likes": 15
+    },
+    {
+      "author": "새벽러너",
+      "profile_color": "#d8b4f8",
+      "time": "3일 전",
+      "text": "출근 전에 칙 한 번이면 되니까 진짜 편해요. 가글보다 훨씬 간편함",
+      "likes": 6
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "YOUR_META_PIXEL_ID",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "",
+    "text": "여기서 확인해보세요"
+  }
+}

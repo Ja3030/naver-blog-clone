@@ -1,0 +1,29 @@
+{
+  "blog": {
+    "name": "블로거 닉네임",
+    "title": "블로그 제목",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "글 제목을 입력하세요",
+    "category": "카테고리",
+    "date": "2026. 1. 1. 12:00"
+  },
+  "social": {
+    "likes": 0,
+    "shares": 0,
+    "views": 0
+  },
+  "comments": [],
+  "tracking": {
+    "meta_pixel_id": "YOUR_META_PIXEL_ID",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "",
+    "text": "여기서 확인해보세요"
+  }
+}

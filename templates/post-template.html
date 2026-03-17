@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title data-bind="title">블로그 글</title>
+<link rel="stylesheet" href="/assets/css/naver-blog.css">
+<style>
+/* 네이버 블로그 모바일 인라인 보정 */
+body { margin: 0; padding: 0; }
+</style>
+</head>
+<body>
+<div class="tablet_end" id="body">
+
+<!-- ===== 상단 헤더 바 ===== -->
+<div class="Ngnb gnb_bg_white">
+  <div class="Ngnb_service logo_blog_green">
+    <h1 class="Nservice_item">
+      <a href="/"><img src="/assets/icons/blog-logo.svg" width="18" height="18" alt=""> <span class="Nicon_service">블로그</span></a>
+    </h1>
+    <h2 class="gnb_title">
+      <div class="center">
+        <span class="td">
+          <a href="/"><span class="ell" data-bind="blog-title">블로그 이름</span></a>
+        </span>
+      </div>
+    </h2>
+  </div>
+  <div class="Ngnb_tool">
+    <a href="#" class="Ntool_button"><img src="/assets/icons/search.svg" width="20" height="20" alt="검색"></a>
+    <button type="button" class="Ntool_button"><img src="/assets/icons/menu.svg" width="20" height="20" alt="메뉴"></button>
+  </div>
+</div>
+
+<!-- ===== 본문 영역 ===== -->
+<div class="ct_wrap" id="_post_area">
+
+  <!-- 카테고리 -->
+  <div class="blog_category" data-bind="category">카테고리</div>
+
+  <!-- 글 제목 -->
+  <h3 class="post_title" data-bind="title">글 제목</h3>
+
+  <!-- 프로필 -->
+  <div class="blog_authorArea">
+    <a href="#" class="blog_thumbnail">
+      <span class="img"></span>
+    </a>
+    <div class="text_area">
+      <div class="blog_author">
+        <strong class="ell">작성자</strong>
+      </div>
+      <p class="blog_date">날짜</p>
+    </div>
+  </div>
+
+  <!-- 기능 바 -->
+  <div class="blog_btnArea">
+    <div class="post_function_t1">
+      <button class="btn_function"><img src="/assets/icons/font-size.svg" width="16" height="16" alt="폰트크기"></button>
+      <button class="btn_function"><img src="/assets/icons/share.svg" width="16" height="16" alt="공유하기"></button>
+      <button class="btn_function"><img src="/assets/icons/url-copy.svg" width="16" height="16" alt="URL복사"></button>
+    </div>
+  </div>
+
+  <!-- ===== 본문 콘텐츠 (SE 에디터 구조) ===== -->
+  <div class="se-main-container">
+    <div class="se-viewer se-theme-default">
+
+<!-- POST CONTENT START -->
+<div class="se-component se-text se-l-default">
+  <div class="se-section se-section-text se-l-default">
+    <div class="se-module se-module-text">
+      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-fs15 se-ff-system">본문 내용을 여기에 작성하세요</span>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- POST CONTENT END -->
+
+    </div>
+  </div>
+
+  <!-- ===== 좋아요/공감 바 ===== -->
+  <div class="social_area">
+    <div class="social_item like">
+      <img src="/assets/icons/like-active.svg" width="20" height="20" alt="좋아요" class="icon">
+      <span class="count" data-bind="likes">0</span>
+    </div>
+    <div class="social_item comment">
+      <img src="/assets/icons/comment.svg" width="20" height="20" alt="댓글" class="icon">
+      <span class="count" data-bind="comments-count">0</span>
+    </div>
+    <div class="social_item share">
+      <img src="/assets/icons/share.svg" width="20" height="20" alt="공유" class="icon">
+      <span class="count" data-bind="shares">0</span>
+    </div>
+  </div>
+
+  <!-- 이웃추가 -->
+  <div class="buddy_area">
+    <button class="btn_buddy">이웃추가</button>
+  </div>
+
+  <!-- ===== 댓글 섹션 ===== -->
+  <div class="comment_area">
+    <div class="comment_title">댓글 <span class="count" data-bind="comments-count">0</span></div>
+    <div data-bind="comments">
+      <!-- render.js가 config.json에서 댓글을 렌더링합니다 -->
+    </div>
+    <input type="text" class="comment_input" placeholder="댓글을 남겨보세요" disabled>
+  </div>
+
+</div>
+<!-- /ct_wrap -->
+
+</div>
+<!-- /tablet_end -->
+
+<script src="/assets/js/render.js"></script>
+<script src="/assets/js/pixel.js"></script>
+</body>
+</html>
