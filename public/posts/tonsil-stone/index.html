@@ -23,15 +23,15 @@ body { margin: 0; padding: 0; }
     <h2 class="gnb_title">
       <div class="center">
         <span class="td">
-          <svg class="gnb_category_icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="1.5" rx="0.5" fill="#333"/><rect x="2" y="7.25" width="12" height="1.5" rx="0.5" fill="#333"/><rect x="2" y="11.5" width="12" height="1.5" rx="0.5" fill="#333"/></svg>
+          <span class="sp ico gnb_category_icon">카테고리 이동</span>
           <span class="ell" data-bind="blog-title">블로그 이름</span>
         </span>
       </div>
     </h2>
   </div>
   <div class="Ngnb_tool">
-    <button type="button" class="Ntool_button"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 5h14v1H4V5zm0 5h10v1H4v-1zm0 5h12v1H4v-1z" fill="#333"/><circle cx="18" cy="5.5" r="3" fill="#1EC800"/></svg></button>
-    <button type="button" class="Ntool_button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="3" y1="5" x2="17" y2="5" stroke="#333" stroke-width="1.5"/><line x1="3" y1="10" x2="17" y2="10" stroke="#333" stroke-width="1.5"/><line x1="3" y1="15" x2="17" y2="15" stroke="#333" stroke-width="1.5"/></svg></button>
+    <a href="#" class="Ntool_button" aria-label="검색"><span class="Nicon_search">검색</span></a>
+    <button type="button" class="Ntool_button" aria-label="MY메뉴"><span class="Nicon_drawer">MY메뉴 열기</span></button>
   </div>
 </div>
 
@@ -1138,16 +1138,15 @@ body { margin: 0; padding: 0; }
   <!-- ===== 좋아요/공감 바 (하단 고정) ===== -->
   <div class="social_area">
     <div class="social_item like">
-      <span class="icon_emoji">&#9825;</span>
-      <span class="icon_emoji filled">&#10084;&#65039;</span>
+      <span class="social_icon social_icon_like"></span>
       <span class="count" data-bind="likes">847</span>
     </div>
     <div class="social_item comment">
-      <span class="icon_emoji">&#128172;</span>
+      <span class="social_icon social_icon_comment"></span>
       <span class="count" data-bind="comments-count">5</span>
     </div>
     <div class="social_item share">
-      <span class="icon_emoji">&#9992;&#65039;</span>
+      <span class="social_icon social_icon_share"></span>
       <span class="count" data-bind="shares">56</span>
     </div>
   </div>
