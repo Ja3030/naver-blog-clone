@@ -236,7 +236,8 @@ function parseBlocks(html) {
           const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
           if (cls) fontSize = cls.replace('se-fs-', '');
         }
-        const text = p.textContent.trim();
+        const hasBr = !!p.querySelector('br');
+        const text = hasBr ? '' : p.textContent.trim();
         paragraphs.push({ text, bold, fontSize });
       });
       blocks.push({ id: genId(), type: 'text', paragraphs });
@@ -388,6 +389,11 @@ function blocksToHTML() {
     if (b.type === 'text') {
       const paras = b.paragraphs.map(p => {
         const text = p.text || '';
+        if (!text.trim()) {
+          return `      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-${p.fontSize} se-ff-system"><br></span>
+      </p>`;
+        }
         const inner = p.bold ? '<b>' + esc(text) + '</b>' : esc(text);
         return `      <p class="se-text-paragraph se-text-paragraph-align- ">
         <span class="se-fs-${p.fontSize} se-ff-system">${inner}</span>
