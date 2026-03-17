@@ -125,7 +125,7 @@ a[data-cta] { color: #03c75a; text-decoration: underline; font-weight: bold; }
 .blog_thumbnail .img:empty { display: inline-block; width: 36px; height: 36px; border-radius: 50%; background-color: #e8e8e8; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='none'%3E%3Ccircle cx='18' cy='14' r='5.5' fill='%23c4c4c4'/%3E%3Cpath d='M7 29c0-5 4.5-8.5 11-8.5s11 3.5 11 8.5' fill='%23c4c4c4'/%3E%3C/svg%3E"); background-size: cover; background-repeat: no-repeat; font-size: 0; color: transparent; overflow: hidden; }
 
 /* === CUSTOM: SE editor content padding & spacing — font matched to real Naver === */
-.se-main-container { padding: 0 20px; margin-top: 20px; font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
+.se-main-container { padding: 0 20px; margin-top: 20px; padding-bottom: 40px; font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
 .se-viewer .se-text-paragraph { line-height: 1.7; margin: 0; padding: 0; white-space: normal !important; font-family: inherit; }
 .se-viewer .se-text-paragraph:not(.se-text-paragraph-align-justify) { white-space: normal !important; }
 /* SE font size classes — match real Naver SE editor */
