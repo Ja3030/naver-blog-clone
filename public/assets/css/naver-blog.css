@@ -5,6 +5,18 @@
 
 @import url('naver-extracted.css');
 
+/* === CUSTOM: SE CSS Variables (missing from extracted) === */
+:root {
+  --se-content-side-padding-mobile: 0px;
+  --se-viewer-side-margin-mobile: 0px;
+  --se-reset-font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --se-reset-font-size: 16px;
+  --se-viewer-background-color: #fff;
+  --se-text-list-margin-left: 20px;
+  --se-text-list-bullet-margin-left: 8px;
+  --se-text-list-decimal-margin-left: 8px;
+}
+
 /* === CUSTOM: Reset & Base === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
@@ -81,8 +93,13 @@ a[data-cta] { color: #1EC800; text-decoration: underline; font-weight: bold; }
 /* === CUSTOM: Profile avatar fallback (no image) === */
 .blog_thumbnail .avatar_fallback { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; font-weight: bold; }
 
-/* === CUSTOM: SE editor content padding === */
+/* === CUSTOM: SE editor content padding & spacing === */
 .se-main-container { padding: 0 20px; }
+.se-viewer .se-text-paragraph { line-height: 1.8; margin: 0; padding: 0; white-space: normal !important; }
+.se-viewer .se-text-paragraph:not(.se-text-paragraph-align-justify) { white-space: normal !important; }
+.se-viewer .se-component.se-text { margin-bottom: 0; }
+.se-viewer .se-component.se-horizontalLine { margin: 24px 0; }
+.se-viewer .se-component.se-image { margin: 16px 0; }
 
 /* === CUSTOM: Image placeholder === */
 .se-module-image-link img { width: 100%; height: auto; display: block; border-radius: 0; }
