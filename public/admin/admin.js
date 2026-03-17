@@ -60,7 +60,10 @@ async function getFile(filePath) {
   const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/' + filePath + '?ref=' + BRANCH);
   const data = await r.json();
   fileShas[filePath] = data.sha;
-  return atob(data.content.replace(/\n/g, ''));
+  const binary = atob(data.content.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
 }
 
 async function putFile(filePath, content, message) {
