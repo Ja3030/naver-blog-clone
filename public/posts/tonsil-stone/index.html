@@ -23,14 +23,15 @@ body { margin: 0; padding: 0; }
     <h2 class="gnb_title">
       <div class="center">
         <span class="td">
+          <svg class="gnb_category_icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="1.5" rx="0.5" fill="#333"/><rect x="2" y="7.25" width="12" height="1.5" rx="0.5" fill="#333"/><rect x="2" y="11.5" width="12" height="1.5" rx="0.5" fill="#333"/></svg>
           <span class="ell" data-bind="blog-title">블로그 이름</span>
         </span>
       </div>
     </h2>
   </div>
   <div class="Ngnb_tool">
-    <a href="#" class="Ntool_button"><img src="/assets/icons/search.svg" width="20" height="20" alt="검색"></a>
-    <button type="button" class="Ntool_button"><img src="/assets/icons/menu.svg" width="20" height="20" alt="메뉴"></button>
+    <button type="button" class="Ntool_button"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 5h14v1H4V5zm0 5h10v1H4v-1zm0 5h12v1H4v-1z" fill="#333"/><circle cx="18" cy="5.5" r="3" fill="#1EC800"/></svg></button>
+    <button type="button" class="Ntool_button"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="3" y1="5" x2="17" y2="5" stroke="#333" stroke-width="1.5"/><line x1="3" y1="10" x2="17" y2="10" stroke="#333" stroke-width="1.5"/><line x1="3" y1="15" x2="17" y2="15" stroke="#333" stroke-width="1.5"/></svg></button>
   </div>
 </div>
 
@@ -55,16 +56,11 @@ body { margin: 0; padding: 0; }
       <p class="blog_date">날짜</p>
     </div>
     <button class="btn_buddy_inline">+ 이웃추가</button>
+    <button class="btn_more">⋮</button>
   </div>
 
-  <!-- 기능 바 -->
-  <div class="blog_btnArea">
-    <div class="post_function_t1">
-      <button class="btn_function"><img src="/assets/icons/font-size.svg" width="16" height="16" alt="폰트크기"></button>
-      <button class="btn_function"><img src="/assets/icons/share.svg" width="16" height="16" alt="공유하기"></button>
-      <button class="btn_function"><img src="/assets/icons/url-copy.svg" width="16" height="16" alt="URL복사"></button>
-    </div>
-  </div>
+  <!-- 프로필 아래 구분선 -->
+  <div class="author_divider"></div>
 
   <!-- ===== 본문 콘텐츠 (SE 에디터 구조) ===== -->
   <div class="se-main-container">
