@@ -1151,7 +1151,7 @@ body { margin: 0; padding: 0; }
     </div>
   </div>
 
-  <!-- ===== 댓글 섹션 ===== -->
+  <!-- ===== 댓글 섹션 (인라인) ===== -->
   <div class="comment_area">
     <div class="comment_title">댓글 <span class="count" data-bind="comments-count">0</span></div>
     <div data-bind="comments">
@@ -1166,7 +1166,23 @@ body { margin: 0; padding: 0; }
 </div>
 <!-- /tablet_end -->
 
-<script src="/assets/js/render.js"></script>
+<!-- ===== 댓글 바텀시트 (모달) ===== -->
+<div class="comment_overlay" id="commentOverlay"></div>
+<div class="comment_sheet" id="commentSheet">
+  <div class="comment_sheet_handle"><span></span></div>
+  <div class="comment_sheet_header">
+    <span class="sheet_title">댓글 <span class="sheet_count" data-bind="comments-count">0</span></span>
+  </div>
+  <div class="comment_sheet_list" data-bind="sheet-comments">
+    <!-- render.js가 댓글을 렌더링합니다 -->
+  </div>
+  <div class="comment_sheet_input_area">
+    <input type="text" class="comment_sheet_input" placeholder="댓글을 입력해주세요." disabled>
+    <button class="comment_sheet_submit">등록</button>
+  </div>
+</div>
+
+<script src="/assets/js/render.js?v=2"></script>
 <script src="/assets/js/pixel.js"></script>
 </body>
 </html>

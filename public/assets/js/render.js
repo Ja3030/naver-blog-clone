@@ -1,4 +1,4 @@
-// render.js — config.json 기반 소셜 증거 + 프로필 렌더링
+// render.js — config.json 기반 소셜 증거 + 프로필 + 댓글 바텀시트 렌더링
 (async function () {
   let config;
   try {
@@ -78,7 +78,7 @@
   const count = config.comments?.length || 0;
   commentCounts.forEach(el => { el.textContent = fmt(count); });
 
-  // 8. 댓글 목록 렌더링
+  // 8. 댓글 목록 렌더링 (인라인)
   const commentList = document.querySelector('[data-bind="comments"]');
   if (commentList && config.comments?.length) {
     commentList.innerHTML = config.comments.map(c => {
@@ -96,7 +96,81 @@
     }).join('');
   }
 
-  // 9. CTA 링크 설정
+  // 9. 댓글 바텀시트 렌더링
+  const sheetComments = document.querySelector('[data-bind="sheet-comments"]');
+  if (sheetComments && config.comments?.length) {
+    sheetComments.innerHTML = config.comments.map(c => {
+      const color = c.profile_color || '#ddd';
+      const initial = (c.author || '?')[0];
+      const avatarHTML = c.profile_image
+        ? '<img src="' + c.profile_image + '" alt="">'
+        : initial;
+      return '<div class="comment_sheet_item">' +
+        '<div class="comment_sheet_profile">' +
+          '<div class="comment_sheet_avatar" style="background:' + color + ';">' + avatarHTML + '</div>' +
+          '<span class="comment_sheet_author">' + c.author + '</span>' +
+        '</div>' +
+        '<div class="comment_sheet_text">' + c.text + '</div>' +
+        '<div class="comment_sheet_meta">' +
+          '<div class="comment_sheet_meta_left">' +
+            '<span class="comment_sheet_date">' + c.time + '</span>' +
+            '<span class="comment_sheet_report">신고</span>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:12px;">' +
+            '<button class="comment_sheet_reply_btn">' +
+              '<svg viewBox="0 0 20 20" fill="none"><path d="M10 2c4.418 0 8 3.582 8 8s-3.582 8-8 8a7.96 7.96 0 01-4.17-1.17l-2.7.71a.22.22 0 01-.27-.27l.71-2.7A7.96 7.96 0 012 10c0-4.418 3.582-8 8-8z" stroke="#bbb" stroke-width="1.4"/></svg>' +
+              '<span>답글</span>' +
+            '</button>' +
+            '<button class="comment_sheet_like_btn">' +
+              '<svg viewBox="0 0 18 18" fill="none"><path d="M9 15.3l-1.05-.96C4.2 11.04 2 9.07 2 6.65 2 4.68 3.57 3.1 5.5 3.1c1.13 0 2.21.53 2.93 1.37h1.14c.72-.84 1.8-1.37 2.93-1.37C14.43 3.1 16 4.68 16 6.65c0 2.42-2.2 4.39-5.95 7.69L9 15.3z" stroke="#bbb" stroke-width="1.2" fill="none"/></svg>' +
+              '<span>' + (c.likes || 0) + '</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // 10. 댓글 바텀시트 열기/닫기
+  const overlay = document.getElementById('commentOverlay');
+  const sheet = document.getElementById('commentSheet');
+  if (overlay && sheet) {
+    // 소셜바 댓글 버튼 클릭 → 바텀시트 열기
+    const commentBtn = document.querySelector('.social_item.comment');
+    if (commentBtn) {
+      commentBtn.addEventListener('click', function () {
+        overlay.classList.add('active');
+        sheet.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    // 오버레이 클릭 → 닫기
+    overlay.addEventListener('click', function () {
+      overlay.classList.remove('active');
+      sheet.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // 바텀시트 핸들 드래그 다운 → 닫기 (간단 버전)
+    const handle = sheet.querySelector('.comment_sheet_handle');
+    if (handle) {
+      let startY = 0;
+      handle.addEventListener('touchstart', function (e) {
+        startY = e.touches[0].clientY;
+      });
+      handle.addEventListener('touchmove', function (e) {
+        const dy = e.touches[0].clientY - startY;
+        if (dy > 60) {
+          overlay.classList.remove('active');
+          sheet.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  }
+
+  // 11. CTA 링크 설정
   if (config.cta?.url) {
     document.querySelectorAll('a[data-cta]').forEach(el => {
       el.href = config.cta.url;
