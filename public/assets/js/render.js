@@ -42,9 +42,7 @@
       if (config.blog?.profile_image) {
         thumb.innerHTML = '<span class="img"><img src="' + config.blog.profile_image + '" width="36" height="36" alt="프로필" style="border-radius:50%;"></span>';
       } else {
-        const color = config.blog?.profile_color || '#a8d8ea';
-        const initial = (config.blog?.name || '?')[0];
-        thumb.innerHTML = '<span class="avatar_fallback" style="background:' + color + ';width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;font-weight:bold;">' + initial + '</span>';
+        thumb.innerHTML = '<span class="avatar_fallback"></span>';
       }
     }
 
@@ -82,11 +80,12 @@
   const commentList = document.querySelector('[data-bind="comments"]');
   if (commentList && config.comments?.length) {
     commentList.innerHTML = config.comments.map(c => {
-      const color = c.profile_color || '#ddd';
-      const initial = (c.author || '?')[0];
+      const avatarHTML = c.profile_image
+        ? '<img src="' + c.profile_image + '" width="28" height="28" style="border-radius:50%;">'
+        : '';
       return '<div class="comment_item">' +
         '<div class="comment_profile">' +
-          '<div class="comment_avatar" style="background:' + color + ';">' + initial + '</div>' +
+          '<div class="comment_avatar comment_avatar_default">' + avatarHTML + '</div>' +
           '<span class="comment_author">' + c.author + '</span>' +
           '<span class="comment_time">' + c.time + '</span>' +
         '</div>' +
@@ -100,14 +99,12 @@
   const sheetComments = document.querySelector('[data-bind="sheet-comments"]');
   if (sheetComments && config.comments?.length) {
     sheetComments.innerHTML = config.comments.map(c => {
-      const color = c.profile_color || '#ddd';
-      const initial = (c.author || '?')[0];
-      const avatarHTML = c.profile_image
+      const avatarInner = c.profile_image
         ? '<img src="' + c.profile_image + '" alt="">'
-        : initial;
+        : '';
       return '<div class="comment_sheet_item">' +
         '<div class="comment_sheet_profile">' +
-          '<div class="comment_sheet_avatar" style="background:' + color + ';">' + avatarHTML + '</div>' +
+          '<div class="comment_sheet_avatar comment_avatar_default">' + avatarInner + '</div>' +
           '<span class="comment_sheet_author">' + c.author + '</span>' +
         '</div>' +
         '<div class="comment_sheet_text">' + c.text + '</div>' +
