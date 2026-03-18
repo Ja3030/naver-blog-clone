@@ -70,6 +70,12 @@ body { font-family: -apple-system, system-ui, sans-serif; background: #f5f5f5; c
 .block-hr { padding: 16px 12px; text-align: center; }
 .block-hr hr { border: none; border-top: 1px solid #e0e0e0; width: 40%; margin: 0 auto; }
 
+/* CTA block */
+.block-cta { padding: 12px; background: #fff5f5; border: 2px solid #e53e3e; }
+.cta-label { font-size: 12px; font-weight: 700; color: #e53e3e; margin-bottom: 8px; }
+.cta-text-input, .cta-url-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 6px; }
+.cta-url-input { font-size: 12px; color: #666; }
+
 /* === Comments === */
 .comment-item { padding: 10px; border: 1px solid #eee; border-radius: 6px; margin-bottom: 8px; }
 .comment-item input, .comment-item textarea { width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; margin-bottom: 4px; }

@@ -228,7 +228,12 @@ function parseBlocks(html) {
     if (comp.classList.contains('se-text')) {
       // 텍스트 블록
       const paragraphs = [];
+      // CTA 링크 감지: <a> 태그가 있는 문단이 있으면 CTA 블록으로 분리
+      let hasCta = false;
+      let ctaText = '';
+      let ctaUrl = '';
       comp.querySelectorAll('.se-text-paragraph').forEach(p => {
+        const link = p.querySelector('a');
         const span = p.querySelector('span');
         const bold = !!p.querySelector('b');
         let fontSize = 'fs15';
@@ -236,13 +241,24 @@ function parseBlocks(html) {
           const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
           if (cls) fontSize = cls.replace('se-fs-', '');
         }
-        // 빈 줄 감지: <br>만 있거나, span 안에 <br>만 있거나, 텍스트가 빈 경우
-        const hasBr = !!p.querySelector('br');
-        const rawText = p.textContent.replace(/\u200B/g, '').trim();
-        const text = (hasBr && !rawText) ? '' : rawText;
-        paragraphs.push({ text, bold, fontSize });
+        if (link) {
+          hasCta = true;
+          ctaText = link.textContent.trim();
+          ctaUrl = link.getAttribute('href') || '';
+        } else {
+          // 빈 줄 감지: <br>만 있거나, span 안에 <br>만 있거나, 텍스트가 빈 경우
+          const hasBr = !!p.querySelector('br');
+          const rawText = p.textContent.replace(/\u200B/g, '').trim();
+          const text = (hasBr && !rawText) ? '' : rawText;
+          paragraphs.push({ text, bold, fontSize });
+        }
       });
-      blocks.push({ id: genId(), type: 'text', paragraphs });
+      if (paragraphs.length > 0) {
+        blocks.push({ id: genId(), type: 'text', paragraphs });
+      }
+      if (hasCta) {
+        blocks.push({ id: genId(), type: 'cta', text: ctaText, url: ctaUrl });
+      }
     } else if (comp.classList.contains('se-image')) {
       // 이미지 블록
       const img = comp.querySelector('img');
@@ -301,6 +317,15 @@ function renderBlocks() {
       </div>`;
     }
 
+    if (b.type === 'cta') {
+      return `<div class="block block-cta" data-idx="${idx}">
+        ${controls}
+        <div class="cta-label">🔗 CTA 버튼</div>
+        <input type="text" class="cta-text-input" value="${esc(b.text)}" placeholder="버튼 텍스트 (예: 여기서 확인해보세요 →)" oninput="updateCtaBlock(${idx}, 'text', this.value)">
+        <input type="url" class="cta-url-input" value="${esc(b.url)}" placeholder="링크 URL" oninput="updateCtaBlock(${idx}, 'url', this.value)">
+      </div>`;
+    }
+
     if (b.type === 'hr') {
       return `<div class="block block-hr" data-idx="${idx}">
         ${controls}
@@ -326,6 +351,8 @@ function addBlock(type) {
     blocks.push({ id: genId(), type: 'image', src: '', alt: '' });
   } else if (type === 'hr') {
     blocks.push({ id: genId(), type: 'hr' });
+  } else if (type === 'cta') {
+    blocks.push({ id: genId(), type: 'cta', text: '여기서 확인해보세요 →', url: '' });
   }
   renderBlocks();
 }
@@ -384,6 +411,10 @@ function updateTextBlock(idx, el) {
     bold: baseBold,
     fontSize: baseFontSize
   }));
+}
+
+function updateCtaBlock(idx, field, value) {
+  blocks[idx][field] = value;
 }
 
 function toggleBold(idx) {
@@ -453,6 +484,20 @@ ${paras}
       <a class="se-module-image-link">
         <img src="${esc(b.src)}" alt="${esc(b.alt)}" class="se-image-resource">
       </a>
+    </div>
+  </div>
+</div>`;
+    }
+
+    if (b.type === 'cta') {
+      const href = b.url || '#';
+      const text = b.text || 'CTA';
+      return `<div class="se-component se-text se-l-default">
+  <div class="se-section se-section-text se-l-default">
+    <div class="se-module se-module-text">
+      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-fs15 se-ff-system"><a href="${esc(href)}" target="_blank" rel="noopener" onclick="if(typeof fbq==='function'){fbq('track','Lead');}">${esc(text)}</a></span>
+      </p>
     </div>
   </div>
 </div>`;
