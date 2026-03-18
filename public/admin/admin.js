@@ -290,6 +290,7 @@ function renderBlocks() {
       <div class="block-controls">
         ${idx > 0 ? '<button onclick="moveBlock(' + idx + ',-1)" title="위로">↑</button>' : ''}
         ${idx < blocks.length - 1 ? '<button onclick="moveBlock(' + idx + ',1)" title="아래로">↓</button>' : ''}
+        ${b.type === 'text' && b.paragraphs && b.paragraphs.length > 1 ? '<button onclick="splitBlock(' + idx + ')" title="줄마다 분할">✂</button>' : ''}
         <button onclick="removeBlock(' + idx + ')" title="삭제" style="color:#e53e3e">×</button>
       </div>`;
 
@@ -370,6 +371,23 @@ function removeBlock(idx) {
   renderBlocks();
 }
 
+function splitBlock(idx) {
+  const b = blocks[idx];
+  if (b.type !== 'text' || b.paragraphs.length < 2) {
+    toast('2줄 이상인 텍스트 블록만 분할 가능', 'error');
+    return;
+  }
+  // 각 줄을 개별 블록으로 분할
+  const newBlocks = b.paragraphs.map(p => ({
+    id: genId(),
+    type: 'text',
+    paragraphs: [{ text: p.text, bold: p.bold, fontSize: p.fontSize, color: p.color || '' }]
+  }));
+  blocks.splice(idx, 1, ...newBlocks);
+  renderBlocks();
+  toast(newBlocks.length + '개 블록으로 분할됨', 'success');
+}
+
 function moveBlock(idx, dir) {
   const newIdx = idx + dir;
   if (newIdx < 0 || newIdx >= blocks.length) return;
@@ -436,6 +454,17 @@ function toggleBold(idx) {
 
 function changeFontSize(idx, fs) {
   blocks[idx].paragraphs.forEach(p => p.fontSize = fs);
+}
+
+function changeAllFontSize(fs) {
+  if (!fs) return;
+  blocks.forEach(b => {
+    if (b.type === 'text') {
+      b.paragraphs.forEach(p => p.fontSize = fs);
+    }
+  });
+  renderBlocks();
+  toast('전체 글씨 크기 ' + fs.replace('fs','') + 'px 적용', 'success');
 }
 
 function changeColor(idx, color) {
