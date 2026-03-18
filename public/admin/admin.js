@@ -241,6 +241,11 @@ function parseBlocks(html) {
           const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
           if (cls) fontSize = cls.replace('se-fs-', '');
         }
+        // 색상 감지
+        let color = '';
+        if (span && span.style.color) {
+          color = span.style.color;
+        }
         if (link) {
           hasCta = true;
           ctaText = link.textContent.trim();
@@ -250,7 +255,7 @@ function parseBlocks(html) {
           const hasBr = !!p.querySelector('br');
           const rawText = p.textContent.replace(/\u200B/g, '').trim();
           const text = (hasBr && !rawText) ? '' : rawText;
-          paragraphs.push({ text, bold, fontSize });
+          paragraphs.push({ text, bold, fontSize, color });
         }
       });
       if (paragraphs.length > 0) {
@@ -294,13 +299,16 @@ function renderBlocks() {
       ).join('');
       const html = b.paragraphs.map(p => {
         const content = p.text ? ((p.bold ? '<b>' : '') + esc(p.text) + (p.bold ? '</b>' : '')) : '<br>';
-        return '<div>' + content + '</div>';
+        const cStyle = p.color ? ' style="color:' + p.color + '"' : '';
+        return '<div' + cStyle + '>' + content + '</div>';
       }).join('');
       return `<div class="block block-text" data-idx="${idx}">
         ${controls}
         <div class="text-toolbar">
           <button onclick="toggleBold(${idx})" class="${b.paragraphs[0]?.bold ? 'active' : ''}" title="굵게"><b>B</b></button>
           <select onchange="changeFontSize(${idx}, this.value)">${fsOptions}</select>
+          <input type="color" value="${b.paragraphs[0]?.color ? colorToHex(b.paragraphs[0].color) : '#000000'}" onchange="changeColor(${idx}, this.value)" title="글씨 색">
+          <button onclick="changeColor(${idx}, '')" title="색상 초기화" class="btn-reset-color">↺</button>
         </div>
         <div class="block-content" contenteditable="true" data-idx="${idx}"
              oninput="updateTextBlock(${idx}, this)">${html}</div>
@@ -373,6 +381,7 @@ function updateTextBlock(idx, el) {
   const b = blocks[idx];
   const baseBold = b.paragraphs[0]?.bold || false;
   const baseFontSize = b.paragraphs[0]?.fontSize || 'fs15';
+  const baseColor = b.paragraphs[0]?.color || '';
 
   // contenteditable에서 각 줄은 <div> 안에 들어감 (Chrome 기본 동작)
   const children = el.childNodes;
@@ -409,7 +418,8 @@ function updateTextBlock(idx, el) {
   b.paragraphs = lines.map(line => ({
     text: line,
     bold: baseBold,
-    fontSize: baseFontSize
+    fontSize: baseFontSize,
+    color: baseColor
   }));
 }
 
@@ -426,6 +436,22 @@ function toggleBold(idx) {
 
 function changeFontSize(idx, fs) {
   blocks[idx].paragraphs.forEach(p => p.fontSize = fs);
+}
+
+function changeColor(idx, color) {
+  blocks[idx].paragraphs.forEach(p => p.color = color);
+  renderBlocks();
+}
+
+function colorToHex(c) {
+  if (!c) return '#000000';
+  if (c.startsWith('#')) return c;
+  // rgb(r, g, b) → #rrggbb
+  const m = c.match(/(\d+)/g);
+  if (m && m.length >= 3) {
+    return '#' + m.slice(0,3).map(n => parseInt(n).toString(16).padStart(2,'0')).join('');
+  }
+  return '#000000';
 }
 
 // ===== Image Upload =====
@@ -458,14 +484,15 @@ function blocksToHTML() {
     if (b.type === 'text') {
       const paras = b.paragraphs.map(p => {
         const text = p.text || '';
+        const colorStyle = p.color ? ' style="color:' + p.color + '"' : '';
         if (!text.trim()) {
           return `      <p class="se-text-paragraph se-text-paragraph-align- ">
-        <span class="se-fs-${p.fontSize} se-ff-system"><br></span>
+        <span class="se-fs-${p.fontSize} se-ff-system"${colorStyle}><br></span>
       </p>`;
         }
         const inner = p.bold ? '<b>' + esc(text) + '</b>' : esc(text);
         return `      <p class="se-text-paragraph se-text-paragraph-align- ">
-        <span class="se-fs-${p.fontSize} se-ff-system">${inner}</span>
+        <span class="se-fs-${p.fontSize} se-ff-system"${colorStyle}>${inner}</span>
       </p>`;
       }).join('\n');
       return `<div class="se-component se-text se-l-default">
