@@ -295,37 +295,78 @@ ${parasHtml}
       continue;
     }
 
-    // 서식 분석: span의 fontSize, color, bold
-    let fs = 'fs15';
-    let color = '';
-    let bold = false;
+    // 줄 내 모든 인라인 요소를 개별 span으로 변환
+    const spans = node.querySelectorAll('span');
+    if (spans.length > 1) {
+      // 여러 span이 있으면 각각의 서식을 보존
+      let paraSpans = '';
+      spans.forEach(s => {
+        let fs = 'fs15';
+        let color = '';
+        let bold = false;
+        const segText = s.textContent.replace(/\u200B/g, '').trim();
+        if (!segText) return;
 
-    const span = node.querySelector('span');
-    if (span) {
-      if (span.style.fontSize) {
-        const px = parseInt(span.style.fontSize);
-        if (FS_MAP[px]) fs = FS_MAP[px];
+        if (s.style.fontSize) {
+          const px = parseInt(s.style.fontSize);
+          if (FS_MAP[px]) fs = FS_MAP[px];
+        }
+        if (s.style.color) color = s.style.color;
+        if (s.querySelector('b') || s.querySelector('strong') || s.closest('b') || s.closest('strong')) bold = true;
+
+        // font 태그 처리
+        const font = s.querySelector('font');
+        if (font) {
+          if (font.color) color = font.color;
+          if (font.size) {
+            const sizeMap = {1:11, 2:13, 3:15, 4:17, 5:19, 6:24, 7:34};
+            const px = sizeMap[parseInt(font.size)] || 15;
+            if (FS_MAP[px]) fs = FS_MAP[px];
+          }
+        }
+
+        const colorStyle = color ? ' style="color:' + color + '"' : '';
+        const inner = bold ? '<b>' + esc(segText) + '</b>' : esc(segText);
+        paraSpans += `<span class="se-fs-${fs} se-ff-system"${colorStyle}>${inner}</span>`;
+      });
+      if (paraSpans) {
+        textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
+        ${paraSpans}
+      </p>`);
       }
-      if (span.style.color) color = span.style.color;
-    }
-    if (node.querySelector('b') || node.querySelector('strong')) bold = true;
+    } else {
+      // 단일 span 또는 span 없음 — 기존 로직
+      let fs = 'fs15';
+      let color = '';
+      let bold = false;
 
-    // font 태그 (execCommand 산출물) 처리
-    const font = node.querySelector('font');
-    if (font) {
-      if (font.color) color = font.color;
-      if (font.size) {
-        const sizeMap = {1:11, 2:13, 3:15, 4:17, 5:19, 6:24, 7:34};
-        const px = sizeMap[parseInt(font.size)] || 15;
-        if (FS_MAP[px]) fs = FS_MAP[px];
+      const span = node.querySelector('span');
+      if (span) {
+        if (span.style.fontSize) {
+          const px = parseInt(span.style.fontSize);
+          if (FS_MAP[px]) fs = FS_MAP[px];
+        }
+        if (span.style.color) color = span.style.color;
       }
-    }
+      if (node.querySelector('b') || node.querySelector('strong')) bold = true;
 
-    const colorStyle = color ? ' style="color:' + color + '"' : '';
-    const inner = bold ? '<b>' + esc(text) + '</b>' : esc(text);
-    textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
+      // font 태그 (execCommand 산출물) 처리
+      const font = node.querySelector('font');
+      if (font) {
+        if (font.color) color = font.color;
+        if (font.size) {
+          const sizeMap = {1:11, 2:13, 3:15, 4:17, 5:19, 6:24, 7:34};
+          const px = sizeMap[parseInt(font.size)] || 15;
+          if (FS_MAP[px]) fs = FS_MAP[px];
+        }
+      }
+
+      const colorStyle = color ? ' style="color:' + color + '"' : '';
+      const inner = bold ? '<b>' + esc(text) + '</b>' : esc(text);
+      textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
         <span class="se-fs-${fs} se-ff-system"${colorStyle}>${inner}</span>
       </p>`);
+    }
   }
 
   flushText();
@@ -350,15 +391,17 @@ function applyFontSize(size) {
     const div = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
     const line = div.closest('#editor > div') || div;
     if (line && line.parentElement?.id === 'editor') {
-      let span = line.querySelector('span');
-      if (!span) {
+      const spans = line.querySelectorAll('span');
+      if (spans.length === 0) {
         const content = line.innerHTML;
-        span = document.createElement('span');
+        const span = document.createElement('span');
         span.innerHTML = content;
         line.innerHTML = '';
         line.appendChild(span);
+        span.style.fontSize = size + 'px';
+      } else {
+        spans.forEach(s => s.style.fontSize = size + 'px');
       }
-      span.style.fontSize = size + 'px';
     }
   } else {
     // 선택 영역에 span 래핑
