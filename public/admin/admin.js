@@ -1,13 +1,12 @@
-// admin.js — GitHub API 기반 블로그 어드민
+// admin.js — 단일 contenteditable 에디터
 const REPO = 'Ja3030/naver-blog-clone';
 const POST_PATH = 'public/posts/tonsil-stone';
 const BRANCH = 'main';
 
 let PAT = '';
-let blocks = [];
 let config = {};
-let fileShas = {}; // { 'index.html': sha, 'config.json': sha }
-let currentImageBlockId = null;
+let fileShas = {};
+let rawHtml = ''; // 원본 index.html 전체
 
 // ===== Auth =====
 function doLogin() {
@@ -32,7 +31,6 @@ function doLogout() {
   location.reload();
 }
 
-// 세션 복원
 (function () {
   const saved = sessionStorage.getItem('gh_pat');
   if (saved) {
@@ -70,19 +68,14 @@ async function putFile(filePath, content, message) {
   const encoded = btoa(unescape(encodeURIComponent(content)));
   const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/' + filePath, {
     method: 'PUT',
-    body: JSON.stringify({
-      message: message,
-      content: encoded,
-      sha: fileShas[filePath],
-      branch: BRANCH
-    })
+    body: JSON.stringify({ message, content: encoded, sha: fileShas[filePath], branch: BRANCH })
   });
   const data = await r.json();
   if (data.content) fileShas[filePath] = data.content.sha;
   return r.ok;
 }
 
-async function uploadImage(file) {
+async function uploadImageFile(file) {
   const name = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '');
   const reader = new FileReader();
   return new Promise((resolve, reject) => {
@@ -90,35 +83,35 @@ async function uploadImage(file) {
       const base64 = reader.result.split(',')[1];
       const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/images/' + name, {
         method: 'PUT',
-        body: JSON.stringify({
-          message: 'Upload image: ' + name,
-          content: base64,
-          branch: BRANCH
-        })
+        body: JSON.stringify({ message: 'Upload image: ' + name, content: base64, branch: BRANCH })
       });
       if (r.ok) resolve('./images/' + name);
-      else {
-        const err = await r.json().catch(() => ({}));
-        console.error('Image upload error:', r.status, err);
-        reject(new Error('Image upload failed: ' + (err.message || r.status)));
-      }
+      else reject(new Error('Upload failed'));
     };
     reader.readAsDataURL(file);
   });
+}
+
+// ===== Font Size Map =====
+const FS_MAP = { 11:'fs11', 13:'fs13', 15:'fs15', 17:'fs17', 19:'fs19', 24:'fs24', 28:'fs28', 34:'fs34' };
+const FS_REV = {}; Object.keys(FS_MAP).forEach(k => FS_REV[FS_MAP[k]] = k);
+
+function resolveImageUrl(src) {
+  if (!src) return '';
+  if (src.startsWith('http')) return src;
+  if (src.startsWith('./')) return 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/' + POST_PATH + '/' + src.substring(2);
+  return src;
 }
 
 // ===== Load Post =====
 async function loadPost() {
   showLoading('불러오는 중...');
   try {
-    const [html, configStr] = await Promise.all([
-      getFile('index.html'),
-      getFile('config.json')
-    ]);
+    const [html, configStr] = await Promise.all([getFile('index.html'), getFile('config.json')]);
+    rawHtml = html;
     config = JSON.parse(configStr);
     loadConfig();
-    parseBlocks(html);
-    renderBlocks();
+    loadEditor(html);
     toast('불러오기 완료', 'success');
   } catch (e) {
     toast('불러오기 실패: ' + e.message, 'error');
@@ -126,7 +119,368 @@ async function loadPost() {
   hideLoading();
 }
 
-// ===== Config UI =====
+// ===== SE HTML → Editor HTML =====
+function loadEditor(html) {
+  const startMarker = '<!-- POST CONTENT START -->';
+  const endMarker = '<!-- POST CONTENT END -->';
+  const s = html.indexOf(startMarker);
+  const e = html.indexOf(endMarker);
+  if (s < 0 || e < 0) { toast('POST CONTENT 마커 없음', 'error'); return; }
+
+  const content = html.substring(s + startMarker.length, e).trim();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString('<div id="root">' + content + '</div>', 'text/html');
+  const components = doc.querySelectorAll('#root > .se-component');
+
+  const editor = document.getElementById('editor');
+  editor.innerHTML = '';
+
+  components.forEach(comp => {
+    if (comp.classList.contains('se-text')) {
+      comp.querySelectorAll('.se-text-paragraph').forEach(p => {
+        const div = document.createElement('div');
+        const span = p.querySelector('span');
+        const link = p.querySelector('a');
+        const bold = !!p.querySelector('b');
+        const hasBr = !!p.querySelector('br');
+
+        // fontSize
+        let fs = '15';
+        if (span) {
+          const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
+          if (cls) fs = cls.replace('se-fs-fs', '');
+        }
+
+        // color
+        let color = '';
+        if (span && span.style.color) color = span.style.color;
+
+        if (link) {
+          // CTA link
+          const a = document.createElement('a');
+          a.href = link.getAttribute('href') || '#';
+          a.textContent = link.textContent;
+          a.className = 'editor-cta';
+          a.contentEditable = 'false';
+          a.setAttribute('data-cta', 'true');
+          div.appendChild(a);
+        } else {
+          const rawText = p.textContent.replace(/\u200B/g, '').trim();
+          if (hasBr && !rawText) {
+            div.innerHTML = '<br>';
+          } else {
+            const textSpan = document.createElement('span');
+            if (fs !== '15') textSpan.style.fontSize = fs + 'px';
+            if (color) textSpan.style.color = color;
+            if (bold) {
+              const b = document.createElement('b');
+              b.textContent = rawText;
+              textSpan.appendChild(b);
+            } else {
+              textSpan.textContent = rawText;
+            }
+            div.appendChild(textSpan);
+          }
+        }
+        editor.appendChild(div);
+      });
+    } else if (comp.classList.contains('se-image')) {
+      const img = comp.querySelector('img');
+      if (img) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'editor-image-wrapper';
+        wrapper.contentEditable = 'false';
+        const imgEl = document.createElement('img');
+        imgEl.src = resolveImageUrl(img.getAttribute('src') || '');
+        imgEl.setAttribute('data-src', img.getAttribute('src') || '');
+        imgEl.alt = img.getAttribute('alt') || '';
+        wrapper.appendChild(imgEl);
+        // 삭제 버튼
+        const del = document.createElement('button');
+        del.className = 'img-delete';
+        del.textContent = '×';
+        del.onclick = () => { wrapper.remove(); };
+        wrapper.appendChild(del);
+        editor.appendChild(wrapper);
+      }
+    } else if (comp.classList.contains('se-horizontalLine')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'editor-hr-wrapper';
+      wrapper.contentEditable = 'false';
+      wrapper.innerHTML = '<hr><button class="hr-delete" onclick="this.parentElement.remove()">×</button>';
+      editor.appendChild(wrapper);
+    }
+  });
+
+  // 에디터가 비어있으면 빈 div 추가
+  if (!editor.innerHTML.trim()) {
+    editor.innerHTML = '<div><br></div>';
+  }
+}
+
+// ===== Editor HTML → SE HTML =====
+function editorToSE() {
+  const editor = document.getElementById('editor');
+  const children = editor.childNodes;
+  const seBlocks = [];
+  let textParas = [];
+
+  function flushText() {
+    if (textParas.length === 0) return;
+    const parasHtml = textParas.join('\n');
+    seBlocks.push(`<div class="se-component se-text se-l-default">
+  <div class="se-section se-section-text se-l-default">
+    <div class="se-module se-module-text">
+${parasHtml}
+    </div>
+  </div>
+</div>`);
+    textParas = [];
+  }
+
+  for (const node of children) {
+    if (node.nodeType !== Node.ELEMENT_NODE) continue;
+
+    // 이미지 블록
+    if (node.classList && node.classList.contains('editor-image-wrapper')) {
+      flushText();
+      const img = node.querySelector('img');
+      const src = img?.getAttribute('data-src') || img?.getAttribute('src') || '';
+      const alt = img?.alt || '';
+      seBlocks.push(`<div class="se-component se-image se-l-default">
+  <div class="se-section se-section-image se-l-default">
+    <div class="se-module se-module-image">
+      <a class="se-module-image-link">
+        <img src="${esc(src)}" alt="${esc(alt)}" class="se-image-resource">
+      </a>
+    </div>
+  </div>
+</div>`);
+      continue;
+    }
+
+    // HR 블록
+    if (node.classList && node.classList.contains('editor-hr-wrapper')) {
+      flushText();
+      seBlocks.push(`<div class="se-component se-horizontalLine se-l-default">
+  <div class="se-section se-section-horizontalLine se-l-default">
+    <div class="se-module se-module-horizontalLine">
+      <hr class="se-hr">
+    </div>
+  </div>
+</div>`);
+      continue;
+    }
+
+    // CTA 링크
+    const ctaLink = node.querySelector('[data-cta]');
+    if (ctaLink) {
+      const href = ctaLink.getAttribute('href') || '#';
+      const text = ctaLink.textContent || 'CTA';
+      textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-fs15 se-ff-system"><a href="${esc(href)}" target="_blank" rel="noopener" onclick="if(typeof fbq==='function'){fbq('track','Lead');}">${esc(text)}</a></span>
+      </p>`);
+      continue;
+    }
+
+    // 텍스트 줄
+    const text = node.textContent.replace(/\u200B/g, '').trim();
+    const hasBr = node.querySelector('br') && !text;
+
+    if (hasBr || (!text && node.innerHTML === '<br>') || node.innerHTML === '' || node.innerHTML === '<br>') {
+      // 빈 줄
+      textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-fs15 se-ff-system"><br></span>
+      </p>`);
+      continue;
+    }
+
+    // 서식 분석: span의 fontSize, color, bold
+    let fs = 'fs15';
+    let color = '';
+    let bold = false;
+
+    const span = node.querySelector('span');
+    if (span) {
+      if (span.style.fontSize) {
+        const px = parseInt(span.style.fontSize);
+        if (FS_MAP[px]) fs = FS_MAP[px];
+      }
+      if (span.style.color) color = span.style.color;
+    }
+    if (node.querySelector('b') || node.querySelector('strong')) bold = true;
+
+    // font 태그 (execCommand 산출물) 처리
+    const font = node.querySelector('font');
+    if (font) {
+      if (font.color) color = font.color;
+      if (font.size) {
+        const sizeMap = {1:11, 2:13, 3:15, 4:17, 5:19, 6:24, 7:34};
+        const px = sizeMap[parseInt(font.size)] || 15;
+        if (FS_MAP[px]) fs = FS_MAP[px];
+      }
+    }
+
+    const colorStyle = color ? ' style="color:' + color + '"' : '';
+    const inner = bold ? '<b>' + esc(text) + '</b>' : esc(text);
+    textParas.push(`      <p class="se-text-paragraph se-text-paragraph-align- ">
+        <span class="se-fs-${fs} se-ff-system"${colorStyle}>${inner}</span>
+      </p>`);
+  }
+
+  flushText();
+  return seBlocks.join('\n\n');
+}
+
+// ===== Toolbar Actions =====
+function execFmt(cmd, value) {
+  document.execCommand(cmd, false, value || null);
+  document.getElementById('editor').focus();
+}
+
+function applyFontSize(size) {
+  if (!size) return;
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+
+  if (range.collapsed) {
+    // 선택 없으면 → 현재 줄 전체에 적용
+    const node = sel.anchorNode;
+    const div = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+    const line = div.closest('#editor > div') || div;
+    if (line && line.parentElement?.id === 'editor') {
+      let span = line.querySelector('span');
+      if (!span) {
+        const content = line.innerHTML;
+        span = document.createElement('span');
+        span.innerHTML = content;
+        line.innerHTML = '';
+        line.appendChild(span);
+      }
+      span.style.fontSize = size + 'px';
+    }
+  } else {
+    // 선택 영역에 span 래핑
+    const contents = range.extractContents();
+    const span = document.createElement('span');
+    span.style.fontSize = size + 'px';
+    span.appendChild(contents);
+    range.insertNode(span);
+    sel.removeAllRanges();
+    const newRange = document.createRange();
+    newRange.selectNodeContents(span);
+    sel.addRange(newRange);
+  }
+  document.getElementById('editor').focus();
+}
+
+function applyColor(color) {
+  if (color) {
+    document.execCommand('foreColor', false, color);
+  } else {
+    document.execCommand('removeFormat', false, null);
+  }
+  document.getElementById('editor').focus();
+}
+
+function insertHR() {
+  const editor = document.getElementById('editor');
+  const sel = window.getSelection();
+  const wrapper = document.createElement('div');
+  wrapper.className = 'editor-hr-wrapper';
+  wrapper.contentEditable = 'false';
+  wrapper.innerHTML = '<hr><button class="hr-delete" onclick="this.parentElement.remove()">×</button>';
+
+  if (sel.rangeCount) {
+    const range = sel.getRangeAt(0);
+    const node = range.startContainer;
+    const line = node.nodeType === Node.TEXT_NODE ? node.parentElement.closest('#editor > *') || node.parentElement : node.closest('#editor > *') || node;
+    if (line && line.parentElement === editor) {
+      editor.insertBefore(wrapper, line.nextSibling);
+    } else {
+      editor.appendChild(wrapper);
+    }
+  } else {
+    editor.appendChild(wrapper);
+  }
+  // 다음 줄 추가
+  const next = document.createElement('div');
+  next.innerHTML = '<br>';
+  editor.insertBefore(next, wrapper.nextSibling);
+}
+
+function insertImage() {
+  document.getElementById('image-upload').click();
+}
+
+document.getElementById('image-upload')?.addEventListener('change', async function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  showLoading('이미지 업로드 중...');
+  try {
+    const src = await uploadImageFile(file);
+    const editor = document.getElementById('editor');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'editor-image-wrapper';
+    wrapper.contentEditable = 'false';
+    const img = document.createElement('img');
+    img.src = resolveImageUrl(src);
+    img.setAttribute('data-src', src);
+    img.alt = file.name;
+    wrapper.appendChild(img);
+    const del = document.createElement('button');
+    del.className = 'img-delete';
+    del.textContent = '×';
+    del.onclick = () => { wrapper.remove(); };
+    wrapper.appendChild(del);
+
+    // 커서 위치에 삽입
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+      const range = sel.getRangeAt(0);
+      const node = range.startContainer;
+      const line = node.nodeType === Node.TEXT_NODE ? node.parentElement.closest('#editor > *') : node.closest('#editor > *');
+      if (line && line.parentElement === editor) {
+        editor.insertBefore(wrapper, line.nextSibling);
+      } else {
+        editor.appendChild(wrapper);
+      }
+    } else {
+      editor.appendChild(wrapper);
+    }
+    const next = document.createElement('div');
+    next.innerHTML = '<br>';
+    editor.insertBefore(next, wrapper.nextSibling);
+    toast('이미지 업로드 완료', 'success');
+  } catch (err) {
+    toast('이미지 업로드 실패: ' + err.message, 'error');
+  }
+  hideLoading();
+  this.value = '';
+});
+
+function insertCTA() {
+  const ctaUrl = config.cta?.url || prompt('CTA URL:') || '#';
+  const ctaText = config.cta?.text || '여기서 확인해보세요 →';
+  const editor = document.getElementById('editor');
+
+  const div = document.createElement('div');
+  const a = document.createElement('a');
+  a.href = ctaUrl;
+  a.textContent = ctaText;
+  a.className = 'editor-cta';
+  a.contentEditable = 'false';
+  a.setAttribute('data-cta', 'true');
+  div.appendChild(a);
+  editor.appendChild(div);
+
+  const next = document.createElement('div');
+  next.innerHTML = '<br>';
+  editor.appendChild(next);
+}
+
+// ===== Config =====
 function loadConfig() {
   document.getElementById('cfg-post-title').value = config.post?.title || '';
   document.getElementById('cfg-category').value = config.post?.category || '';
@@ -206,373 +560,7 @@ function removeComment(idx) {
   renderComments();
 }
 
-// ===== Block Parser =====
-function parseBlocks(html) {
-  blocks = [];
-  const startMarker = '<!-- POST CONTENT START -->';
-  const endMarker = '<!-- POST CONTENT END -->';
-  const startIdx = html.indexOf(startMarker);
-  const endIdx = html.indexOf(endMarker);
-  if (startIdx < 0 || endIdx < 0) { toast('POST CONTENT 마커를 찾을 수 없습니다', 'error'); return; }
-
-  const content = html.substring(startIdx + startMarker.length, endIdx).trim();
-
-  // se-component 단위로 분리
-  const regex = /<div class="se-component ([^"]*)"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/g;
-  // 더 안전한 방식: 임시 DOM 파싱
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div id="root">' + content + '</div>', 'text/html');
-  const components = doc.querySelectorAll('#root > .se-component');
-
-  components.forEach((comp, idx) => {
-    if (comp.classList.contains('se-text')) {
-      // 텍스트 블록
-      const paragraphs = [];
-      // CTA 링크 감지: <a> 태그가 있는 문단이 있으면 CTA 블록으로 분리
-      let hasCta = false;
-      let ctaText = '';
-      let ctaUrl = '';
-      comp.querySelectorAll('.se-text-paragraph').forEach(p => {
-        const link = p.querySelector('a');
-        const span = p.querySelector('span');
-        const bold = !!p.querySelector('b');
-        let fontSize = 'fs15';
-        if (span) {
-          const cls = Array.from(span.classList).find(c => c.startsWith('se-fs-'));
-          if (cls) fontSize = cls.replace('se-fs-', '');
-        }
-        // 색상 감지
-        let color = '';
-        if (span && span.style.color) {
-          color = span.style.color;
-        }
-        if (link) {
-          hasCta = true;
-          ctaText = link.textContent.trim();
-          ctaUrl = link.getAttribute('href') || '';
-        } else {
-          // 빈 줄 감지: <br>만 있거나, span 안에 <br>만 있거나, 텍스트가 빈 경우
-          const hasBr = !!p.querySelector('br');
-          const rawText = p.textContent.replace(/\u200B/g, '').trim();
-          const text = (hasBr && !rawText) ? '' : rawText;
-          paragraphs.push({ text, bold, fontSize, color });
-        }
-      });
-      if (paragraphs.length > 0) {
-        blocks.push({ id: genId(), type: 'text', paragraphs });
-      }
-      if (hasCta) {
-        blocks.push({ id: genId(), type: 'cta', text: ctaText, url: ctaUrl });
-      }
-    } else if (comp.classList.contains('se-image')) {
-      // 이미지 블록
-      const img = comp.querySelector('img');
-      blocks.push({
-        id: genId(),
-        type: 'image',
-        src: img ? img.getAttribute('src') : '',
-        alt: img ? img.getAttribute('alt') || '' : ''
-      });
-    } else if (comp.classList.contains('se-horizontalLine')) {
-      blocks.push({ id: genId(), type: 'hr' });
-    }
-  });
-}
-
-// Enter 키 일관성: 모든 contenteditable에서 <div>로 줄바꿈
-try { document.execCommand('defaultParagraphSeparator', false, 'div'); } catch(e) {}
-
-// ===== Block Renderer =====
-function renderBlocks() {
-  const container = document.getElementById('blocks-container');
-  container.innerHTML = blocks.map((b, idx) => {
-    const controls = `
-      <div class="block-controls">
-        ${idx > 0 ? '<button onclick="moveBlock(' + idx + ',-1)" title="위로">↑</button>' : ''}
-        ${idx < blocks.length - 1 ? '<button onclick="moveBlock(' + idx + ',1)" title="아래로">↓</button>' : ''}
-        ${b.type === 'text' && b.paragraphs && b.paragraphs.length > 1 ? '<button onclick="splitBlock(' + idx + ')" title="줄마다 분할">✂</button>' : ''}
-        <button onclick="removeBlock(' + idx + ')" title="삭제" style="color:#e53e3e">×</button>
-      </div>`;
-
-    if (b.type === 'text') {
-      const fsOptions = ['fs11','fs13','fs15','fs17','fs19','fs24','fs28','fs34'].map(f =>
-        '<option value="' + f + '"' + (b.paragraphs[0]?.fontSize === f ? ' selected' : '') + '>' + f.replace('fs','') + 'px</option>'
-      ).join('');
-      const html = b.paragraphs.map(p => {
-        const content = p.text ? ((p.bold ? '<b>' : '') + esc(p.text) + (p.bold ? '</b>' : '')) : '<br>';
-        const cStyle = p.color ? ' style="color:' + p.color + '"' : '';
-        return '<div' + cStyle + '>' + content + '</div>';
-      }).join('');
-      return `<div class="block block-text" data-idx="${idx}">
-        ${controls}
-        <div class="text-toolbar">
-          <button onclick="toggleBold(${idx})" class="${b.paragraphs[0]?.bold ? 'active' : ''}" title="굵게"><b>B</b></button>
-          <select onchange="changeFontSize(${idx}, this.value)">${fsOptions}</select>
-          <input type="color" value="${b.paragraphs[0]?.color ? colorToHex(b.paragraphs[0].color) : '#000000'}" onchange="changeColor(${idx}, this.value)" title="글씨 색">
-          <button onclick="changeColor(${idx}, '')" title="색상 초기화" class="btn-reset-color">↺</button>
-        </div>
-        <div class="block-content" contenteditable="true" data-idx="${idx}"
-             oninput="updateTextBlock(${idx}, this)">${html}</div>
-      </div>`;
-    }
-
-    if (b.type === 'image') {
-      const inner = b.src
-        ? '<img src="' + resolveImageUrl(b.src) + '" alt="' + esc(b.alt) + '">'
-        : '<div class="image-placeholder">클릭하여 이미지 추가</div>';
-      return `<div class="block block-image" data-idx="${idx}" onclick="pickImage(${idx})">
-        ${controls}
-        ${inner}
-      </div>`;
-    }
-
-    if (b.type === 'cta') {
-      return `<div class="block block-cta" data-idx="${idx}">
-        ${controls}
-        <div class="cta-label">🔗 CTA 버튼</div>
-        <input type="text" class="cta-text-input" value="${esc(b.text)}" placeholder="버튼 텍스트 (예: 여기서 확인해보세요 →)" oninput="updateCtaBlock(${idx}, 'text', this.value)">
-        <input type="url" class="cta-url-input" value="${esc(b.url)}" placeholder="링크 URL" oninput="updateCtaBlock(${idx}, 'url', this.value)">
-      </div>`;
-    }
-
-    if (b.type === 'hr') {
-      return `<div class="block block-hr" data-idx="${idx}">
-        ${controls}
-        <hr>
-      </div>`;
-    }
-  }).join('');
-}
-
-function resolveImageUrl(src) {
-  if (src.startsWith('http')) return src;
-  if (src.startsWith('./')) {
-    return 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/' + POST_PATH + '/' + src.substring(2);
-  }
-  return src;
-}
-
-// ===== Block Actions =====
-function addBlock(type) {
-  if (type === 'text') {
-    blocks.push({ id: genId(), type: 'text', paragraphs: [{ text: '', bold: false, fontSize: 'fs15' }] });
-  } else if (type === 'image') {
-    blocks.push({ id: genId(), type: 'image', src: '', alt: '' });
-  } else if (type === 'hr') {
-    blocks.push({ id: genId(), type: 'hr' });
-  } else if (type === 'cta') {
-    blocks.push({ id: genId(), type: 'cta', text: '여기서 확인해보세요 →', url: '' });
-  }
-  renderBlocks();
-}
-
-function removeBlock(idx) {
-  blocks.splice(idx, 1);
-  renderBlocks();
-}
-
-function splitBlock(idx) {
-  const b = blocks[idx];
-  if (b.type !== 'text' || b.paragraphs.length < 2) {
-    toast('2줄 이상인 텍스트 블록만 분할 가능', 'error');
-    return;
-  }
-  // 각 줄을 개별 블록으로 분할
-  const newBlocks = b.paragraphs.map(p => ({
-    id: genId(),
-    type: 'text',
-    paragraphs: [{ text: p.text, bold: p.bold, fontSize: p.fontSize, color: p.color || '' }]
-  }));
-  blocks.splice(idx, 1, ...newBlocks);
-  renderBlocks();
-  toast(newBlocks.length + '개 블록으로 분할됨', 'success');
-}
-
-function moveBlock(idx, dir) {
-  const newIdx = idx + dir;
-  if (newIdx < 0 || newIdx >= blocks.length) return;
-  [blocks[idx], blocks[newIdx]] = [blocks[newIdx], blocks[idx]];
-  renderBlocks();
-}
-
-function updateTextBlock(idx, el) {
-  const b = blocks[idx];
-  const baseBold = b.paragraphs[0]?.bold || false;
-  const baseFontSize = b.paragraphs[0]?.fontSize || 'fs15';
-  const baseColor = b.paragraphs[0]?.color || '';
-
-  // contenteditable에서 각 줄은 <div> 안에 들어감 (Chrome 기본 동작)
-  const children = el.childNodes;
-  const lines = [];
-
-  if (children.length === 0) {
-    // 빈 블록
-    lines.push('');
-  } else {
-    for (const node of children) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        // 첫 줄이 div로 안 감싸진 경우
-        const text = node.textContent.replace(/\u200B/g, '');
-        lines.push(text);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const tag = node.tagName.toLowerCase();
-        if (tag === 'br') {
-          // 단독 <br>은 빈 줄
-          lines.push('');
-        } else {
-          // <div>, <p> 등
-          const text = node.textContent.replace(/\u200B/g, '');
-          // <div><br></div>는 빈 줄
-          if (!text && node.querySelector('br')) {
-            lines.push('');
-          } else {
-            lines.push(text);
-          }
-        }
-      }
-    }
-  }
-
-  b.paragraphs = lines.map(line => ({
-    text: line,
-    bold: baseBold,
-    fontSize: baseFontSize,
-    color: baseColor
-  }));
-}
-
-function updateCtaBlock(idx, field, value) {
-  blocks[idx][field] = value;
-}
-
-function toggleBold(idx) {
-  const b = blocks[idx];
-  const newBold = !b.paragraphs[0]?.bold;
-  b.paragraphs.forEach(p => p.bold = newBold);
-  renderBlocks();
-}
-
-function changeFontSize(idx, fs) {
-  blocks[idx].paragraphs.forEach(p => p.fontSize = fs);
-}
-
-function changeAllFontSize(fs) {
-  if (!fs) return;
-  blocks.forEach(b => {
-    if (b.type === 'text') {
-      b.paragraphs.forEach(p => p.fontSize = fs);
-    }
-  });
-  renderBlocks();
-  toast('전체 글씨 크기 ' + fs.replace('fs','') + 'px 적용', 'success');
-}
-
-function changeColor(idx, color) {
-  blocks[idx].paragraphs.forEach(p => p.color = color);
-  renderBlocks();
-}
-
-function colorToHex(c) {
-  if (!c) return '#000000';
-  if (c.startsWith('#')) return c;
-  // rgb(r, g, b) → #rrggbb
-  const m = c.match(/(\d+)/g);
-  if (m && m.length >= 3) {
-    return '#' + m.slice(0,3).map(n => parseInt(n).toString(16).padStart(2,'0')).join('');
-  }
-  return '#000000';
-}
-
-// ===== Image Upload =====
-function pickImage(idx) {
-  currentImageBlockId = idx;
-  document.getElementById('image-upload').click();
-}
-
-document.getElementById('image-upload')?.addEventListener('change', async function (e) {
-  const file = e.target.files[0];
-  if (!file || currentImageBlockId === null) return;
-  showLoading('이미지 업로드 중...');
-  try {
-    const src = await uploadImage(file);
-    blocks[currentImageBlockId].src = src;
-    blocks[currentImageBlockId].alt = file.name;
-    renderBlocks();
-    toast('이미지 업로드 완료', 'success');
-  } catch (err) {
-    toast('이미지 업로드 실패: ' + err.message, 'error');
-  }
-  hideLoading();
-  this.value = '';
-  currentImageBlockId = null;
-});
-
-// ===== Serializer: Blocks → SE HTML =====
-function blocksToHTML() {
-  return blocks.map(b => {
-    if (b.type === 'text') {
-      const paras = b.paragraphs.map(p => {
-        const text = p.text || '';
-        const colorStyle = p.color ? ' style="color:' + p.color + '"' : '';
-        if (!text.trim()) {
-          return `      <p class="se-text-paragraph se-text-paragraph-align- ">
-        <span class="se-fs-${p.fontSize} se-ff-system"${colorStyle}><br></span>
-      </p>`;
-        }
-        const inner = p.bold ? '<b>' + esc(text) + '</b>' : esc(text);
-        return `      <p class="se-text-paragraph se-text-paragraph-align- ">
-        <span class="se-fs-${p.fontSize} se-ff-system"${colorStyle}>${inner}</span>
-      </p>`;
-      }).join('\n');
-      return `<div class="se-component se-text se-l-default">
-  <div class="se-section se-section-text se-l-default">
-    <div class="se-module se-module-text">
-${paras}
-    </div>
-  </div>
-</div>`;
-    }
-
-    if (b.type === 'image') {
-      return `<div class="se-component se-image se-l-default">
-  <div class="se-section se-section-image se-l-default">
-    <div class="se-module se-module-image">
-      <a class="se-module-image-link">
-        <img src="${esc(b.src)}" alt="${esc(b.alt)}" class="se-image-resource">
-      </a>
-    </div>
-  </div>
-</div>`;
-    }
-
-    if (b.type === 'cta') {
-      const href = b.url || '#';
-      const text = b.text || 'CTA';
-      return `<div class="se-component se-text se-l-default">
-  <div class="se-section se-section-text se-l-default">
-    <div class="se-module se-module-text">
-      <p class="se-text-paragraph se-text-paragraph-align- ">
-        <span class="se-fs-fs15 se-ff-system"><a href="${esc(href)}" target="_blank" rel="noopener" onclick="if(typeof fbq==='function'){fbq('track','Lead');}">${esc(text)}</a></span>
-      </p>
-    </div>
-  </div>
-</div>`;
-    }
-
-    if (b.type === 'hr') {
-      return `<div class="se-component se-horizontalLine se-l-default">
-  <div class="se-section se-section-horizontalLine se-l-default">
-    <div class="se-module se-module-horizontalLine">
-      <hr class="se-hr">
-    </div>
-  </div>
-</div>`;
-    }
-    return '';
-  }).join('\n\n');
-}
-
-// ===== Save All =====
+// ===== Save =====
 async function saveAll() {
   collectConfig();
   const saveBtn = document.querySelector('.btn-primary');
@@ -581,24 +569,22 @@ async function saveAll() {
   showLoading('저장 & 배포 중...');
 
   try {
-    // 1. config.json 저장
-    const configOk = await putFile('config.json', JSON.stringify(config, null, 2) + '\n', 'Update config.json via admin');
+    const configOk = await putFile('config.json', JSON.stringify(config, null, 2) + '\n', 'Update config via admin');
     if (!configOk) throw new Error('config.json 저장 실패');
 
-    // 2. index.html 본문 교체 후 저장
     const currentHtml = await getFile('index.html');
     const startMarker = '<!-- POST CONTENT START -->';
     const endMarker = '<!-- POST CONTENT END -->';
-    const startIdx = currentHtml.indexOf(startMarker);
-    const endIdx = currentHtml.indexOf(endMarker);
-    if (startIdx < 0 || endIdx < 0) throw new Error('POST CONTENT 마커 없음');
+    const si = currentHtml.indexOf(startMarker);
+    const ei = currentHtml.indexOf(endMarker);
+    if (si < 0 || ei < 0) throw new Error('POST CONTENT 마커 없음');
 
-    const before = currentHtml.substring(0, startIdx + startMarker.length);
-    const after = currentHtml.substring(endIdx);
-    const newContent = blocksToHTML();
+    const before = currentHtml.substring(0, si + startMarker.length);
+    const after = currentHtml.substring(ei);
+    const newContent = editorToSE();
     const newHtml = before + '\n\n' + newContent + '\n\n' + after;
 
-    const htmlOk = await putFile('index.html', newHtml, 'Update post content via admin');
+    const htmlOk = await putFile('index.html', newHtml, 'Update post via admin');
     if (!htmlOk) throw new Error('index.html 저장 실패');
 
     toast('저장 완료! Vercel 배포 진행 중...', 'success');
@@ -613,12 +599,11 @@ async function saveAll() {
 }
 
 // ===== Utils =====
-function genId() { return 'b' + Math.random().toString(36).substring(2, 8); }
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-function toast(msg, type = 'info') {
+function toast(msg, type) {
   const el = document.createElement('div');
-  el.className = 'toast toast-' + type;
+  el.className = 'toast toast-' + (type || 'info');
   el.textContent = msg;
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 3000);
@@ -636,3 +621,6 @@ function showLoading(msg) {
 function hideLoading() {
   document.getElementById('loading-overlay')?.remove();
 }
+
+// Enter 키 → div로 줄바꿈
+try { document.execCommand('defaultParagraphSeparator', false, 'div'); } catch(e) {}

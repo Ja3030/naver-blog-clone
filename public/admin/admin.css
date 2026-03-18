@@ -39,44 +39,82 @@ body { font-family: -apple-system, system-ui, sans-serif; background: #f5f5f5; c
 .panel label input { display: block; width: 100%; margin-top: 4px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
 .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .panel-header h2 { margin-bottom: 0; }
-.toolbar { display: flex; gap: 6px; }
-.toolbar button { padding: 4px 10px; font-size: 13px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
-.toolbar button:hover { background: #e8e8e8; }
 
-/* === Blocks === */
-.blocks-container { min-height: 200px; }
-.block { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 8px; position: relative; transition: box-shadow 0.15s; }
-.block:hover { box-shadow: 0 0 0 2px #03c75a40; }
-.block-controls { display: flex; gap: 4px; position: absolute; top: 4px; right: 4px; opacity: 0; transition: opacity 0.15s; }
-.block:hover .block-controls { opacity: 1; }
-.block-controls button { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.block-controls button:hover { background: #f0f0f0; }
+/* === Format Toolbar === */
+.format-toolbar {
+  display: flex; gap: 6px; align-items: center;
+  padding: 8px 12px;
+  background: #fafafa; border-bottom: 1px solid #e0e0e0;
+  position: sticky; top: 49px; z-index: 50;
+  border-radius: 8px 8px 0 0;
+  flex-wrap: wrap;
+}
+.format-toolbar button {
+  padding: 4px 10px; font-size: 13px; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;
+}
+.format-toolbar button:hover { background: #e8e8e8; }
+.format-toolbar select {
+  padding: 4px 6px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px;
+}
+.format-toolbar input[type="color"] {
+  width: 30px; height: 28px; padding: 0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;
+}
+.toolbar-sep { width: 1px; height: 20px; background: #ddd; margin: 0 2px; }
+.btn-sm { font-size: 12px !important; padding: 2px 6px !important; }
+.btn-cta { background: #e53e3e !important; color: #fff !important; border-color: #e53e3e !important; }
+.btn-cta:hover { background: #c53030 !important; }
 
-/* Text block */
-.block-text .block-content { padding: 12px; min-height: 40px; outline: none; font-family: Helvetica, "Apple SD Gothic Neo", sans-serif; font-size: 15px; line-height: 1.7; white-space: pre-wrap; }
-.block-text .block-content:focus { background: #fafffe; }
-.block-text .text-toolbar { display: flex; gap: 4px; padding: 4px 12px; border-bottom: 1px solid #f0f0f0; }
-.block-text .text-toolbar button { padding: 2px 8px; font-size: 12px; background: none; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; }
-.block-text .text-toolbar button.active { background: #333; color: #fff; border-color: #333; }
-.block-text .text-toolbar select { padding: 2px 6px; font-size: 12px; border: 1px solid #ddd; border-radius: 3px; }
-.block-text .text-toolbar input[type="color"] { width: 28px; height: 24px; padding: 0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; }
-.btn-reset-color { font-size: 11px !important; padding: 2px 5px !important; color: #999 !important; }
+/* === Rich Editor === */
+.rich-editor {
+  min-height: 500px;
+  padding: 20px 24px;
+  font-family: Helvetica, "Apple SD Gothic Neo", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  outline: none;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+.rich-editor:focus { background: #fdfffe; }
+.rich-editor div { min-height: 1.8em; }
 
-/* Image block */
-.block-image { text-align: center; padding: 12px; cursor: pointer; }
-.block-image img { max-width: 100%; border-radius: 4px; }
-.block-image .image-placeholder { padding: 40px; border: 2px dashed #ddd; border-radius: 8px; color: #999; font-size: 14px; }
-.block-image .image-placeholder:hover { border-color: #03c75a; color: #03c75a; }
+/* Editor 내 이미지 */
+.editor-image-wrapper {
+  text-align: center; padding: 12px 0; position: relative;
+  border: 2px dashed transparent; border-radius: 6px; margin: 8px 0;
+}
+.editor-image-wrapper:hover { border-color: #03c75a; }
+.editor-image-wrapper img { max-width: 100%; border-radius: 4px; }
+.img-delete {
+  position: absolute; top: 4px; right: 4px;
+  width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.5); color: #fff;
+  border: none; font-size: 16px; cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+}
+.editor-image-wrapper:hover .img-delete { display: flex; }
 
-/* HR block */
-.block-hr { padding: 16px 12px; text-align: center; }
-.block-hr hr { border: none; border-top: 1px solid #e0e0e0; width: 40%; margin: 0 auto; }
+/* Editor 내 HR */
+.editor-hr-wrapper {
+  padding: 12px 0; position: relative; margin: 8px 0;
+}
+.editor-hr-wrapper hr { border: none; border-top: 1px solid #ccc; width: 50%; margin: 0 auto; }
+.hr-delete {
+  position: absolute; top: 0; right: 4px;
+  width: 24px; height: 24px; border-radius: 50%; background: rgba(0,0,0,0.3); color: #fff;
+  border: none; font-size: 14px; cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+}
+.editor-hr-wrapper:hover .hr-delete { display: flex; }
 
-/* CTA block */
-.block-cta { padding: 12px; background: #fff5f5; border: 2px solid #e53e3e; }
-.cta-label { font-size: 12px; font-weight: 700; color: #e53e3e; margin-bottom: 8px; }
-.cta-text-input, .cta-url-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 6px; }
-.cta-url-input { font-size: 12px; color: #666; }
+/* Editor 내 CTA */
+.editor-cta {
+  display: inline-block; padding: 10px 24px;
+  background: #03c75a; color: #fff !important; text-decoration: none;
+  border-radius: 6px; font-size: 15px; font-weight: 600;
+  cursor: default; margin: 4px 0;
+}
 
 /* === Comments === */
 .comment-item { padding: 10px; border: 1px solid #eee; border-radius: 6px; margin-bottom: 8px; }
@@ -84,7 +122,6 @@ body { font-family: -apple-system, system-ui, sans-serif; background: #f5f5f5; c
 .comment-item textarea { resize: vertical; min-height: 50px; }
 .comment-item .comment-row { display: flex; gap: 6px; margin-bottom: 4px; }
 .comment-item .comment-row input { flex: 1; }
-.comment-actions { display: flex; justify-content: flex-end; }
 
 /* === Toast === */
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); padding: 12px 24px; border-radius: 8px; font-size: 14px; color: #fff; z-index: 1000; animation: toastIn 0.3s; }
