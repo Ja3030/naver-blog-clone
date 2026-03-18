@@ -44,6 +44,17 @@
         <div class="format-toolbar" id="format-toolbar">
           <button onclick="execFmt('bold')" title="굵게"><b>B</b></button>
           <div class="toolbar-sep"></div>
+          <select id="tb-fontsize-all" onchange="applyFontSizeAll(this.value); this.value=''" title="전체 글씨 크기">
+            <option value="">전체</option>
+            <option value="11">11</option>
+            <option value="13">13</option>
+            <option value="15">15</option>
+            <option value="17">17</option>
+            <option value="19">19</option>
+            <option value="24">24</option>
+            <option value="28">28</option>
+            <option value="34">34</option>
+          </select>
           <select id="tb-fontsize" onchange="applyFontSize(this.value); this.value=''">
             <option value="">크기</option>
             <option value="11">11</option>
@@ -55,8 +66,13 @@
             <option value="28">28</option>
             <option value="34">34</option>
           </select>
-          <input type="color" id="tb-color" value="#000000" onchange="applyColor(this.value)" title="글씨 색">
-          <button onclick="applyColor('')" title="색 초기화" class="btn-sm">↺</button>
+          <button onclick="applyColor('#000000')" title="검정" style="width:24px;height:24px;background:#000;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <button onclick="applyColor('#e74c3c')" title="빨강" style="width:24px;height:24px;background:#e74c3c;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <button onclick="applyColor('#2980b9')" title="파랑" style="width:24px;height:24px;background:#2980b9;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <button onclick="applyColor('#27ae60')" title="초록" style="width:24px;height:24px;background:#27ae60;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <button onclick="applyColor('#8e44ad')" title="보라" style="width:24px;height:24px;background:#8e44ad;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <button onclick="applyColor('#e67e22')" title="주황" style="width:24px;height:24px;background:#e67e22;border:2px solid #555;border-radius:4px;cursor:pointer"></button>
+          <input type="color" id="tb-color" value="#000000" onchange="applyColor(this.value)" title="커스텀 색" style="width:24px;height:24px;cursor:pointer">
           <div class="toolbar-sep"></div>
           <button onclick="insertHR()" title="구분선">― HR</button>
           <button onclick="insertImage()" title="이미지">🖼 이미지</button>

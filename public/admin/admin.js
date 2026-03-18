@@ -379,6 +379,30 @@ function execFmt(cmd, value) {
   document.getElementById('editor').focus();
 }
 
+function applyFontSizeAll(size) {
+  if (!size) return;
+  const editor = document.getElementById('editor');
+  const lines = editor.querySelectorAll(':scope > div');
+  lines.forEach(line => {
+    // 이미지, HR, CTA 등 비편집 요소 건너뛰기
+    if (line.querySelector('img') || line.querySelector('hr') || line.querySelector('[data-cta]')) return;
+    if (line.getAttribute('contenteditable') === 'false') return;
+    const spans = line.querySelectorAll('span');
+    if (spans.length === 0) {
+      const content = line.innerHTML;
+      if (!content || content === '<br>') return;
+      const span = document.createElement('span');
+      span.innerHTML = content;
+      line.innerHTML = '';
+      line.appendChild(span);
+      span.style.fontSize = size + 'px';
+    } else {
+      spans.forEach(s => s.style.fontSize = size + 'px');
+    }
+  });
+  editor.focus();
+}
+
 function applyFontSize(size) {
   if (!size) return;
   const sel = window.getSelection();
