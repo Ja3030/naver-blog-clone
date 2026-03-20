@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "자영업자_현우",
+    "title": "현우의 생활건강 노트",
+    "profile_image": "",
+    "profile_color": "#d8eaa8"
+  },
+  "post": {
+    "title": "가글에 5년간 237만원 쓴 사람의 고백",
+    "category": "건강·의학",
+    "date": "2026. 3. 19. 11:23"
+  },
+  "social": {
+    "likes": 982,
+    "shares": 73,
+    "views": 3287
+  },
+  "comments": [
+    {
+      "author": "가글해지완료",
+      "profile_color": "#f8c4b4",
+      "time": "3시간 전",
+      "text": "237만원 명세서 보고 소름... 나도 계산해봐야겠다",
+      "likes": 28
+    },
+    {
+      "author": "쿨티아14개월",
+      "profile_color": "#b4c8f8",
+      "time": "6시간 전",
+      "text": "쿨티아 저도 1년 넘게 썼는데 2주마다 재발 완전 공감 ㅠ",
+      "likes": 35
+    },
+    {
+      "author": "세탁기곰팡이ㅋ",
+      "profile_color": "#f8f4b4",
+      "time": "1일 전",
+      "text": "세탁기 고무 패킹 비유 찐이다... 가글이 왜 안 되는지 바로 이해됨",
+      "likes": 19
+    },
+    {
+      "author": "구강건조주의",
+      "profile_color": "#b4f8d8",
+      "time": "2일 전",
+      "text": "알코올 가글이 오히려 역효과라는 거 충격... 리스테린 바로 버렸습니다",
+      "likes": 42
+    },
+    {
+      "author": "스프레이전환러",
+      "profile_color": "#f8b4f8",
+      "time": "3일 전",
+      "text": "가글→스프레이 전환한 지 3주, 재발 간격이 2주에서 한 달로 늘었어요 실화",
+      "likes": 31
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "",
+    "text": "여기서 확인해보세요"
+  }
+}

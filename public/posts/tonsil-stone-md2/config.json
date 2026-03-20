@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "건강덕후_민준",
+    "title": "민준이의 건강 실험실",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "편도결석 수술 3번 예약 3번 취소한 사람의 기록",
+    "category": "건강·의학",
+    "date": "2026. 3. 18. 09:47"
+  },
+  "social": {
+    "likes": 1247,
+    "shares": 89,
+    "views": 4512
+  },
+  "comments": [
+    {
+      "author": "수술고민중",
+      "profile_color": "#f8b4c8",
+      "time": "2시간 전",
+      "text": "저도 수술 예약했다 취소한 사람... 면역기관 잘라내는 게 너무 무서워서",
+      "likes": 34
+    },
+    {
+      "author": "직장인다은",
+      "profile_color": "#b4d8f8",
+      "time": "5시간 전",
+      "text": "배수구 비유 소름... 가글이 왜 안 되는지 이제야 이해됐어요",
+      "likes": 21
+    },
+    {
+      "author": "7년차결석러",
+      "profile_color": "#d8f8b4",
+      "time": "1일 전",
+      "text": "면봉으로 쑤시면 구멍 커진다는 거 진짜였구나 ㅠㅠ 나도 7년째인데 공감 100%",
+      "likes": 45
+    },
+    {
+      "author": "이비인후과3회",
+      "profile_color": "#f8d8b4",
+      "time": "2일 전",
+      "text": "200만원+2주 회복+80% 재발... 이 도박 안 하길 잘했다 진심",
+      "likes": 18
+    },
+    {
+      "author": "프로폴리스전도사",
+      "profile_color": "#d8b4f8",
+      "time": "3일 전",
+      "text": "스프레이로 바꾼 지 한 달 됐는데 면봉 진짜 안 들어요. 이거 실화",
+      "likes": 29
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "",
+    "text": "여기서 확인해보세요"
+  }
+}
