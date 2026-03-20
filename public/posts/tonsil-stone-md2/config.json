@@ -38,14 +38,14 @@
       "likes": 45
     },
     {
-      "author": "이비인후과3회",
+      "author": "결석탈출러",
       "profile_color": "#f8d8b4",
       "time": "2일 전",
-      "text": "200만원+2주 회복+80% 재발... 이 도박 안 하길 잘했다 진심",
+      "text": "세균막이 원인이라는 거 논문에서 나온 거라 신뢰감 있네요",
       "likes": 18
     },
     {
-      "author": "프로폴리스전도사",
+      "author": "스프레이전환후기",
       "profile_color": "#d8b4f8",
       "time": "3일 전",
       "text": "스프레이로 바꾼 지 한 달 됐는데 면봉 진짜 안 들어요. 이거 실화",
@@ -55,7 +55,12 @@
   "tracking": {
     "meta_pixel_id": "1727184084578989",
     "ga_id": "",
-    "scroll_events": [25, 50, 75, 100],
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
     "cta_event_name": "Lead"
   },
   "cta": {
