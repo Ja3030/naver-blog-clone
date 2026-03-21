@@ -1,0 +1,63 @@
+{
+  "blog": {
+    "name": "연구생활_지은",
+    "title": "대학원생 지은이의 자취 건강 기록",
+    "profile_image": "",
+    "profile_color": "#a6d8f0"
+  },
+  "post": {
+    "title": "편도결석 있는 사람한테 가글 추천하는 글 보면 진짜 답답해요",
+    "category": "건강·의학",
+    "date": "2026. 3. 17. 15:08"
+  },
+  "social": {
+    "likes": 892,
+    "shares": 412,
+    "views": 19430
+  },
+  "comments": [
+    {
+      "author": "랩미팅공포",
+      "profile_color": "#f8b4c8",
+      "time": "3시간 전",
+      "text": "가글이 편도 구멍 안에 안 닿는다는 거 이제야 알았어요... 3개월 날린 기분",
+      "likes": 24
+    },
+    {
+      "author": "대학원생_서준",
+      "profile_color": "#c8f8b4",
+      "time": "7시간 전",
+      "text": "랩미팅 전에 화장실 가서 가글하는 거 저도요 ㅋㅋ 대학원생 공감 100%",
+      "likes": 16
+    },
+    {
+      "author": "구강케어메이트",
+      "profile_color": "#f8e8b4",
+      "time": "1일 전",
+      "text": "세균막을 억제해야 한다는 개념이 새로워요. 빼는 게 아니라 안 생기게 하는 거라니",
+      "likes": 31
+    },
+    {
+      "author": "직장맘_은서",
+      "profile_color": "#d4b4f8",
+      "time": "2일 전",
+      "text": "저도 스프레이 쓴 지 3주째인데 진짜 안 생겨요. 면봉 안 드는 삶 최고 ㅠㅠ",
+      "likes": 38
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/sns-%EB%B9%84%EB%B0%80%EB%A7%81%ED%81%AC-%ED%8E%B8%EB%8F%84%EC%9E%A5%EB%B2%BD%EC%A0%9C-1%EC%9C%84/53/category/1/display/3/?utm_source=google&utm_medium=cpc&utm_campaign=tonsil_advertorial&utm_content=ad2_gargle",
+    "text": "제가 쓴 제품 보러가기"
+  }
+}

@@ -20,13 +20,32 @@
   </div>
 </div>
 
+<!-- 게시글 목록 화면 -->
+<div id="postlist-screen" class="screen" style="display:none">
+  <header class="admin-header">
+    <h1>Blog Admin — 게시글 관리</h1>
+    <div class="header-actions">
+      <button class="btn-secondary" onclick="loadPostList()">새로고침</button>
+      <button class="btn-logout" onclick="doLogout()">로그아웃</button>
+    </div>
+  </header>
+  <div class="postlist-container">
+    <div id="postlist-grid" class="postlist-grid">
+      <p class="postlist-loading">게시글 목록을 불러오는 중...</p>
+    </div>
+  </div>
+</div>
+
 <!-- 에디터 화면 -->
 <div id="editor-screen" class="screen" style="display:none">
   <header class="admin-header">
-    <h1>Post Editor</h1>
+    <h1>
+      <button class="btn-back" onclick="backToList()">← 목록으로</button>
+      <span>Post Editor</span>
+    </h1>
     <div class="header-actions">
       <span id="deploy-status"></span>
-      <a id="view-post-link" href="https://naver-blog-clone-ten.vercel.app/posts/tonsil-stone/" target="_blank" class="btn-secondary" style="text-decoration:none">글 보기 ↗</a>
+      <a id="view-post-link" href="#" target="_blank" class="btn-secondary" style="text-decoration:none">글 보기 ↗</a>
       <button class="btn-secondary" onclick="loadPost()">새로고침</button>
       <button class="btn-primary" onclick="saveAll()">저장 & 배포</button>
       <button class="btn-logout" onclick="doLogout()">로그아웃</button>

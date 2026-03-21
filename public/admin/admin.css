@@ -133,7 +133,32 @@ body { font-family: -apple-system, system-ui, sans-serif; background: #f5f5f5; c
 /* === Loading overlay === */
 .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; z-index: 200; font-size: 16px; }
 
+/* === Post List === */
+.postlist-container { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+.postlist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.postlist-loading { grid-column: 1 / -1; text-align: center; color: #999; padding: 40px 0; font-size: 15px; }
+.post-card {
+  background: #fff; border: 1px solid #e0e0e0; border-radius: 10px;
+  padding: 20px; display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: box-shadow 0.15s;
+}
+.post-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.post-card-body { margin-bottom: 14px; }
+.post-card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #111; line-height: 1.4; }
+.post-card-meta { font-size: 13px; color: #888; margin-bottom: 4px; }
+.post-card-slug { font-size: 12px; color: #aaa; font-family: monospace; }
+.post-card-actions { display: flex; gap: 8px; align-items: center; }
+.post-card-actions .btn-sm { padding: 6px 14px; font-size: 13px; }
+
+/* === Back Button === */
+.btn-back {
+  background: none; border: 1px solid #ddd; border-radius: 6px;
+  padding: 4px 10px; font-size: 13px; cursor: pointer; color: #555; margin-right: 8px;
+}
+.btn-back:hover { background: #f5f5f5; }
+
 @media (max-width: 900px) {
   .editor-layout { flex-direction: column; }
   .editor-sidebar { width: 100%; }
+  .postlist-grid { grid-template-columns: 1fr; }
 }

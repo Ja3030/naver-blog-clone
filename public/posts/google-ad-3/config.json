@@ -1,0 +1,70 @@
+{
+  "blog": {
+    "name": "영업왕_재현",
+    "title": "32살 재현이의 직장인 라이프",
+    "profile_image": "",
+    "profile_color": "#d4e8a6"
+  },
+  "post": {
+    "title": "편도절제술 후기 찾아보고 있으면 이 글 먼저 읽어보세요",
+    "category": "건강·의학",
+    "date": "2026. 3. 20. 09:42"
+  },
+  "social": {
+    "likes": 1534,
+    "shares": 891,
+    "views": 42150
+  },
+  "comments": [
+    {
+      "author": "수술취소한사람",
+      "profile_color": "#f8c8b4",
+      "time": "1시간 전",
+      "text": "저도 수술 예약 잡았다가 후기 보고 취소한 사람이에요... 이 글 너무 공감돼요",
+      "likes": 45
+    },
+    {
+      "author": "영업3년차_도윤",
+      "profile_color": "#b4c8f8",
+      "time": "5시간 전",
+      "text": "영업직이 2주 빠지면 진짜 큰일나죠. 거래처 관계가 한순간에 틀어질 수 있어서 ㅠ",
+      "likes": 29
+    },
+    {
+      "author": "이비인후과단골",
+      "profile_color": "#c8f8d4",
+      "time": "12시간 전",
+      "text": "병원에서 매번 빼주기만 하고 왜 생기는지 설명 안 해준 거 진짜 답답했어요",
+      "likes": 37
+    },
+    {
+      "author": "세균막공부중",
+      "profile_color": "#f8b4e0",
+      "time": "1일 전",
+      "text": "수술 전에 세균막 억제부터 해봐야 한다는 논리 완전 맞는 말이에요. 순서가 중요하죠",
+      "likes": 21
+    },
+    {
+      "author": "스프레이2개월차",
+      "profile_color": "#e8d4b4",
+      "time": "3일 전",
+      "text": "저 2개월째 쓰고 있는데 진짜 면봉 안 들어요. 수술 고민하는 분들 먼저 써보세요",
+      "likes": 53
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/sns-%EB%B9%84%EB%B0%80%EB%A7%81%ED%81%AC-%ED%8E%B8%EB%8F%84%EC%9E%A5%EB%B2%BD%EC%A0%9C-1%EC%9C%84/53/category/1/display/3/?utm_source=google&utm_medium=cpc&utm_campaign=tonsil_advertorial&utm_content=ad3_surgery",
+    "text": "제가 쓴 제품 보러가기"
+  }
+}

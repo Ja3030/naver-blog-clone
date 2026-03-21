@@ -1,0 +1,70 @@
+{
+  "blog": {
+    "name": "민서의 건강노트",
+    "title": "직장인 민서의 일상 건강 기록",
+    "profile_image": "",
+    "profile_color": "#f0b6d0"
+  },
+  "post": {
+    "title": "양치를 아무리 해도 입에서 쓰레기 썩는 냄새가 올라온 적 있나요?",
+    "category": "건강·의학",
+    "date": "2026. 3. 19. 11:24"
+  },
+  "social": {
+    "likes": 1247,
+    "shares": 634,
+    "views": 31820
+  },
+  "comments": [
+    {
+      "author": "자취일기_하은",
+      "profile_color": "#c4e0f9",
+      "time": "2시간 전",
+      "text": "면봉으로 빼는 거 저도 매주 하고 있어요... 이게 답이 아니었구나 ㅠㅠ",
+      "likes": 18
+    },
+    {
+      "author": "회사원우진",
+      "profile_color": "#b8e6c8",
+      "time": "4시간 전",
+      "text": "세균막이라는 게 있는 줄 처음 알았어요. 가글이 왜 안 되는지 이제야 이해됨",
+      "likes": 32
+    },
+    {
+      "author": "엄마는약사",
+      "profile_color": "#f8d4a6",
+      "time": "8시간 전",
+      "text": "편도장벽제라는 개념 자체가 신선하네요. 프로폴리스 농도가 핵심인 거죠?",
+      "likes": 15
+    },
+    {
+      "author": "구강건강러",
+      "profile_color": "#e0c4f9",
+      "time": "1일 전",
+      "text": "저도 리스테린 3개월 쓰다가 포기한 사람... 이 글 보고 스프레이 주문했어요",
+      "likes": 41
+    },
+    {
+      "author": "편도결석탈출",
+      "profile_color": "#f9c4c4",
+      "time": "2일 전",
+      "text": "와 글 진짜 공감... 회의 전에 화장실 가서 가글하는 루프 저도 똑같았어요 😭",
+      "likes": 27
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/sns-%EB%B9%84%EB%B0%80%EB%A7%81%ED%81%AC-%ED%8E%B8%EB%8F%84%EC%9E%A5%EB%B2%BD%EC%A0%9C-1%EC%9C%84/53/category/1/display/3/?utm_source=google&utm_medium=cpc&utm_campaign=tonsil_advertorial&utm_content=ad1_smell",
+    "text": "제가 쓴 제품 보러가기"
+  }
+}

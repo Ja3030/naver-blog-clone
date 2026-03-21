@@ -1,12 +1,17 @@
-// admin.js — 단일 contenteditable 에디터
+// admin.js — 멀티 포스트 contenteditable 에디터
 const REPO = 'Ja3030/naver-blog-clone';
-const POST_PATH = 'public/posts/tonsil-stone';
 const BRANCH = 'main';
+const BASE_URL = 'https://naver-blog-clone-ten.vercel.app/posts/';
 
 let PAT = '';
+let currentPostSlug = '';
 let config = {};
 let fileShas = {};
 let rawHtml = ''; // 원본 index.html 전체
+
+function getPostPath() {
+  return 'public/posts/' + currentPostSlug;
+}
 
 // ===== Auth =====
 function doLogin() {
@@ -16,9 +21,8 @@ function doLogin() {
   ghAPI('/repos/' + REPO).then(r => {
     if (r.ok) {
       sessionStorage.setItem('gh_pat', pat);
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('editor-screen').style.display = 'block';
-      loadPost();
+      showScreen('postlist');
+      loadPostList();
     } else {
       document.getElementById('login-error').textContent = 'PAT이 유효하지 않습니다';
     }
@@ -31,15 +35,91 @@ function doLogout() {
   location.reload();
 }
 
+function showScreen(name) {
+  document.getElementById('login-screen').style.display = name === 'login' ? '' : 'none';
+  document.getElementById('postlist-screen').style.display = name === 'postlist' ? 'block' : 'none';
+  document.getElementById('editor-screen').style.display = name === 'editor' ? 'block' : 'none';
+}
+
 (function () {
   const saved = sessionStorage.getItem('gh_pat');
   if (saved) {
     PAT = saved;
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('editor-screen').style.display = 'block';
-    loadPost();
+    showScreen('postlist');
+    loadPostList();
   }
 })();
+
+// ===== Post List =====
+async function loadPostList() {
+  const grid = document.getElementById('postlist-grid');
+  grid.innerHTML = '<p class="postlist-loading">게시글 목록을 불러오는 중...</p>';
+  try {
+    const r = await ghAPI('/repos/' + REPO + '/contents/public/posts?ref=' + BRANCH);
+    const items = await r.json();
+    const dirs = items.filter(i => i.type === 'dir');
+
+    // Fetch config.json for each post in parallel
+    const cards = await Promise.all(dirs.map(async (dir) => {
+      try {
+        const cr = await ghAPI('/repos/' + REPO + '/contents/public/posts/' + dir.name + '/config.json?ref=' + BRANCH);
+        const cdata = await cr.json();
+        const binary = atob(cdata.content.replace(/\n/g, ''));
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        const cfg = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+        return { slug: dir.name, config: cfg };
+      } catch (e) {
+        return { slug: dir.name, config: null };
+      }
+    }));
+
+    grid.innerHTML = '';
+    cards.forEach(({ slug, config: cfg }) => {
+      const title = cfg?.post?.title || slug;
+      const blogName = cfg?.blog?.name || '-';
+      const date = cfg?.post?.date || '-';
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.innerHTML = `
+        <div class="post-card-body">
+          <h3 class="post-card-title">${esc(title)}</h3>
+          <p class="post-card-meta">${esc(blogName)} · ${esc(date)}</p>
+          <p class="post-card-slug">${esc(slug)}</p>
+        </div>
+        <div class="post-card-actions">
+          <button class="btn-primary btn-sm" onclick="selectPost('${esc(slug)}')">편집</button>
+          <a href="${BASE_URL}${encodeURIComponent(slug)}/" target="_blank" class="btn-secondary btn-sm" style="text-decoration:none">보기 ↗</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    if (cards.length === 0) {
+      grid.innerHTML = '<p class="postlist-loading">게시글이 없습니다.</p>';
+    }
+  } catch (e) {
+    grid.innerHTML = '<p class="postlist-loading" style="color:#e53e3e">목록 불러오기 실패: ' + esc(e.message) + '</p>';
+  }
+}
+
+function selectPost(slug) {
+  currentPostSlug = slug;
+  document.getElementById('view-post-link').href = BASE_URL + encodeURIComponent(slug) + '/';
+  showScreen('editor');
+  loadPost();
+}
+
+function backToList() {
+  currentPostSlug = '';
+  fileShas = {};
+  config = {};
+  rawHtml = '';
+  document.getElementById('editor').innerHTML = '';
+  document.getElementById('deploy-status').textContent = '';
+  showScreen('postlist');
+  loadPostList();
+}
 
 // ===== GitHub API =====
 function ghAPI(path, opts = {}) {
@@ -55,7 +135,7 @@ function ghAPI(path, opts = {}) {
 }
 
 async function getFile(filePath) {
-  const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/' + filePath + '?ref=' + BRANCH);
+  const r = await ghAPI('/repos/' + REPO + '/contents/' + getPostPath() + '/' + filePath + '?ref=' + BRANCH);
   const data = await r.json();
   fileShas[filePath] = data.sha;
   const binary = atob(data.content.replace(/\n/g, ''));
@@ -66,7 +146,7 @@ async function getFile(filePath) {
 
 async function putFile(filePath, content, message) {
   const encoded = btoa(unescape(encodeURIComponent(content)));
-  const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/' + filePath, {
+  const r = await ghAPI('/repos/' + REPO + '/contents/' + getPostPath() + '/' + filePath, {
     method: 'PUT',
     body: JSON.stringify({ message, content: encoded, sha: fileShas[filePath], branch: BRANCH })
   });
@@ -81,7 +161,7 @@ async function uploadImageFile(file) {
   return new Promise((resolve, reject) => {
     reader.onload = async () => {
       const base64 = reader.result.split(',')[1];
-      const r = await ghAPI('/repos/' + REPO + '/contents/' + POST_PATH + '/images/' + name, {
+      const r = await ghAPI('/repos/' + REPO + '/contents/' + getPostPath() + '/images/' + name, {
         method: 'PUT',
         body: JSON.stringify({ message: 'Upload image: ' + name, content: base64, branch: BRANCH })
       });
@@ -99,7 +179,7 @@ const FS_REV = {}; Object.keys(FS_MAP).forEach(k => FS_REV[FS_MAP[k]] = k);
 function resolveImageUrl(src) {
   if (!src) return '';
   if (src.startsWith('http')) return src;
-  if (src.startsWith('./')) return 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/' + POST_PATH + '/' + src.substring(2);
+  if (src.startsWith('./')) return 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/' + getPostPath() + '/' + src.substring(2);
   return src;
 }
 
