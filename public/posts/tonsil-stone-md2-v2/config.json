@@ -1,0 +1,56 @@
+{
+  "blog": {
+    "name": "편도3년차",
+    "title": "일상기록",
+    "profile_image": "",
+    "profile_color": "#c4d8a8"
+  },
+  "post": {
+    "title": "편도결석 3년 \u2014 가글 47만원의 기록",
+    "category": "건강\u00b7의학",
+    "date": "2026. 3. 18. 14:27"
+  },
+  "social": {
+    "likes": 892,
+    "shares": 67,
+    "views": 3284
+  },
+  "comments": [
+    {
+      "author": "구강건강지킴이",
+      "profile_color": "#f8b4c8",
+      "time": "1일 전",
+      "text": "저도 편도결석 2년째인데 가글만 하고 있었어요... 이 글 보고 충격받았습니다",
+      "likes": 24
+    },
+    {
+      "author": "직장인K",
+      "profile_color": "#b4d8f8",
+      "time": "2일 전",
+      "text": "회의 전에 가글하는 거 완전 공감\u3160\u3160 저도 매번 그래요",
+      "likes": 18
+    },
+    {
+      "author": "편도전사",
+      "profile_color": "#d8f8b4",
+      "time": "3일 전",
+      "text": "r/tonsilstones 저도 가입했는데 진짜 정보 많더라고요 감사합니다",
+      "likes": 11
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "",
+    "text": "여기서 확인해보세요"
+  }
+}
