@@ -275,12 +275,22 @@ function loadEditor(html) {
         imgEl.setAttribute('data-src', img.getAttribute('src') || '');
         imgEl.alt = img.getAttribute('alt') || '';
         wrapper.appendChild(imgEl);
+        // 교체 버튼
+        const replace = document.createElement('button');
+        replace.className = 'img-replace';
+        replace.textContent = '🔄';
+        replace.title = '이미지 교체';
+        replace.onclick = () => { triggerImageReplace(wrapper); };
+        wrapper.appendChild(replace);
         // 삭제 버튼
         const del = document.createElement('button');
         del.className = 'img-delete';
         del.textContent = '×';
         del.onclick = () => { wrapper.remove(); };
         wrapper.appendChild(del);
+        // 이미지 클릭으로도 교체
+        imgEl.style.cursor = 'pointer';
+        imgEl.onclick = () => { triggerImageReplace(wrapper); };
         editor.appendChild(wrapper);
       }
     } else if (comp.classList.contains('se-horizontalLine')) {
@@ -557,6 +567,35 @@ function insertHR() {
   editor.insertBefore(next, wrapper.nextSibling);
 }
 
+let _replaceTarget = null;
+
+function triggerImageReplace(wrapper) {
+  _replaceTarget = wrapper;
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file || !_replaceTarget) return;
+    showLoading('이미지 교체 중...');
+    try {
+      const src = await uploadImageFile(file);
+      const img = _replaceTarget.querySelector('img');
+      if (img) {
+        img.src = resolveImageUrl(src);
+        img.setAttribute('data-src', src);
+        img.alt = file.name;
+      }
+    } catch (err) {
+      alert('이미지 교체 실패: ' + err.message);
+    } finally {
+      _replaceTarget = null;
+      hideLoading();
+    }
+  };
+  input.click();
+}
+
 function insertImage() {
   document.getElementById('image-upload').click();
 }
@@ -576,11 +615,19 @@ document.getElementById('image-upload')?.addEventListener('change', async functi
     img.setAttribute('data-src', src);
     img.alt = file.name;
     wrapper.appendChild(img);
+    const replace = document.createElement('button');
+    replace.className = 'img-replace';
+    replace.textContent = '🔄';
+    replace.title = '이미지 교체';
+    replace.onclick = () => { triggerImageReplace(wrapper); };
+    wrapper.appendChild(replace);
     const del = document.createElement('button');
     del.className = 'img-delete';
     del.textContent = '×';
     del.onclick = () => { wrapper.remove(); };
     wrapper.appendChild(del);
+    img.style.cursor = 'pointer';
+    img.onclick = () => { triggerImageReplace(wrapper); };
 
     // 커서 위치에 삽입
     const sel = window.getSelection();
