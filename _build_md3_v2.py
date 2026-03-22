@@ -108,6 +108,8 @@ blocks.append(text_block([
     {'text': '237만원 쓰고 나서야 알았다', 'bold': True, 'fontSize': 'fs15'},
 ]))
 
+blocks.append(image_block('images/1773827354704_Group241.png', '편도결석 비포/애프터'))
+
 blocks.append(hr_block())
 
 # 1. 가글 정기배송 해지한 날
@@ -134,6 +136,11 @@ blocks.append(text_block([
     {'text': '설명이 필요 없다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
     {'text': '이게 내 목 안에서 나왔다', 'bold': True, 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773827499118_image30.png', '편도결석 실물'))
+
+blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '그 다음날부터 가게에서 달라진 게 있다', 'fontSize': 'fs15'},
     {'text': '손님한테 메뉴 설명할 때 자연스럽게 고개가 돌아갔다', 'fontSize': 'fs15'},
@@ -153,6 +160,11 @@ blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '그래도 안 하는 것보단 낫겠지 싶어서', 'fontSize': 'fs15'},
     {'text': '리스테린을 샀다', 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773827460547_Group201.png', '시중 가글 제품들'))
+
+blocks.append(text_block([
     {'text': '6개월 쓰고 가그린으로 바꿨다', 'fontSize': 'fs15'},
     {'text': '3개월 쓰고 닥터세닥으로 바꿨다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
@@ -261,6 +273,11 @@ blocks.append(text_block([
     {'text': '그러다 이비인후과 의사가 올린 영상 하나를 봤다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
     {'text': '편도에는 홈이 있다', 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773826204689_4.png', '편도 홈 구조'))
+
+blocks.append(text_block([
     {'text': '2-3mm 깊이의 주름진 틈새다', 'fontSize': 'fs15'},
     {'text': '편도결석은 이 홈 안쪽에서 만들어진다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
@@ -286,6 +303,11 @@ blocks.append(text_block([
     {'text': '물이 닿지 않는 틈새의 곰팡이는 그대로다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
     {'text': '가글이 그거다', 'bold': True, 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773827434434_20220324162852735_WN6KGARM.png', '배수구 비유 — 직분사'))
+
+blocks.append(text_block([
     {'text': '입 안을 아무리 헹궈도', 'fontSize': 'fs15'},
     {'text': '편도 홈 안쪽에는 한 방울도 안 닿는다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
@@ -540,6 +562,8 @@ blocks.append(text_block([
     {'text': '그래도 8개를 찾아서 비교해봤다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
 ]))
+
+blocks.append(image_block('images/1773827275736_comparison_table_top8.png', '편도장벽제 TOP 8 비교표'))
 
 blocks.append(text_block([
     {'text': '순위 | 제품 | 스프레이 | 프로폴리스 | 알코올프리 | 올리고당 | 휴대성 | 총점', 'bold': True, 'fontSize': 'fs13'},

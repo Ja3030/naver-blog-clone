@@ -1,0 +1,70 @@
+{
+  "blog": {
+    "name": "탄력연구소_수현",
+    "title": "수현이의 스킨케어 노트",
+    "profile_image": "",
+    "profile_color": "#f8b4c8"
+  },
+  "post": {
+    "title": "주름크림 15개, 시술 2회, 총 437만원을 쓰고 나서야 알게 된 것",
+    "category": "뷰티·미용",
+    "date": "2026. 3. 20. 09:15"
+  },
+  "social": {
+    "likes": 1247,
+    "shares": 634,
+    "views": 34820
+  },
+  "comments": [
+    {
+      "author": "직장인소이",
+      "profile_color": "#a8d8ea",
+      "time": "2시간 전",
+      "text": "44세인데 공감 미칠 것 같아요... 베개자국 안 펴지는 거 진짜ㅠ",
+      "likes": 18
+    },
+    {
+      "author": "뷰티초보맘",
+      "profile_color": "#d8f8b4",
+      "time": "5시간 전",
+      "text": "437만원 쓴 거 보고 소름... 저도 비슷하게 쓴 것 같아요 크림만 10개 넘게 바꿨는데",
+      "likes": 24
+    },
+    {
+      "author": "갱년기스터디",
+      "profile_color": "#f8d8b4",
+      "time": "1일 전",
+      "text": "에스트로겐 절벽 처음 알았어요 왜 아무데서도 안 알려주는 건지",
+      "likes": 31
+    },
+    {
+      "author": "미니멈스킨",
+      "profile_color": "#d8b4f8",
+      "time": "2일 전",
+      "text": "펩타이드 시그널 크림 저도 쓰고 있어요! 3주차부터 확실히 달라지더라고요",
+      "likes": 15
+    },
+    {
+      "author": "코코아라떼",
+      "profile_color": "#b4d8f8",
+      "time": "3일 전",
+      "text": "보톡스 3개월마다 원점인 이유가 이거였구나... 시술비 아깝다",
+      "likes": 9
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://perfusync.com",
+    "text": "여기서 확인해보세요"
+  }
+}

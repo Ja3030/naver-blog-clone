@@ -126,6 +126,8 @@ blocks.append(text_block([
     {'text': '이건 도박이었다', 'bold': True, 'fontSize': 'fs15'},
 ]))
 
+blocks.append(image_block('images/1773827354704_Group241.png', '편도결석 비포/애프터'))
+
 blocks.append(hr_block())
 
 # 1. 수술 후기를 읽다가 포기한 이유
@@ -140,6 +142,11 @@ blocks.append(text_block([
     {'text': '세상에서 제일 더러운 냄새를 맡았다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
     {'text': '그게 내 목 안에 있었다', 'bold': True, 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773827499118_image30.png', '편도결석 실물'))
+
+blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '그때부터 시작됐다', 'fontSize': 'fs15'},
     {'text': '회의 전 화장실에서 편도 확인하는 습관', 'fontSize': 'fs15'},
@@ -246,6 +253,12 @@ blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '답은 간단했다', 'fontSize': 'fs15'},
     {'text': '양치질은 편도까지 안 닿는다', 'bold': True, 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773826204689_4.png', '편도 홈 구조'))
+blocks.append(image_block('images/1773827460547_Group201.png', '시중 가글 제품'))
+
+blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '칫솔이 닿는 건 치아, 잇몸, 혀', 'fontSize': 'fs15'},
     {'text': '편도는 목 안쪽 양 옆에 있다', 'fontSize': 'fs15'},
@@ -408,6 +421,11 @@ blocks.append(text_block([
     {'text': '스프레이는 편도에 직접 쏘는 것이다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},
     {'text': '이 차이가 전부다', 'bold': True, 'fontSize': 'fs15'},
+]))
+
+blocks.append(image_block('images/1773827434434_20220324162852735_WN6KGARM.png', '배수구 비유 — 스프레이 직분사'))
+
+blocks.append(text_block([
     {'text': '', 'fontSize': 'fs15'},
     {'text': '성분이 같아도 전달 방식이 다르면', 'fontSize': 'fs15'},
     {'text': '결과가 완전히 달라진다', 'fontSize': 'fs15'},
@@ -429,6 +447,8 @@ blocks.append(text_block([
     {'text': '7. 직접 비교한 편도장벽제 TOP 8', 'bold': True, 'fontSize': 'fs19'},
     {'text': '', 'fontSize': 'fs15'},
 ]))
+
+blocks.append(image_block('images/1773827275736_comparison_table_top8.png', '편도장벽제 TOP 8 비교표'))
 
 blocks.append(text_block([
     {'text': '순위 | 제품 | 프로폴리스 | 세균막타깃 | 직분사 | 알코올무첨가 | 자극테스트 | 총점', 'bold': True, 'fontSize': 'fs13'},
