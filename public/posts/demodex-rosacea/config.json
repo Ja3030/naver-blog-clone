@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "피부고민_민지",
+    "title": "민지의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#f8b4c8"
+  },
+  "post": {
+    "title": "주사피부염 3년차 347만원 쓰고 알게 된 진짜 원인",
+    "category": "건강·의학",
+    "date": "2026. 4. 3. 09:42"
+  },
+  "social": {
+    "likes": 847,
+    "shares": 312,
+    "views": 18720
+  },
+  "comments": [
+    {
+      "author": "민들레향기",
+      "profile_color": "#f8b4c8",
+      "time": "3시간 전",
+      "text": "저도 3년째 같은 상황이에요 ㅠㅠ 장벽크림만 바꾸고 있었는데 이런 원인이 있는줄 몰랐어요",
+      "likes": 23
+    },
+    {
+      "author": "하늘바라기22",
+      "profile_color": "#b4d8f8",
+      "time": "5시간 전",
+      "text": "아침에 세수하고 빨개지는거 진짜 공감.. 회사 나가는 시간 맞추느라 새벽에 일어나는 사람 저만 있는줄 알았어요",
+      "likes": 15
+    },
+    {
+      "author": "로즈마리맘",
+      "profile_color": "#d8f8b4",
+      "time": "1일 전",
+      "text": "모낭충이 18배라니 소름끼치네요 근데 그래서 장벽크림이 소용없었던 거구나",
+      "likes": 19
+    },
+    {
+      "author": "꽃보다피부",
+      "profile_color": "#f8d8b4",
+      "time": "2일 전",
+      "text": "347만원 ㅠㅠ 저도 비슷하게 쓴거같아요 피부과만 5군데 다녔는데 모낭충 얘기는 한번도 못들었어요",
+      "likes": 12
+    },
+    {
+      "author": "서윤이네",
+      "profile_color": "#d8b4f8",
+      "time": "3일 전",
+      "text": "2주만에 안빨갛다니 부럽습니다 저도 한번 써볼게요",
+      "likes": 8
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64",
+    "text": "여기서 확인해보세요"
+  }
+}
