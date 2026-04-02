@@ -55,7 +55,12 @@
   "tracking": {
     "meta_pixel_id": "1727184084578989",
     "ga_id": "",
-    "scroll_events": [25, 50, 75, 100],
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
     "cta_event_name": "Lead"
   },
   "cta": {
