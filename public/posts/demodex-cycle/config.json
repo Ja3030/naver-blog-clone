@@ -8,7 +8,7 @@
   "post": {
     "title": "바르면 좋아지고 끊으면 돌아오는 그 사이클이 끊겼다",
     "category": "건강·의학",
-    "date": "2026. 4. 4. 11:15"
+    "date": "2026. 3. 19. 11:15"
   },
   "social": {
     "likes": 1203,
@@ -55,7 +55,12 @@
   "tracking": {
     "meta_pixel_id": "1727184084578989",
     "ga_id": "",
-    "scroll_events": [25, 50, 75, 100],
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
     "cta_event_name": "Lead"
   },
   "cta": {
