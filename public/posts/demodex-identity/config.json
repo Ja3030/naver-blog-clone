@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "피부고민_유진",
+    "title": "유진의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#c8b4f8"
+  },
+  "post": {
+    "title": "3년 만에 마스크 벗고 점심을 먹었다",
+    "category": "건강·의학",
+    "date": "2026. 4. 4. 11:15"
+  },
+  "social": {
+    "likes": 1203,
+    "shares": 487,
+    "views": 24310
+  },
+  "comments": [
+    {
+      "author": "마스크속민낯",
+      "profile_color": "#f8b4c8",
+      "time": "2시간 전",
+      "text": "코로나 끝나고도 마스크 벗는게 무서워서 검색하다 들어왔는데 진짜 제 얘기예요 ㅠㅠ 저도 여름에 마스크 쓰고 다니는데 습관이라고 거짓말해요",
+      "likes": 47
+    },
+    {
+      "author": "직장인소현",
+      "profile_color": "#b4d8f8",
+      "time": "5시간 전",
+      "text": "팀장님한테 얼굴 왜그래 술마셨어 들었을때 그 기분.. 진짜 아는 사람만 안다 저도 회의 때 고개 못 들어요",
+      "likes": 31
+    },
+    {
+      "author": "벚꽃엔딩28",
+      "profile_color": "#f8d8b4",
+      "time": "1일 전",
+      "text": "단체사진 맨 뒤에 서는거 공감.. 셀카도 안찍은지 2년 넘었어요 근데 모낭충이 원인이라는걸 이제 알았네요",
+      "likes": 24
+    },
+    {
+      "author": "진정한피부",
+      "profile_color": "#d8f8b4",
+      "time": "2일 전",
+      "text": "마스크 벗고 점심 먹었다는 말에 눈물 나네요 저도 회사 근처 식당 못가고 혼자 편의점에서 먹거든요",
+      "likes": 19
+    },
+    {
+      "author": "새벽세수러",
+      "profile_color": "#d8b4f8",
+      "time": "3일 전",
+      "text": "수란트라 끊으면 원점 완전공감ㅠ 4개월 쓰고 끊었는데 3주만에 돌아옴.. 링크 보고 주문했습니다 제발 되길",
+      "likes": 14
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64",
+    "text": "여기서 확인해보세요"
+  }
+}

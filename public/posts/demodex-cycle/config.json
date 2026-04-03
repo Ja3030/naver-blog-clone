@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "피부고민_수진",
+    "title": "수진의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#c8b4f8"
+  },
+  "post": {
+    "title": "바르면 좋아지고 끊으면 돌아오는 그 사이클이 끊겼다",
+    "category": "건강·의학",
+    "date": "2026. 4. 4. 11:15"
+  },
+  "social": {
+    "likes": 1203,
+    "shares": 487,
+    "views": 24510
+  },
+  "comments": [
+    {
+      "author": "라벤더향기",
+      "profile_color": "#f8b4c8",
+      "time": "2시간 전",
+      "text": "바르면 좋아지고 끊으면 돌아오는거 진짜 공감ㅠㅠ 저도 2년째 이 사이클에 갇혀있어요 모낭충이 원인이었다니",
+      "likes": 31
+    },
+    {
+      "author": "새벽세수러",
+      "profile_color": "#b4d8f8",
+      "time": "4시간 전",
+      "text": "회사 나가는 시간 맞춰서 새벽에 세수하는거 저만 그런줄 알았는데.. 양동이 비유 보고 소름돋았어요",
+      "likes": 22
+    },
+    {
+      "author": "홍조탈출희망",
+      "profile_color": "#d8f8b4",
+      "time": "8시간 전",
+      "text": "수란트라 4개월 쓰고 끊었더니 3주만에 원점 저도 똑같았어요ㅠ 안에서 부수는 놈이 있다는거 읽고 왜 안됐는지 이해됐습니다",
+      "likes": 18
+    },
+    {
+      "author": "피부회복중",
+      "profile_color": "#f8d8b4",
+      "time": "1일 전",
+      "text": "장벽크림만 20종류 바꿔가며 썼는데 택배박스만 쌓였다는거 완전 내얘기.. 글 저장해놓고 매일 읽고있어요",
+      "likes": 14
+    },
+    {
+      "author": "단체사진맨뒤",
+      "profile_color": "#d8b4f8",
+      "time": "2일 전",
+      "text": "셀카 찍을때 손으로 볼 가리는거 저도요ㅠ 2주차부터 달라졌다는거 믿어보겠습니다",
+      "likes": 9
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64",
+    "text": "여기서 확인해보세요"
+  }
+}

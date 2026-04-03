@@ -1,0 +1,65 @@
+{
+  "blog": {
+    "name": "피부고민_하은",
+    "title": "하은의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#c8b4f8"
+  },
+  "post": {
+    "title": "장벽크림 7개 바꿔도 달라진 게 없다면 이유가 있다",
+    "category": "건강·의학",
+    "date": "2026. 4. 4. 11:15"
+  },
+  "social": {
+    "likes": 623,
+    "shares": 247,
+    "views": 14380
+  },
+  "comments": [
+    {
+      "author": "달빛여우",
+      "profile_color": "#f8d8b4",
+      "time": "2시간 전",
+      "text": "세면대 위에 크림 7개 저도 똑같아요 ㅋㅋㅋ 제로이드 시카페어 아토베리어 전부 써봤는데 결국 뭘 발라야 하는지 아직도 모르겠어서 검색하다 왔어요",
+      "likes": 31
+    },
+    {
+      "author": "피부일기장",
+      "profile_color": "#b4d8f8",
+      "time": "4시간 전",
+      "text": "카페에서 제로이드 vs 아토베리어 검색하다 이 글 봤는데.. 그 질문 자체가 틀렸다는 말이 뭔가 머리를 때리네요",
+      "likes": 24
+    },
+    {
+      "author": "은하수맘",
+      "profile_color": "#d8f8b4",
+      "time": "1일 전",
+      "text": "양동이 비유 진짜 소름.. 저도 밑바닥 구멍 안 막고 양동이만 바꿔가며 2년을 쓴 거구나",
+      "likes": 19
+    },
+    {
+      "author": "새벽세수러",
+      "profile_color": "#f8b4c8",
+      "time": "2일 전",
+      "text": "250만원 ㅠㅠ 저도 비슷해요 피부과만 4군데 다녔는데 왜 재발하는지 설명해준 곳이 한 군데도 없었어요 진짜 공감됩니다",
+      "likes": 15
+    },
+    {
+      "author": "라벤더향",
+      "profile_color": "#d8b4f8",
+      "time": "3일 전",
+      "text": "뭘 발라야 하는지를 아니까 검색 안 한다는 말.. 저도 그렇게 되고 싶어요 지금 매일 밤 후기만 읽고 있거든요",
+      "likes": 11
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64",
+    "text": "여기서 확인해보세요"
+  }
+}
