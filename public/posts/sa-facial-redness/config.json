@@ -1,0 +1,56 @@
+{
+  "blog": {
+    "name": "피부고민 수진",
+    "title": "수진이의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "얼굴 빨개지는 이유 2년째 찾다가 알게 된 것",
+    "category": "건강·의학",
+    "date": "2026. 3. 28. 20:15"
+  },
+  "social": {
+    "likes": 758,
+    "shares": 41,
+    "views": 5832
+  },
+  "comments": [
+    {
+      "author": "장벽크림5개째",
+      "profile_color": "#d6f0f0",
+      "time": "6시간 전",
+      "text": "진정 크림 시카 크림 다 발라봤는데 아침에 똑같은 거 진짜 공감.. 겉에서만 바르는 거였구나",
+      "likes": 29
+    },
+    {
+      "author": "안면홍조10년",
+      "profile_color": "#f0d6f0",
+      "time": "12시간 전",
+      "text": "모낭충이라는 거 처음 알았어요 혈관 문제인 줄만 알았는데",
+      "likes": 47
+    },
+    {
+      "author": "마라탕2년째못먹음",
+      "profile_color": "#f0e8d6",
+      "time": "1일 전",
+      "text": "매운 거 못 먹는 거 너무 공감 ㅠㅠ 친구들이랑 밥 먹을 때 제일 서러워요",
+      "likes": 31
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=google&utm_medium=cpc&utm_campaign=sa_c3_redness",
+    "text": "티트리셀 카밍 크림 자세히 보기"
+  }
+}

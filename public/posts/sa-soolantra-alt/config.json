@@ -1,0 +1,56 @@
+{
+  "blog": {
+    "name": "피부고민 수진",
+    "title": "수진이의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "수란트라 3개월 쓰고 끊었더니 다시 돌아온 사람",
+    "category": "건강·의학",
+    "date": "2026. 4. 3. 21:38"
+  },
+  "social": {
+    "likes": 891,
+    "shares": 52,
+    "views": 7234
+  },
+  "comments": [
+    {
+      "author": "수란트라졸업반",
+      "profile_color": "#f0e0d6",
+      "time": "2시간 전",
+      "text": "저도 수란트라 3개월 쓰고 끊었는데 2주 만에 원래대로 돌아왔어요.. 진짜 멘탈 나감",
+      "likes": 56
+    },
+    {
+      "author": "새벽검색러",
+      "profile_color": "#d6f0e0",
+      "time": "5시간 전",
+      "text": "죽이기가 아니라 환경을 바꾸는 거라는 말이 진짜 와닿네요",
+      "likes": 38
+    },
+    {
+      "author": "직장인피부고민",
+      "profile_color": "#e0d6f0",
+      "time": "1일 전",
+      "text": "수란트라 뒤집어지면서 회사 못 간 거 저도요 ㅠㅠ 그 상태로 출근을 어떻게 해요",
+      "likes": 44
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=google&utm_medium=cpc&utm_campaign=sa_c5_soolantra",
+    "text": "티트리셀 카밍 크림 자세히 보기"
+  }
+}

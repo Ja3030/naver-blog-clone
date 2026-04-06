@@ -1,0 +1,56 @@
+{
+  "blog": {
+    "name": "피부고민 수진",
+    "title": "수진이의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "모낭염 연고 3개월 발라도 재발하는 진짜 이유",
+    "category": "건강·의학",
+    "date": "2026. 3. 25. 19:42"
+  },
+  "social": {
+    "likes": 543,
+    "shares": 29,
+    "views": 3941
+  },
+  "comments": [
+    {
+      "author": "에스로반3통째",
+      "profile_color": "#e0f0d6",
+      "time": "4시간 전",
+      "text": "항생제 연고 바르면 가라앉는데 끊으면 또 올라오는 거 3개월째 반복 중이에요..",
+      "likes": 28
+    },
+    {
+      "author": "모낭염인줄알았음",
+      "profile_color": "#d6e0f0",
+      "time": "9시간 전",
+      "text": "저도 모낭염인 줄 알았는데 모낭충이었어요.. 항생제가 소용없었던 이유가 이거였구나",
+      "likes": 39
+    },
+    {
+      "author": "얼굴좁쌀파티",
+      "profile_color": "#f0d6e0",
+      "time": "1일 전",
+      "text": "아침마다 좁쌀 올라오는 거 진짜 미치겠어요 이게 모낭충 때문이었을 수도 있다니",
+      "likes": 22
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=google&utm_medium=cpc&utm_campaign=sa_c4_folliculitis",
+    "text": "티트리셀 카밍 크림 자세히 보기"
+  }
+}

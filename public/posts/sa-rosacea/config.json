@@ -1,0 +1,56 @@
+{
+  "blog": {
+    "name": "피부고민 수진",
+    "title": "수진이의 피부 이야기",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "주사피부염 2년차가 치료 다 해보고 알게 된 것",
+    "category": "건강·의학",
+    "date": "2026. 4. 1. 22:51"
+  },
+  "social": {
+    "likes": 1247,
+    "shares": 89,
+    "views": 12450
+  },
+  "comments": [
+    {
+      "author": "홍조탈출일기",
+      "profile_color": "#f0d6d6",
+      "time": "4시간 전",
+      "text": "스테로이드 수란트라 레이저 한의원 저도 순서 똑같아요.. 다 일시적이었어요",
+      "likes": 67
+    },
+    {
+      "author": "모낭충알게됨",
+      "profile_color": "#d6d6f0",
+      "time": "7시간 전",
+      "text": "겉만 건드리고 모공 안은 안 건드린 거라는 말에 소름 돋았어요",
+      "likes": 53
+    },
+    {
+      "author": "엄마가알로에발라",
+      "profile_color": "#f0f0d6",
+      "time": "2일 전",
+      "text": "엄마한테 한의원 가봐 듣고 간 거 저도요 ㅋㅋ 돈만 날림",
+      "likes": 42
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=google&utm_medium=cpc&utm_campaign=sa_c2_rosacea",
+    "text": "티트리셀 카밍 크림 자세히 보기"
+  }
+}
