@@ -13,14 +13,15 @@ CTA_TEXT = "티트리셀 카밍 크림 자세히 보기"
 def esc(s):
     return s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;')
 
-def p(text, bold=False, fs='fs15', color=None, align='left'):
+def p(text, bold=False, fs='fs15', color=None):
+    """align은 항상 공백 (네이버 원본 CSS 호환)"""
     if not text.strip():
-        return f'      <p class="se-text-paragraph se-text-paragraph-align-{align}">\n        <span class="se-fs-{fs} se-ff-system"><br></span>\n      </p>'
+        return '      <p class="se-text-paragraph se-text-paragraph-align- ">\n        <span class="se-fs-fs15 se-ff-system"><br></span>\n      </p>'
     inner = esc(text)
     if bold:
         inner = f'<b>{inner}</b>'
     style = f' style="color:{color};"' if color else ''
-    return f'      <p class="se-text-paragraph se-text-paragraph-align-{align}">\n        <span{style} class="se-fs-{fs} se-ff-system">{inner}</span>\n      </p>'
+    return f'      <p class="se-text-paragraph se-text-paragraph-align- ">\n        <span{style} class="se-fs-{fs} se-ff-system">{inner}</span>\n      </p>'
 
 def text_block(paragraphs):
     paras = '\n'.join(paragraphs)
@@ -54,6 +55,48 @@ def oglink_block(slug):
     </div>
   </div>
 </div>'''
+
+
+# 강조 라인 키워드 — 이 패턴이 포함된 줄은 fs19로 표시
+EMPHASIS_PATTERNS = [
+    # 오프닝
+    '검색하다가 여기까지',
+    '저도 그랬어요',
+    # 전환점 / 핵심 발견
+    '알게 된 게',
+    '알게 된 건데요',
+    '밤에만 활동',
+    '환경을 바꾸는 거',
+    '환경을 만드는 거',
+    '이해가 됐어요',
+    '이해가 되는 거',
+    '전환점이었어요',
+    '모낭충이라는 걸',
+    '모낭충이라는 거요',
+    # 제품 특징
+    '1.07%',
+    '8시간 동안',
+    '비누 30초 vs',
+    # 결과
+    '안 뜨거운 거예요',
+    '확실히 덜했어요',
+    '괜찮아진 거 아니야',
+    # 감정
+    '울었어요',
+    '결국 끊었어요',
+    # C4 특화
+    '모낭염이 아니었어요',
+    '모낭충이었던 거예요',
+    # C5 특화
+    '끊으면 돌아오는',
+    '다시 돌아왔어요',
+]
+
+def should_emphasize(text):
+    for pat in EMPHASIS_PATTERNS:
+        if pat in text:
+            return True
+    return False
 
 def md_to_se(md_text, slug):
     """마크다운 텍스트를 SE HTML 블록으로 변환"""
@@ -94,6 +137,11 @@ def md_to_se(md_text, slug):
         # "추가)" "수정)" 섹션 — 약간 작은 글씨, 회색
         if stripped.startswith('추가)') or stripped.startswith('수정)'):
             current_paras.append(p(stripped, bold=True, fs='fs13', color='#666'))
+            continue
+
+        # 강조 라인 → fs19
+        if should_emphasize(stripped):
+            current_paras.append(p(stripped, fs='fs19'))
             continue
 
         # 일반 텍스트

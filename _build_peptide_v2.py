@@ -81,6 +81,9 @@ blocks.append(text_block([
     {'text': '돈 받고 쓰는 글이 아니다. 논문 읽고, 직접 발라보고, 비교한 기록이다.', 'bold': True, 'fontSize': 'fs15'},
 ]))
 
+# 📸 IMG-01: 히어로 이미지 (썸네일용, AI 감성)
+blocks.append(image_block('./images/hero_thumbnail.jpg', '히어로 — 화장대 위 크림들과 거울'))
+
 blocks.append(hr_block())
 
 # ── 블록 A: 페르소나 ──
@@ -98,7 +101,12 @@ blocks.append(text_block([
     {'text': '팔자주름이 그림자처럼 턱 아래까지 내려와 있었고, 입꼬리 옆으로 깊은 골이 파여 있더라', 'fontSize': 'fs15'},
     {'text': '에어컨 바람이 목덜미를 스치는데 갑자기 등이 서늘해졌다', 'fontSize': 'fs15'},
     {'text': "'저 사람이 나야?'", 'bold': True, 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-02: 공감 이미지 (거울 충격 직후, AI 감성)
+blocks.append(image_block('./images/mirror_morning.jpg', '아침 욕실 거울 — 베개자국이 남은 볼'))
+
+blocks.append(text_block([
     {'text': '그날 이후로 아침이 달라졌다', 'fontSize': 'fs15'},
     {'text': '세안하고 거울 앞에 서면 베개 자국이 볼에 찍혀 있었다', 'fontSize': 'fs15'},
     {'text': '예전엔 세수하면 바로 사라지던 자국인데, 30분이 지나도 그대로였다', 'fontSize': 'fs15'},
@@ -136,6 +144,9 @@ blocks.append(table_block(
     ]
 ))
 
+# 📸 IMG-03: 실패 경험 이미지 (화장대 위 크림들, 네이티브 스냅샷)
+blocks.append(image_block('./images/vanity_products.jpg', '화장대 — 사용하다 만 크림 여러 개'))
+
 blocks.append(hr_block())
 
 # ── 블록 B: 고군분투 ──
@@ -157,7 +168,12 @@ blocks.append(text_block([
     {'text': '2주차에 볼이 벌겋게 달아올랐다', 'fontSize': 'fs15'},
     {'text': '각질이 일어나서 화장이 떠버렸다', 'fontSize': 'fs15'},
     {'text': '화가 나기 시작했다', 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-04: 시술 영수증 (네이티브 실사)
+blocks.append(image_block('./images/receipt_derma.jpg', '피부과 영수증 — 보톡스 55만원'))
+
+blocks.append(text_block([
     {'text': '보톡스도 맞아봤다', 'fontSize': 'fs15'},
     {'text': '확실히 달라지긴 하더라', 'fontSize': 'fs15'},
     {'text': '근데 3개월 지나니까 원점이었다', 'fontSize': 'fs15'},
@@ -175,7 +191,12 @@ blocks.append(text_block([
     {'text': '유튜브에서 피부과 전문의 영상을 보다가', 'fontSize': 'fs15'},
     {'text': '댓글에 누가 논문 링크를 달아놨는데', 'fontSize': 'fs15'},
     {'text': "거기서 처음으로 '에스트로겐 절벽'이라는 단어를 봤다", 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-05: 논문 캡처 (실제 캡처 — 권위 구축)
+blocks.append(image_block('./images/paper_screenshot.jpg', '논문 캡처 — Estrogen and Skin Aging'))
+
+blocks.append(text_block([
     {'text': '구글 번역기 돌려가며 읽었다', 'fontSize': 'fs15'},
     {'text': '처음엔 하나도 이해 못했다', 'fontSize': 'fs15'},
     {'text': '용어 하나 검색하면 또 모르는 용어가 나왔다', 'fontSize': 'fs15'},
@@ -227,18 +248,31 @@ blocks.append(text_block([
     {'text': '그래서 아침에 베개 자국이 안 펴지는 거다', 'fontSize': 'fs15'},
     {'text': '새 콜라겐이 만들어지지 않으니까 눌리면 눌린 채로 있는 거다', 'fontSize': 'fs15'},
     {'text': '이 속도면 5년 뒤에는 지금보다 30% 더 얇아진다', 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-06: 메커니즘 도식 1 (콜라겐 합성 중단 — AI 도식)
+blocks.append(image_block('./images/mechanism_collagen_stop.jpg', '도식 — 에스트로겐 감소 → 콜라겐 합성 중단'))
+
+blocks.append(text_block([
     {'text': '둘째, 콜라겐을 부수는 효소가 폭주한다', 'bold': True, 'fontSize': 'fs15'},
     {'text': '원래 에스트로겐이 잠재우고 있었는데, 잠금장치가 풀린 거다', 'fontSize': 'fs15'},
     {'text': '만드는 건 멈추고, 부수는 건 빨라지고', 'fontSize': 'fs15'},
     {'text': '그래서 작년보다 올해 주름이 깊어진 거다', 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-07: 메커니즘 도식 2 (분해효소 폭주 — AI 도식)
+blocks.append(image_block('./images/mechanism_mmp_burst.jpg', '도식 — MMP 분해효소 폭주'))
+
+blocks.append(text_block([
     {'text': '셋째, 이게 진짜 중요한데', 'bold': True, 'fontSize': 'fs15'},
     {'text': "피부 세포 자체가 '다시 만들어'라는 신호를 못 받는 상태가 된다", 'fontSize': 'fs15'},
     {'text': '세포가 죽은 게 아니다', 'fontSize': 'fs15'},
     {'text': '살아 있는데 귀가 먹은 거다', 'bold': True, 'fontSize': 'fs15'},
     {'text': '그러니까 아무리 비싼 재료를 발라도 세포가 움직이지 않는 거다', 'fontSize': 'fs15'},
 ]))
+
+# 📸 IMG-08: 메커니즘 도식 3 (신호 단절 — AI 도식) — 2연타
+blocks.append(image_block('./images/mechanism_signal_cut.jpg', '도식 — 세포 신호 단절 (귀 먹은 세포)'))
 
 blocks.append(hr_block())
 
@@ -289,11 +323,19 @@ blocks.append(text_block([
     {'text': '대부분은 펩타이드가 1-2종만 들어가 있었다', 'fontSize': 'fs15'},
     {'text': '신호를 보내는 건 되는데, 분해를 막거나 장벽을 복원하는 건 빠져 있었다', 'fontSize': 'fs15'},
     {'text': '4가지가 동시에 되는 제품은 극소수였다', 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-09: 성분 비교표 (실제 캡처 — 65개 브랜드 비교)
+blocks.append(image_block('./images/ingredient_comparison.jpg', '성분 비교표 — 65개 브랜드 펩타이드 종류수 비교'))
+
+blocks.append(text_block([
     {'text': "그중 하나가 '펩타이드 시그널 크림'이었다", 'bold': True, 'fontSize': 'fs15'},
     {'text': '8종 펩타이드가 4가지 역할을 동시에 한다', 'fontSize': 'fs15'},
     {'text': '식약처 이중기능성 인증(주름개선 + 미백)까지 받았다', 'fontSize': 'fs15'},
 ]))
+
+# 📸 IMG-10: 제품 이미지 (제품 공개 시점 — 1장만)
+blocks.append(image_block('./images/product_signal_cream.jpg', '펩타이드 시그널 크림 제품 사진'))
 
 blocks.append(hr_block())
 
@@ -312,7 +354,12 @@ blocks.append(text_block([
     {'text': '정확히 말하면, 예전처럼 세수하면 바로 사라져 있었다', 'fontSize': 'fs15'},
     {'text': '손가락으로 볼을 눌러봤다', 'fontSize': 'fs15'},
     {'text': '돌아오는 느낌이 달랐다', 'fontSize': 'fs15'},
-    {'text': '', 'fontSize': 'fs15'},
+]))
+
+# 📸 IMG-11: 변화 장면 (3주차 거울 — AI 감성)
+blocks.append(image_block('./images/after_3weeks.jpg', '3주차 아침 — 거울 앞 볼 탄력 확인'))
+
+blocks.append(text_block([
     {'text': '아직 모르겠지만, 이건 확실히 달라진 것 같다', 'fontSize': 'fs15'},
     {'text': '그래서 계속 발랐다', 'fontSize': 'fs15'},
     {'text': '', 'fontSize': 'fs15'},

@@ -4,7 +4,7 @@
     {
       "name": "blog-preview",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/juan/Claude code/naver-blog-clone/public"],
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/juan/Brand Manager/naver-blog-clone/public"],
       "port": 8080
     }
   ]

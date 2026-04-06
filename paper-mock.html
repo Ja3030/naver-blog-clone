@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal of Oral Microbiology - Propolis Research</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Serif', 'Times New Roman', Times, serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.paper {
+  max-width: 780px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 50px 60px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Journal header */
+.journal-header {
+  border-bottom: 2px solid #1a3c6e;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.journal-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a3c6e;
+  letter-spacing: 0.5px;
+}
+.journal-meta {
+  font-size: 11px;
+  color: #666;
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* Article type badge */
+.article-type {
+  display: inline-block;
+  background: #1a3c6e;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+/* Title */
+.paper-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+/* Authors */
+.authors {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+}
+.authors sup { font-size: 9px; color: #1a3c6e; }
+.affiliations {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Abstract */
+.abstract-box {
+  background: #f8f9fb;
+  border-left: 3px solid #1a3c6e;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.abstract-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1a3c6e;
+  margin-bottom: 8px;
+}
+.abstract-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Keywords */
+.keywords {
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 24px;
+}
+.keywords strong { color: #333; }
+
+/* Section */
+h2.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin: 24px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+p.body-text {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+/* Table */
+.table-wrapper {
+  margin: 20px 0;
+}
+.table-caption {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+table thead {
+  background: #1a3c6e;
+  color: #fff;
+}
+table th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+}
+table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+table tbody tr:nth-child(even) { background: #f9f9f9; }
+table .highlight { font-weight: 700; color: #1a3c6e; }
+
+/* Figure */
+.figure-box {
+  margin: 24px 0;
+  text-align: center;
+}
+.figure-chart {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px;
+  display: inline-block;
+}
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  height: 180px;
+  padding: 0 20px;
+}
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.bar {
+  width: 50px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+.bar-value {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  color: #333;
+}
+.bar-label {
+  font-size: 11px;
+  color: #555;
+  margin-top: 6px;
+  text-align: center;
+}
+.bar-control { background: #bbb; }
+.bar-propolis { background: #1a3c6e; }
+.bar-combo { background: #2e7d32; }
+
+.figure-caption {
+  font-size: 11px;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.figure-caption strong { color: #333; }
+
+/* p-value note */
+.stat-note {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* DOI */
+.doi-line {
+  font-size: 10px;
+  color: #999;
+  margin-top: 30px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <div class="journal-header">
+    <div class="journal-name">Journal of Oral Microbiology</div>
+    <div class="journal-meta">
+      Vol. 17, No. 2, 2026<br>
+      pp. 112–119<br>
+      ISSN 2041-2638
+    </div>
+  </div>
+
+  <div class="article-type">Original Research</div>
+
+  <h1 class="paper-title">
+    Antimicrobial Efficacy of Propolis-Based Oropharyngeal Spray on Tonsillar Biofilm Formation: A Randomized Controlled Trial
+  </h1>
+
+  <div class="authors">
+    Jae-Won Park<sup>1</sup>, Soo-Yeon Kim<sup>1,2</sup>, Min-Ho Lee<sup>3</sup>, Hye-Jin Choi<sup>1</sup>
+  </div>
+  <div class="affiliations">
+    <sup>1</sup> Department of Otorhinolaryngology, Seoul National University Hospital, Seoul, Korea<br>
+    <sup>2</sup> Department of Microbiology, Seoul National University College of Medicine, Seoul, Korea<br>
+    <sup>3</sup> Department of Preventive Medicine, Yonsei University, Seoul, Korea
+  </div>
+
+  <div class="abstract-box">
+    <div class="abstract-label">Abstract</div>
+    <div class="abstract-text">
+      <strong>Background:</strong> Tonsilloliths (tonsil stones) are biofilm-mediated aggregates formed in tonsillar crypts, often associated with halitosis and chronic throat discomfort. While conventional treatments include gargling and surgical intervention, topical propolis application has shown antimicrobial potential.<br><br>
+      <strong>Objective:</strong> To evaluate the efficacy of a propolis-based oropharyngeal spray in reducing tonsillar biofilm formation and associated symptom burden over a 12-week period.<br><br>
+      <strong>Methods:</strong> A double-blind, randomized controlled trial was conducted with 128 adults (aged 25–55) diagnosed with recurrent tonsilloliths. Participants were randomized to receive either propolis spray (n=64) or placebo spray (n=64), administered twice daily. Primary outcomes included tonsillolith recurrence rate, biofilm density (measured via high-resolution CT), and patient-reported symptom scores.<br><br>
+      <strong>Results:</strong> The propolis group demonstrated a <strong>73.2% reduction</strong> in tonsillolith recurrence compared to placebo (p&lt;0.001). Biofilm density decreased by 68.4% in the propolis group versus 12.1% in controls. Throat discomfort scores improved significantly (p=0.002), and no adverse effects were reported.<br><br>
+      <strong>Conclusions:</strong> Propolis-based oropharyngeal spray is a safe and effective non-invasive intervention for reducing tonsillar biofilm formation and tonsillolith recurrence.
+    </div>
+  </div>
+
+  <div class="keywords">
+    <strong>Keywords:</strong> propolis, tonsilloliths, tonsil stones, biofilm, oropharyngeal spray, antimicrobial, randomized controlled trial
+  </div>
+
+  <h2 class="section-title">1. Introduction</h2>
+  <p class="body-text">
+    Tonsilloliths, commonly referred to as tonsil stones, are calcified biofilm deposits that form within the tonsillar crypts of the palatine tonsils. These formations consist of a complex microbial community embedded in an extracellular polymeric substance (EPS) matrix, predominantly composed of anaerobic bacteria including <em>Fusobacterium nucleatum</em>, <em>Prevotella intermedia</em>, and <em>Porphyromonas gingivalis</em>. The prevalence of tonsilloliths is estimated at 10–30% in the adult population, with recurrence rates exceeding 75% following conventional gargling protocols.
+  </p>
+  <p class="body-text">
+    Propolis, a resinous compound produced by <em>Apis mellifera</em>, has demonstrated broad-spectrum antimicrobial activity against both gram-positive and gram-negative bacteria. Its bioactive constituents—including flavonoids (pinocembrin, galangin), phenolic acids (caffeic acid phenethyl ester), and terpenoids—exhibit synergistic disruption of bacterial quorum sensing mechanisms essential for biofilm initiation and maturation.
+  </p>
+
+  <h2 class="section-title">3. Results</h2>
+  <p class="body-text">
+    At 12 weeks, the propolis spray group showed significantly lower tonsillolith recurrence (17.2%) compared to the placebo group (64.1%; RR=0.27, 95% CI: 0.16–0.44, p&lt;0.001). Biofilm density, as measured by high-resolution CT volumetric analysis, decreased by a mean of 68.4% (SD±11.2) in the treatment group compared to 12.1% (SD±8.7) in controls (Table 1).
+  </p>
+
+  <div class="table-wrapper">
+    <div class="table-caption">Table 1. Primary and Secondary Outcomes at 12-Week Follow-up</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Outcome Measure</th>
+          <th>Propolis Group (n=64)</th>
+          <th>Placebo Group (n=64)</th>
+          <th>p-value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tonsillolith recurrence rate</td>
+          <td class="highlight">17.2%</td>
+          <td>64.1%</td>
+          <td>&lt;0.001</td>
+        </tr>
+        <tr>
+          <td>Biofilm density reduction</td>
+          <td class="highlight">68.4% ± 11.2</td>
+          <td>12.1% ± 8.7</td>
+          <td>&lt;0.001</td>
+        </tr>
+        <tr>
+          <td>Halitosis score improvement</td>
+          <td class="highlight">71.8%</td>
+          <td>18.3%</td>
+          <td>&lt;0.001</td>
+        </tr>
+        <tr>
+          <td>Throat discomfort (VAS reduction)</td>
+          <td class="highlight">4.2 → 1.1</td>
+          <td>4.3 → 3.8</td>
+          <td>0.002</td>
+        </tr>
+        <tr>
+          <td>Adverse events</td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="figure-box">
+    <div class="figure-chart">
+      <div class="bar-chart">
+        <div class="bar-group">
+          <div class="bar bar-control" style="height: 150px;">
+            <span class="bar-value">64.1%</span>
+          </div>
+          <div class="bar-label">Placebo</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar bar-propolis" style="height: 40px;">
+            <span class="bar-value">17.2%</span>
+          </div>
+          <div class="bar-label">Propolis<br>Spray</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">
+      <strong>Figure 2.</strong> Tonsillolith recurrence rate at 12-week follow-up. The propolis spray group showed a 73.2% relative reduction in recurrence compared to placebo (p&lt;0.001).
+    </div>
+    <div class="stat-note">* Statistical significance determined by Fisher's exact test; CI = 95% confidence interval</div>
+  </div>
+
+  <h2 class="section-title">4. Discussion</h2>
+  <p class="body-text">
+    Our findings demonstrate that twice-daily application of propolis-based oropharyngeal spray significantly reduces both the formation and recurrence of tonsilloliths over a 12-week period. The observed 73.2% relative reduction in recurrence rate is clinically meaningful and exceeds previously reported outcomes for chlorhexidine-based gargling protocols (38–42% reduction) and saline irrigation (15–22% reduction).
+  </p>
+  <p class="body-text">
+    The mechanism of action likely involves dual-pathway disruption of tonsillar biofilm: (1) direct bactericidal effects of propolis flavonoids on anaerobic species within the crypt microbiome, and (2) inhibition of bacterial adhesion through interference with EPS matrix glycoprotein synthesis. Notably, the spray delivery method enables targeted deposition into the tonsillar crypt recesses, a region poorly accessible by conventional gargling.
+  </p>
+
+  <div class="doi-line">
+    DOI: 10.1080/20022727.2026.2184553 &nbsp;|&nbsp; Received: Nov 14, 2025 &nbsp;|&nbsp; Accepted: Feb 3, 2026 &nbsp;|&nbsp; Published online: Mar 1, 2026<br>
+    © 2026 The Authors. Published by Taylor & Francis. This is an Open Access article under CC BY 4.0.
+  </div>
+
+</div>
+
+</body>
+</html>
