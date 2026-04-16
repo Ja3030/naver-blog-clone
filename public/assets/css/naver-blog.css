@@ -126,22 +126,24 @@ a[data-cta] { color: #03c75a; text-decoration: underline; font-weight: bold; }
 
 /* === CUSTOM: SE editor content padding & spacing — font matched to real Naver === */
 .se-main-container { padding: 0 20px; margin-top: 20px; padding-bottom: 40px; font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
-.se-viewer .se-text-paragraph { line-height: 1.7; margin: 0; padding: 0; white-space: normal !important; font-family: inherit; }
+.se-viewer .se-text-paragraph { line-height: 1.9; margin: 0; padding: 0; white-space: normal !important; font-family: inherit; }
 .se-viewer .se-text-paragraph:not(.se-text-paragraph-align-justify) { white-space: normal !important; }
 /* SE font size classes — match real Naver SE editor */
 .se-fs-fs11 { font-size: 11px; }
 .se-fs-fs13 { font-size: 13px; }
 .se-fs-fs15 { font-size: 15px; }
+.se-fs-fs17 { font-size: 17px; }
 .se-fs-fs18 { font-size: 18px; }
+.se-fs-fs19 { font-size: 19px; }
 .se-fs-fs24 { font-size: 24px; }
 .se-fs-fs28 { font-size: 28px; }
 .se-fs-fs34 { font-size: 34px; }
 .se-ff-system { font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
 .se-ff-nanumgothic { font-family: "NanumGothic", "나눔고딕", Helvetica, sans-serif; }
 .se-ff-nanummyeongjo { font-family: "NanumMyeongjo", "나눔명조", serif; }
-.se-viewer .se-component.se-text { margin-bottom: 0; }
-.se-viewer .se-component.se-horizontalLine { margin: 24px 0; }
-.se-viewer .se-component.se-image { margin: 16px 0; }
+.se-viewer .se-component.se-text { margin-bottom: 6px; }
+.se-viewer .se-component.se-horizontalLine { margin: 32px 0; }
+.se-viewer .se-component.se-image { margin: 24px 0; }
 
 /* === CUSTOM: Image placeholder === */
 .se-module-image-link img { width: 100%; height: auto; display: block; border-radius: 0; }
