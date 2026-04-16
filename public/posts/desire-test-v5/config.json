@@ -1,0 +1,51 @@
+{
+  "blog": {
+    "name": "피부 5년차 기록",
+    "title": "피부 5년차 기록",
+    "profile_image": "",
+    "profile_color": "#e8d6d0"
+  },
+  "post": {
+    "title": "주사피부염 5년 동안 뭘 해도 돌아왔다",
+    "category": "건강·의학",
+    "date": "2026. 1. 8. 22:41"
+  },
+  "social": {
+    "likes": 847,
+    "shares": 52,
+    "views": 6234
+  },
+  "comments": [
+    {
+      "author": "빨강얼굴3년차",
+      "profile_color": "#f0d6d6",
+      "time": "2시간 전",
+      "text": "수란트라 끊으면 돌아오는 거 진짜 공감.. 저도 두 번 겪었어요 곰팡이 비유 소름 돋았다",
+      "likes": 34
+    },
+    {
+      "author": "모낭충탈출중",
+      "profile_color": "#d6e0f0",
+      "time": "5시간 전",
+      "text": "저도 크림 7개째인데 ㅋㅋㅋ 세면대 사진 보고 울 뻔.. 쪽지 드렸어요",
+      "likes": 28
+    },
+    {
+      "author": "주사피부염카페횐",
+      "profile_color": "#d6f0d6",
+      "time": "1일 전",
+      "text": "빨강얼굴 카페에서 넘어왔는데 이 글이 제일 정리가 잘 되어있네요 감사합니다",
+      "likes": 41
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=meta&utm_medium=cpc&utm_campaign=desire_test_v5",
+    "text": "티트리셀 카밍 크림 자세히 보기"
+  }
+}
