@@ -1,0 +1,51 @@
+{
+  "blog": {
+    "name": "48년차 호르몬기록",
+    "title": "48년차 호르몬기록",
+    "profile_image": "",
+    "profile_color": "#e8d0d8"
+  },
+  "post": {
+    "title": "7년 HRT 루프에서 빠져나온 후기 — 48세 폐경 여성의 솔직한 기록",
+    "category": "갱년기·건강",
+    "date": "2026. 4. 18. 23:17"
+  },
+  "social": {
+    "likes": 1247,
+    "shares": 89,
+    "views": 8932
+  },
+  "comments": [
+    {
+      "author": "48동갑이에요",
+      "profile_color": "#f0d6d6",
+      "time": "3시간 전",
+      "text": "저도 리비알 먹고 2kg 부었던 적 있어요.. 약만 바꾸라는 말이 진짜 지겹더라구요. 그 재활용 공장 얘기 처음 들었는데 이해가 되네요",
+      "likes": 52
+    },
+    {
+      "author": "자연폐경2년차",
+      "profile_color": "#d6e0f0",
+      "time": "7시간 전",
+      "text": "관계 중 찢어지는 느낌 부분.. 저도 똑같은 경험 있어서 눈물 나면서 읽었어요. 쪽지 드렸습니다",
+      "likes": 38
+    },
+    {
+      "author": "호르몬공부중",
+      "profile_color": "#d6f0d6",
+      "time": "1일 전",
+      "text": "KABP052 논문 찾아봤는데 실제로 있네요.. 국내에 이 조합 들어간 게 많진 않던데 소개 감사합니다",
+      "likes": 24
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [25, 50, 75, 100],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=68&utm_source=meta&utm_medium=cpc&utm_campaign=adv_jilhwalseonggyun_v1",
+    "text": "FarmBio 질활성균 자세히 보기"
+  }
+}
