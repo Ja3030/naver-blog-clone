@@ -1,0 +1,77 @@
+{
+  "blog": {
+    "name": "혜원이의 피부 회복 일기",
+    "title": "혜원이의 피부 회복 일기",
+    "profile_image": "",
+    "profile_color": "#f5c6c6"
+  },
+  "post": {
+    "title": "주사피부염 4년 3000만원 헛돈 쓰다가 호주 친구가 보내준 메일 한 통으로 1년 만에 답 찾은 이야기",
+    "category": "건강·의학",
+    "date": "2025. 11. 18. 23:47"
+  },
+  "social": {
+    "likes": 2184,
+    "shares": 167,
+    "views": 18432
+  },
+  "comments": [
+    {
+      "author": "주사피부염4년차",
+      "profile_color": "#f0d6e8",
+      "time": "2시간 전",
+      "text": "저도 정확히 똑같아요.. 수란트라 끊으면 다시 올라오고. Forton 박사 자료 더 알려주실 수 있나요?",
+      "likes": 87
+    },
+    {
+      "author": "40대워킹맘피부",
+      "profile_color": "#d6e8f0",
+      "time": "6시간 전",
+      "text": "아침마다 거울 보는 게 무섭다는 거 진짜 공감.. 화장하는데 1시간씩 걸리고요 ㅠ",
+      "likes": 64
+    },
+    {
+      "author": "오월의아침5년차",
+      "profile_color": "#e8f0d6",
+      "time": "10시간 전",
+      "text": "저도 오월의아침 다녔는데 한 달에 한 번씩 가도 나아지질 않아서.. 호주 100년이라는 말 처음 들어요",
+      "likes": 52
+    },
+    {
+      "author": "강남시술800만원",
+      "profile_color": "#f0e0d6",
+      "time": "14시간 전",
+      "text": "LDM 인모드 저도 받았는데 결국 도로 원점인 거 똑같았어요. 표면만 건드린다는 말 너무 와닿네요",
+      "likes": 41
+    },
+    {
+      "author": "복직첫날공포",
+      "profile_color": "#d6f0e0",
+      "time": "1일 전",
+      "text": "복직 첫날 회의실 형광등 ㅠㅠ 그 장면이 너무 생생해서 댓글 남기게 됐어요. 1년이 지난 지금 정말 안정이세요?",
+      "likes": 38
+    },
+    {
+      "author": "시어머니갱년기",
+      "profile_color": "#e0d6f0",
+      "time": "1일 전",
+      "text": "시어머니께도 도움 됐다니 부럽네요.. 저희 시어머니 갱년기 홍조로 고생 중이신데 한번 권유해 봐도 될지",
+      "likes": 33
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=google&utm_medium=cpc&utm_campaign=sa_advertorial_v10",
+    "text": "티트리셀 자세히 보기"
+  }
+}
