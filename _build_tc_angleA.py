@@ -121,11 +121,11 @@ def styled_paragraph(s):
     n = _norm(s)
     if n in _HEADING_N:
         return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
-                '        <span class="se-ff-system" style="font-size:20px;font-weight:800;line-height:1.55;">' + esc(s) + '</span>\n'
+                '        <span class="se-ff-system" style="font-size:22px;font-weight:800;line-height:1.5;">' + esc(s) + '</span>\n'
                 '      </p>')
     if s.startswith('(') and s.endswith(')'):
         return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
-                '        <span class="se-fs-fs13 se-ff-system" style="color:#8a9098;">' + esc(s) + '</span>\n'
+                '        <span class="se-fs-fs13 se-ff-system" style="color:#8a9098;font-size:15px;">' + esc(s) + '</span>\n'
                 '      </p>')
     inner = esc(s)
     for ph in _RED_SORTED:
@@ -137,7 +137,7 @@ def styled_paragraph(s):
     elif n in _BOLD_N or (s.startswith('"') and s.endswith('"') and len(s) < 45):
         inner = '<b>' + inner + '</b>'
     return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
-            '        <span class="se-fs-fs15 se-ff-system">' + inner + '</span>\n'
+            '        <span class="se-fs-fs15 se-ff-system" style="font-size:18px;line-height:1.85;">' + inner + '</span>\n'
             '      </p>')
 
 
