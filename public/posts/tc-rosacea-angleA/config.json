@@ -1,0 +1,77 @@
+{
+  "blog": {
+    "name": "지영ㅣ주사피부염 회복일기",
+    "title": "지영ㅣ주사피부염 회복일기",
+    "profile_image": "",
+    "profile_color": "#f3d4d4"
+  },
+  "post": {
+    "title": "레이저로 빨간 혈관 다 지졌는데 며칠이면 또 올라오던 게 — 엉뚱한 데서 들은 말 하나로 달라진 이야기",
+    "category": "건강·뷰티",
+    "date": "2026. 5. 14. 22:18"
+  },
+  "social": {
+    "likes": 1873,
+    "shares": 142,
+    "views": 15604
+  },
+  "comments": [
+    {
+      "author": "주사피부염5년차",
+      "profile_color": "#f0d6e8",
+      "time": "3시간 전",
+      "text": "저랑 너무 똑같아요.. 레이저 받으면 잠깐 빠졌다가 며칠이면 또 올라오고. 결국 완치는 없다는 말만 들었거든요. 염증부터라는 말 처음 들어요",
+      "likes": 73
+    },
+    {
+      "author": "40대워킹맘",
+      "profile_color": "#d6e8f0",
+      "time": "5시간 전",
+      "text": "아침마다 거울 눈만 보고 볼은 안 본다는 거.. 읽다가 울컥했네요. 화장으로 덮어도 오후되면 올라오는 것도 똑같고요 ㅠ",
+      "likes": 58
+    },
+    {
+      "author": "맨얼굴이소원",
+      "profile_color": "#e8f0d6",
+      "time": "8시간 전",
+      "text": "스테로이드 끊으면 더 시뻘게져서 무서워서 또 바르고.. 그 굴레 너무 공감돼요. 모낭충 환경 얘기 더 알고싶어요",
+      "likes": 49
+    },
+    {
+      "author": "천만원날린사람",
+      "profile_color": "#f0e0d6",
+      "time": "12시간 전",
+      "text": "카드 명세서 더해보다 손 멈췄다는 부분.. 저도 세다가 그만뒀어요. 표면만 지진다는 말이 너무 와닿네요",
+      "likes": 41
+    },
+    {
+      "author": "복직앞두고",
+      "profile_color": "#d6f0e0",
+      "time": "1일 전",
+      "text": "곰팡이 비유 진짜 찰떡이네요. 죽이는 게 아니라 환경을 바꾼다 — 이제야 이해가 돼요. 혹시 처음에 따끔한 건 얼마나 가나요?",
+      "likes": 34
+    },
+    {
+      "author": "아이엄마지수",
+      "profile_color": "#e0d6f0",
+      "time": "1일 전",
+      "text": "사진에 늘 본인만 없다는 거.. 저도 그래서 댓글 남겨요. 지금은 아이랑 같이 찍으신다니 그게 제일 부럽습니다",
+      "likes": 29
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=naver&utm_medium=blog&utm_campaign=tc_angleA_v1",
+    "text": "티트리셀 자세히 보기"
+  }
+}
