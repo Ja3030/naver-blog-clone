@@ -141,9 +141,13 @@ a[data-cta] { color: #03c75a; text-decoration: underline; font-weight: bold; }
 .se-ff-system { font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
 .se-ff-nanumgothic { font-family: "NanumGothic", "나눔고딕", Helvetica, sans-serif; }
 .se-ff-nanummyeongjo { font-family: "NanumMyeongjo", "나눔명조", serif; }
-.se-viewer .se-component.se-text { margin-bottom: 6px; }
+.se-viewer .se-component.se-text { margin-bottom: 0; }
 .se-viewer .se-component.se-horizontalLine { margin: 32px 0; }
-.se-viewer .se-component.se-image { margin: 24px 0; }
+.se-viewer .se-component.se-image { margin: 26px 0; }
+
+/* === CUSTOM: paragraph rhythm — matched to real Naver advertorial spacing === */
+.se-viewer .se-text-paragraph.se-blank { margin-top: 8px; }
+.se-section-break { display: block; height: 60px; }
 
 /* === CUSTOM: Image placeholder === */
 .se-module-image-link img { width: 100%; height: auto; display: block; border-radius: 0; }

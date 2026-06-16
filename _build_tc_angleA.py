@@ -69,12 +69,77 @@ def esc(s):
 
 def p_tag(text, fs='fs15', bold=False, color=None):
     if not text.strip():
-        return '      <p class="se-text-paragraph se-text-paragraph-align- ">\n        <span class="se-fs-fs15 se-ff-system"><br></span>\n      </p>'
+        return '      <p class="se-text-paragraph se-blank se-text-paragraph-align- ">\n        <span class="se-fs-fs15 se-ff-system"><br></span>\n      </p>'
     inner = esc(text)
     if bold:
         inner = f'<b>{inner}</b>'
     style = f' style="color:{color};"' if color else ''
     return f'      <p class="se-text-paragraph se-text-paragraph-align- ">\n        <span{style} class="se-fs-{fs} se-ff-system">{inner}</span>\n      </p>'
+
+# ===== 강조 시스템 (레퍼런스 네이버 어드버토리얼 시각 위계 이식) =====
+HEADING_LINES = [
+    "그 5년 동안, 안 해본 게 없다.",
+    "5년 내내 틀린 질문을 했다.",
+    "내 얼굴은 고장난 게 아니었다.",
+    "죽이지 말고, 못 살게.",
+    "티트리였다.",
+    "그 평범한 게, 5년 만에 됐다.",
+]
+HIGHLIGHT_LINES = [
+    "빨간 거 그거, 그 밑에 염증이 자꾸 건드려서 그래.",
+    "빨간 게 가라앉을 틈이 없었던 거다.",
+    "그 염증이 혈관을 건드려서 → 빨개지는 거.",
+    "그냥 모낭충이 못 견디는 환경을 만들어주는 거다.",
+    "10,670ppm.",
+    "빨간 건 원인이 아니라 결과라는 거.",
+]
+BOLD_LINES = [
+    "지금 내 얼굴이다.",
+    "그건 아니다.",
+    "5년째, 똑바로 못 보고 살았다.",
+    "혈관이 늘어나서, 영구적이다.",
+    "정작 원인엔 손도 안 댄 거였다.",
+    "근데 그게 — 하나였다.",
+    "그래서였구나.",
+    "혈관은 결과다.",
+]
+RED_PHRASES = [
+    "평생 관리하셔야 돼요", "자릿수가 아예 달랐다", "모세혈관이 늘어나서",
+    "완치는 없고", "고장난 거구나", "또 광고겠지",
+    "영구적이다", "리바운드", "한심했다", "천만 원", "30만 원",
+]
+
+def _norm(x):
+    return x.strip().strip('“”"\' ')
+
+_HEADING_N = {_norm(x) for x in HEADING_LINES}
+_HIGHLIGHT_N = {_norm(x) for x in HIGHLIGHT_LINES}
+_BOLD_N = {_norm(x) for x in BOLD_LINES}
+_RED_SORTED = sorted(RED_PHRASES, key=len, reverse=True)
+
+def styled_paragraph(s):
+    n = _norm(s)
+    if n in _HEADING_N:
+        return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
+                '        <span class="se-ff-system" style="font-size:20px;font-weight:800;line-height:1.55;">' + esc(s) + '</span>\n'
+                '      </p>')
+    if s.startswith('(') and s.endswith(')'):
+        return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
+                '        <span class="se-fs-fs13 se-ff-system" style="color:#8a9098;">' + esc(s) + '</span>\n'
+                '      </p>')
+    inner = esc(s)
+    for ph in _RED_SORTED:
+        e = esc(ph)
+        if e in inner:
+            inner = inner.replace(e, '<span style="color:#ff0010;font-weight:700;">' + e + '</span>')
+    if n in _HIGHLIGHT_N:
+        inner = '<span style="background-color:#fff8b2;font-weight:700;">' + inner + '</span>'
+    elif n in _BOLD_N or (s.startswith('"') and s.endswith('"') and len(s) < 45):
+        inner = '<b>' + inner + '</b>'
+    return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
+            '        <span class="se-fs-fs15 se-ff-system">' + inner + '</span>\n'
+            '      </p>')
+
 
 def text_block(paras):
     return f'''<div class="se-component se-text se-l-default">
@@ -103,6 +168,15 @@ def placeholder_block(label):
       <div style="font-size:13px;font-weight:800;letter-spacing:2px;color:#aeb4ba;">📷 사진 자리</div>
       <div style="font-size:15px;font-weight:700;color:#6b7178;margin-top:10px;">{esc(label)}</div>
       <div style="font-size:11px;color:#b8bdc2;margin-top:8px;">실제 사진 필요 · AI 생성 불가 (Group B)</div>
+    </div>
+  </div>
+</div>'''
+
+def section_break_block():
+    return '''<div class="se-component se-text se-l-default">
+  <div class="se-section se-section-text se-l-default">
+    <div class="se-module se-module-text">
+      <p class="se-text-paragraph se-text-paragraph-align- "><span class="se-ff-system" style="display:block;height:44px;line-height:44px;">&#8203;</span></p>
     </div>
   </div>
 </div>'''
@@ -136,8 +210,9 @@ def load_body():
         md = f.read()
     start = md.find('## §1')
     body = md[start:]
-    # 섹션 헤더 / 구분선 제거
-    body = re.sub(r'^##\s*§[^\n]*$', '', body, flags=re.MULTILINE)
+    # §1 헤더는 제거(맨 앞 섹션 브레이크 방지), §2~13 헤더는 섹션 브레이크 마커로
+    body = re.sub(r'^##\s*§1[^\n]*$', '', body, count=1, flags=re.MULTILINE)
+    body = re.sub(r'^##\s*§[^\n]*$', '\n___SECTION___\n', body, flags=re.MULTILINE)
     body = re.sub(r'^\s*---\s*$', '', body, flags=re.MULTILINE)
     return body
 
@@ -212,22 +287,21 @@ def build():
             blocks.append(placeholder_block(phb[int(mb.group(1))]))
             continue
 
+        if s == '___SECTION___':
+            if paras and 'se-blank' in paras[-1]:   # 앞 빈 줄 제거
+                paras.pop()
+            flush()
+            blocks.append(section_break_block())
+            last_br = True                          # 뒤 빈 줄 1개 suppress
+            continue
+
         if s == '':
             if not last_br:
                 paras.append(p_tag(''))
                 last_br = True
             continue
         last_br = False
-
-        # 가벼운 스타일링
-        if s.startswith('(') and s.endswith(')'):
-            paras.append(p_tag(s, fs='fs13', color='#8a9098'))
-        elif s.startswith('"') and s.endswith('"') and len(s) < 45:
-            paras.append(p_tag(s, bold=True))
-        elif s.startswith('※'):
-            paras.append(p_tag(s, bold=True, color='rgb(255,0,16)'))
-        else:
-            paras.append(p_tag(s))
+        paras.append(styled_paragraph(s))
 
     flush()
 
