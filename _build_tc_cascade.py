@@ -186,13 +186,52 @@ def oglink_block():
     )
 
 # ===== 본문 파싱 =====
+def split_into_lines(text):
+    """한 단락 → 어구별 줄로 강제 분리 (네이버 한 어구 = 한 줄 패턴 매칭)
+    - 마침표/물음표/느낌표 (`.`, `?`, `!`, `..`, `...`) 후 다음 글자 시작 → 줄바꿈
+    - 쉼표 (`,`) 후 다음 글자가 있으면 길이 25자 넘는 경우만 분리
+    """
+    # 1단계: 종결 부호 뒤 강제 줄바꿈 (..., .., ., ?, !)
+    parts = re.split(r'(?<=[.?!])\s+(?=[가-힣A-Za-z0-9"\'])', text)
+
+    # 2단계: 각 part가 25자 초과면 쉼표/, 뒤로도 분리
+    result = []
+    for p in parts:
+        p = p.strip()
+        if not p:
+            continue
+        if len(p) <= 25:
+            result.append(p)
+        else:
+            sub = re.split(r'(?<=[,])\s+(?=[가-힣A-Za-z0-9])', p)
+            for s in sub:
+                s = s.strip()
+                if s:
+                    result.append(s)
+    return result
+
+
 def load_section(filename):
-    """단락 리스트 반환 (빈 줄 제외)"""
+    """단락 리스트 반환 (빈 줄로 단락 구분 유지, 각 단락은 어구별로 분리)
+    반환: List[List[str] | None]  — 단락 = 어구 list, None = 빈 줄 (호흡)
+    """
     path = os.path.join(BASE_AD, 'Final', filename)
     with open(path, 'r', encoding='utf-8') as f:
         text = f.read()
-    paragraphs = [line.strip() for line in text.split('\n') if line.strip()]
-    return paragraphs
+
+    result = []  # 단락 또는 None (빈 줄)
+    for raw in text.split('\n'):
+        line = raw.strip()
+        if not line:
+            # 빈 줄 = 단락 사이 호흡 마커
+            if result and result[-1] is not None:
+                result.append(None)
+            continue
+        # 단락 = 어구별 분리
+        phrases = split_into_lines(line)
+        if phrases:
+            result.append(phrases)
+    return result
 
 def is_first_paragraph_of_section(idx_in_section, section_label, paragraphs):
     """§1 첫 단락 (제목 톤) 판단 — 보통 §의 1번째 단락만 28px 빨강 대제목"""
@@ -203,40 +242,40 @@ def build():
     blocks = []
 
     for section_label, filename in SECTION_FILES:
-        paragraphs = load_section(filename)
+        items = load_section(filename)  # 단락 list (phrases) or None (빈 줄)
 
-        # 단락별 처리
         current_text_paras = []
-        for idx, para in enumerate(paragraphs):
+        para_idx = -1   # 실제 단락 인덱스 (이미지 매핑 키)
+
+        for item in items:
+            if item is None:
+                # 빈 줄 (호흡)
+                current_text_paras.append(blank_p())
+                continue
+
+            para_idx += 1
+            phrases = item
+
             # 첫 단락 = 28px 빨강 (§1만)
-            if section_label == '§1' and idx == 0:
-                # 빈 줄로 호흡 1회
-                if current_text_paras:
-                    current_text_paras.append(blank_p())
-                current_text_paras.append(big_red_p(para))
-                current_text_paras.append(blank_p())
-                current_text_paras.append(blank_p())
+            if section_label == '§1' and para_idx == 0:
+                for phrase in phrases:
+                    current_text_paras.append(big_red_p(phrase))
             else:
-                current_text_paras.append(body_p(para))
-                current_text_paras.append(blank_p())
+                for phrase in phrases:
+                    current_text_paras.append(body_p(phrase))
 
             # 이미지 자리 체크
-            if (section_label, idx) in IMAGE_MAP:
-                # 현재까지의 text block flush
+            if (section_label, para_idx) in IMAGE_MAP:
                 blocks.append(text_block(current_text_paras))
                 current_text_paras = []
-                # 이미지 삽입
-                fname = IMAGE_MAP[(section_label, idx)]
-                blocks.append(img_block(IMG_REL + fname, alt=f'{section_label} 단락 {idx}'))
-                # 이미지 다음 빈 줄 호흡
-                current_text_paras.append(blank_p())
+                fname = IMAGE_MAP[(section_label, para_idx)]
+                blocks.append(img_block(IMG_REL + fname, alt=f'{section_label} 단락 {para_idx}'))
 
-        # 섹션 마지막 text block flush
         if current_text_paras:
             blocks.append(text_block(current_text_paras))
 
-        # 섹션 사이 빈 줄 + 구분선 X (네이버 스타일은 연속)
-        blocks.append(text_block([blank_p(), blank_p()]))
+        # 섹션 사이 빈 줄 1회 (네이버 스타일)
+        blocks.append(text_block([blank_p()]))
 
     # CTA
     blocks.append(hr_block())
