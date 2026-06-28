@@ -265,10 +265,35 @@ def copy_images():
         print(f"  ⚠️ 누락: {m}")
 
 
+# ===== Cascade 전용 가독성 override (네이버 모바일 원본 정확 매칭) =====
+CASCADE_STYLE = """
+<style>
+/* line-height 1.0 / margin 0 — 네이버 column_wrinkle 패턴 매칭 */
+.se-viewer .se-text-paragraph { line-height: 1.0 !important; margin: 0 !important; padding: 0 !important; }
+.se-viewer .se-text-paragraph.se-blank { margin-top: 0 !important; padding: 0 !important; }
+.se-viewer .se-text-paragraph span { line-height: 1.0 !important; }
+/* 폰트 모바일 기본 */
+.se-viewer .se-ff-system { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "HelveticaNeue", "Helvetica Neue", helvetica, sans-serif !important; }
+/* 좌측 정렬 */
+.se-viewer .se-text-paragraph-align- { text-align: left; }
+/* 컴포넌트 간격 — 네이버 원본 컴포넌트 마진 작게 */
+.se-viewer .se-component { margin: 0 !important; padding: 0 !important; }
+.se-viewer .se-component.se-text { margin: 0 !important; }
+.se-viewer .se-component.se-image { margin: 14px 0 !important; }
+.se-viewer .se-section { margin: 0 !important; padding: 0 !important; }
+.se-viewer .se-module { margin: 0 !important; padding: 0 !important; }
+/* 빈 단락 높이 — 19.8px (원본 line-height) */
+.se-viewer .se-text-paragraph.se-blank { min-height: 19.8px; height: 19.8px; }
+.se-viewer .se-text-paragraph.se-blank span { display: inline-block; height: 19.8px; line-height: 19.8px !important; }
+</style>
+"""
+
 def inject_and_save(se_html, config_data):
     os.makedirs(POST_DIR, exist_ok=True)
     with open(TEMPLATE, 'r', encoding='utf-8') as f:
         template = f.read()
+    # head에 cascade 전용 style 주입
+    template = template.replace('</head>', CASCADE_STYLE + '</head>')
     start = '<!-- POST CONTENT START -->'
     end = '<!-- POST CONTENT END -->'
     si = template.index(start)
