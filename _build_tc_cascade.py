@@ -115,7 +115,7 @@ def big_red_p(text, fs=28):
     """대제목 빨강 굵게 (28px or 24px)"""
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-ff-system" style="font-size:{fs}px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
+        f'<span class="se-ff-system" style="font-size:{fs}px;color:#ff0010;font-weight:700;line-height:1.8;">{esc(text)}</span>'
         '</p>'
     )
 
@@ -123,7 +123,7 @@ def red_line_p(text):
     """19px 빨강 굵게 임팩트 어구 (한 줄 = 한 단락)"""
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
+        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;color:#ff0010;font-weight:700;line-height:1.8;">{esc(text)}</span>'
         '</p>'
     )
 
@@ -168,9 +168,11 @@ def body_p(text, force_red=False):
             if we in inner:
                 inner = inner.replace(we, f'<span style="color:#ff0010;font-weight:700;">{we}</span>')
     color_style = 'color:#ff0010;font-weight:700;' if force_red else ''
+    # 본문 baseline weight 500 (한국어 시스템 폰트에서 굵어 보이도록)
+    weight_style = '' if force_red else 'font-weight:500;'
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{color_style}line-height:1.5;">{inner}</span>'
+        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{weight_style}{color_style}line-height:1.8;">{inner}</span>'
         '</p>'
     )
 
@@ -304,7 +306,8 @@ def build():
 
         for item in items:
             if item is None:
-                # 빈 줄 (호흡)
+                # 빈 줄 (호흡) — 묶음 사이 빈 단락 2개 (원본 패턴)
+                current_text_paras.append(blank_p())
                 current_text_paras.append(blank_p())
                 continue
 
@@ -362,10 +365,10 @@ def copy_images():
 # ===== Cascade 전용 가독성 override (네이버 모바일 원본 정확 매칭) =====
 CASCADE_STYLE = """
 <style>
-/* line-height 1.5 / margin 0 — 네이버 column_wrinkle 패턴 매칭 */
-.se-viewer .se-text-paragraph { line-height: 1.5 !important; margin: 0 !important; padding: 0 !important; }
+/* line-height 1.8 / margin 0 — 네이버 column_wrinkle 정확 매칭 */
+.se-viewer .se-text-paragraph { line-height: 1.8 !important; margin: 0 !important; padding: 0 !important; }
 .se-viewer .se-text-paragraph.se-blank { margin-top: 0 !important; padding: 0 !important; }
-.se-viewer .se-text-paragraph span { line-height: 1.5 !important; }
+.se-viewer .se-text-paragraph span { line-height: 1.8 !important; }
 /* 폰트 모바일 기본 */
 .se-viewer .se-ff-system { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "HelveticaNeue", "Helvetica Neue", helvetica, sans-serif !important; }
 /* 좌측 정렬 */
@@ -376,9 +379,9 @@ CASCADE_STYLE = """
 .se-viewer .se-component.se-image { margin: 14px 0 !important; }
 .se-viewer .se-section { margin: 0 !important; padding: 0 !important; }
 .se-viewer .se-module { margin: 0 !important; padding: 0 !important; }
-/* 빈 단락 높이 — 28px (한 줄 호흡) */
-.se-viewer .se-text-paragraph.se-blank { min-height: 28px; height: 28px; }
-.se-viewer .se-text-paragraph.se-blank span { display: inline-block; height: 28px; line-height: 28px !important; }
+/* 빈 단락 = 본문 line-height와 동일 (34.2px = 19 * 1.8) */
+.se-viewer .se-text-paragraph.se-blank { min-height: 34.2px; height: 34.2px; }
+.se-viewer .se-text-paragraph.se-blank span { display: inline-block; height: 34.2px; line-height: 34.2px !important; }
 </style>
 """
 
