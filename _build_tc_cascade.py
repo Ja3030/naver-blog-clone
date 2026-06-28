@@ -112,26 +112,26 @@ def blank_p():
     return '      <p class="se-text-paragraph se-blank se-text-paragraph-align- "><span class="se-fs-fs19 se-ff-system"><br></span></p>'
 
 def big_red_p(text):
-    """28px 빨강 (대제목)"""
+    """28px 빨강 굵게 (대제목)"""
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-fs-fs28 se-ff-system" style="font-size:28px;color:#ff0010;line-height:1.0;">{esc(text)}</span>'
+        f'<span class="se-fs-fs28 se-ff-system" style="font-size:28px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
         '</p>'
     )
 
 def body_p(text, red=False):
-    """19px 본문 (검정 기본, red=True면 빨강)"""
+    """19px 본문 (검정 기본, red=True면 빨강 굵게)"""
     inner = esc(text)
-    # 부분 빨강 강조: 본문 내에 RED_LINES_PARTIAL 단어가 있으면 그 부분만 빨강
+    # 부분 빨강 강조: 본문 내에 RED_LINES_PARTIAL 단어가 있으면 그 부분만 빨강 + 굵게
     if not red:
         for w in sorted(RED_LINES_PARTIAL, key=len, reverse=True):
             we = esc(w)
             if we in inner:
-                inner = inner.replace(we, f'<span style="color:#ff0010;">{we}</span>')
-    color_style = 'color:#ff0010;' if red else ''
+                inner = inner.replace(we, f'<span style="color:#ff0010;font-weight:700;">{we}</span>')
+    color_style = 'color:#ff0010;font-weight:700;' if red else ''
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{color_style}line-height:1.0;">{inner}</span>'
+        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{color_style}line-height:1.5;">{inner}</span>'
         '</p>'
     )
 
@@ -268,10 +268,10 @@ def copy_images():
 # ===== Cascade 전용 가독성 override (네이버 모바일 원본 정확 매칭) =====
 CASCADE_STYLE = """
 <style>
-/* line-height 1.0 / margin 0 — 네이버 column_wrinkle 패턴 매칭 */
-.se-viewer .se-text-paragraph { line-height: 1.0 !important; margin: 0 !important; padding: 0 !important; }
+/* line-height 1.5 / margin 0 — 네이버 column_wrinkle 패턴 매칭 */
+.se-viewer .se-text-paragraph { line-height: 1.5 !important; margin: 0 !important; padding: 0 !important; }
 .se-viewer .se-text-paragraph.se-blank { margin-top: 0 !important; padding: 0 !important; }
-.se-viewer .se-text-paragraph span { line-height: 1.0 !important; }
+.se-viewer .se-text-paragraph span { line-height: 1.5 !important; }
 /* 폰트 모바일 기본 */
 .se-viewer .se-ff-system { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "HelveticaNeue", "Helvetica Neue", helvetica, sans-serif !important; }
 /* 좌측 정렬 */
@@ -282,9 +282,9 @@ CASCADE_STYLE = """
 .se-viewer .se-component.se-image { margin: 14px 0 !important; }
 .se-viewer .se-section { margin: 0 !important; padding: 0 !important; }
 .se-viewer .se-module { margin: 0 !important; padding: 0 !important; }
-/* 빈 단락 높이 — 19.8px (원본 line-height) */
-.se-viewer .se-text-paragraph.se-blank { min-height: 19.8px; height: 19.8px; }
-.se-viewer .se-text-paragraph.se-blank span { display: inline-block; height: 19.8px; line-height: 19.8px !important; }
+/* 빈 단락 높이 — 28px (한 줄 호흡) */
+.se-viewer .se-text-paragraph.se-blank { min-height: 28px; height: 28px; }
+.se-viewer .se-text-paragraph.se-blank span { display: inline-block; height: 28px; line-height: 28px !important; }
 </style>
 """
 
