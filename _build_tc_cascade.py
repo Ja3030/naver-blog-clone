@@ -111,29 +111,84 @@ def esc(s):
 def blank_p():
     return '      <p class="se-text-paragraph se-blank se-text-paragraph-align- "><span class="se-fs-fs19 se-ff-system"><br></span></p>'
 
-def big_red_p(text):
-    """28px 빨강 굵게 (대제목)"""
+def big_red_p(text, fs=28):
+    """대제목 빨강 굵게 (28px or 24px)"""
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
-        f'<span class="se-fs-fs28 se-ff-system" style="font-size:28px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
+        f'<span class="se-ff-system" style="font-size:{fs}px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
         '</p>'
     )
 
-def body_p(text, red=False):
-    """19px 본문 (검정 기본, red=True면 빨강 굵게)"""
+def red_line_p(text):
+    """19px 빨강 굵게 임팩트 어구 (한 줄 = 한 단락)"""
+    return (
+        '      <p class="se-text-paragraph se-text-paragraph-align- ">'
+        f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;color:#ff0010;font-weight:700;line-height:1.5;">{esc(text)}</span>'
+        '</p>'
+    )
+
+# 24px 빨강 트리거 — 짧고 강한 결론/충격
+STRONG_TRIGGERS = [
+    '내 잘못이 아니다', '한국 시장에 답이 없', '평생 관리', '평생 그대로',
+    '진짜 무서워졌다', '완전 다른 사람', '5년 만에 처음', '5년 만에 됐다',
+    '정말 0개였다', '정말 답이 없', '5년 만에 진짜로 다가왔다',
+]
+
+# 빨강 한 줄 단락 트리거 — 19px 빨강 임팩트 어구
+RED_LINE_PHRASES = [
+    '5년 동안 매일 아침', '5년 동안', '5년 만에', '5년 더 이렇게',
+    '한국 식약처', '미국 피부과학회', 'AAD 가이드라인',
+    'Demodex-Malassezia', 'Cascade Reset', '캐스케이드 리셋', 'cascade',
+    '광고 0%', '협찬 의뢰는 다 거절',
+    '내 잘못이 아니다', '본인 잘못이 절대 아니다',
+    'Dr. Sarah Chen', 'Dr. Chen',
+    'kg당 200만원', 'Sigma-Aldrich',
+    '78% 회복', '89% 감소', '100편 이상',
+    '평생 관리', '완치는 없',
+]
+
+def matches_strong(text):
+    """24px 빨강 트리거 매칭"""
+    return any(t in text for t in STRONG_TRIGGERS)
+
+def matches_red_line(text):
+    """19px 빨강 한 줄 단락 트리거 매칭 (짧은 어구만)"""
+    if len(text) > 40:  # 너무 긴 어구는 본문으로
+        return False
+    return any(p in text for p in RED_LINE_PHRASES)
+
+
+def body_p(text, force_red=False):
+    """19px 본문 (검정 기본, force_red=True면 빨강 굵게 단락 전체)"""
     inner = esc(text)
-    # 부분 빨강 강조: 본문 내에 RED_LINES_PARTIAL 단어가 있으면 그 부분만 빨강 + 굵게
-    if not red:
+    # 부분 빨강 강조: 본문 내에 RED_LINES_PARTIAL 단어 있으면 부분 빨강
+    if not force_red:
         for w in sorted(RED_LINES_PARTIAL, key=len, reverse=True):
             we = esc(w)
             if we in inner:
                 inner = inner.replace(we, f'<span style="color:#ff0010;font-weight:700;">{we}</span>')
-    color_style = 'color:#ff0010;font-weight:700;' if red else ''
+    color_style = 'color:#ff0010;font-weight:700;' if force_red else ''
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
         f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{color_style}line-height:1.5;">{inner}</span>'
         '</p>'
     )
+
+
+def smart_p(text, force_big_red=False):
+    """어구 분석해서 적절한 스타일로 단락 생성
+    - force_big_red: §1 첫 단락 등 강제 28px 빨강
+    - matches_strong: 24px 빨강 굵게 (강한 결론)
+    - matches_red_line: 19px 빨강 굵게 (짧은 임팩트 어구)
+    - 기본: 19px 본문 (검정 + 부분 빨강 강조)
+    """
+    if force_big_red:
+        return big_red_p(text, fs=28)
+    if matches_strong(text):
+        return big_red_p(text, fs=24)
+    if matches_red_line(text):
+        return red_line_p(text)
+    return body_p(text)
 
 def text_block(paragraphs_html):
     return (
@@ -259,10 +314,10 @@ def build():
             # 첫 단락 = 28px 빨강 (§1만)
             if section_label == '§1' and para_idx == 0:
                 for phrase in phrases:
-                    current_text_paras.append(big_red_p(phrase))
+                    current_text_paras.append(smart_p(phrase, force_big_red=True))
             else:
                 for phrase in phrases:
-                    current_text_paras.append(body_p(phrase))
+                    current_text_paras.append(smart_p(phrase))
 
             # 이미지 자리 체크
             if (section_label, para_idx) in IMAGE_MAP:
