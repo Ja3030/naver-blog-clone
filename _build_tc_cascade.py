@@ -168,8 +168,8 @@ def body_p(text, force_red=False):
             if we in inner:
                 inner = inner.replace(we, f'<span style="color:#ff0010;font-weight:700;">{we}</span>')
     color_style = 'color:#ff0010;font-weight:700;' if force_red else ''
-    # 본문 baseline weight 500 (한국어 시스템 폰트에서 굵어 보이도록)
-    weight_style = '' if force_red else 'font-weight:500;'
+    # 본문 baseline weight 700 (한국어 시스템 폰트에서 굵게)
+    weight_style = '' if force_red else 'font-weight:700;'
     return (
         '      <p class="se-text-paragraph se-text-paragraph-align- ">'
         f'<span class="se-fs-fs19 se-ff-system" style="font-size:19px;{weight_style}{color_style}line-height:1.8;">{inner}</span>'
@@ -243,15 +243,30 @@ def oglink_block():
     )
 
 # ===== 본문 파싱 =====
+def hard_wrap(p, limit=30):
+    """한 어구가 limit 자 초과면 띄어쓰기 후 분리 (재귀)"""
+    if len(p) <= limit:
+        return [p]
+    # 적당한 분리점 찾기 (limit 근처 띄어쓰기)
+    cut = -1
+    for i in range(min(limit, len(p)-1), max(15, limit-15), -1):
+        if p[i] == ' ':
+            cut = i
+            break
+    if cut == -1:
+        # 띄어쓰기 못 찾으면 끝까지 한 줄
+        return [p]
+    return [p[:cut].rstrip(), *hard_wrap(p[cut+1:], limit)]
+
+
 def split_into_lines(text):
-    """한 단락 → 어구별 줄로 강제 분리 (네이버 한 어구 = 한 줄 패턴 매칭)
-    - 마침표/물음표/느낌표 (`.`, `?`, `!`, `..`, `...`) 후 다음 글자 시작 → 줄바꿈
-    - 쉼표 (`,`) 후 다음 글자가 있으면 길이 25자 넘는 경우만 분리
+    """한 단락 → 어구별 줄로 강제 분리
+    - 마침표/물음표/느낌표 후 줄바꿈
+    - 25자 초과 + 쉼표 있으면 쉼표 후 분리
+    - 30자 초과 + 쉼표 없으면 띄어쓰기 hard wrap
     """
-    # 1단계: 종결 부호 뒤 강제 줄바꿈 (..., .., ., ?, !)
     parts = re.split(r'(?<=[.?!])\s+(?=[가-힣A-Za-z0-9"\'])', text)
 
-    # 2단계: 각 part가 25자 초과면 쉼표/, 뒤로도 분리
     result = []
     for p in parts:
         p = p.strip()
@@ -259,12 +274,17 @@ def split_into_lines(text):
             continue
         if len(p) <= 25:
             result.append(p)
-        else:
-            sub = re.split(r'(?<=[,])\s+(?=[가-힣A-Za-z0-9])', p)
-            for s in sub:
-                s = s.strip()
-                if s:
-                    result.append(s)
+            continue
+        # 쉼표 split 시도
+        sub = re.split(r'(?<=[,])\s+(?=[가-힣A-Za-z0-9])', p)
+        for s in sub:
+            s = s.strip()
+            if not s:
+                continue
+            # 30자 초과면 hard wrap
+            for chunk in hard_wrap(s, 30):
+                if chunk:
+                    result.append(chunk)
     return result
 
 
@@ -319,8 +339,12 @@ def build():
                 for phrase in phrases:
                     current_text_paras.append(smart_p(phrase, force_big_red=True))
             else:
-                for phrase in phrases:
+                # 어구 추가 + 마침표/물음표 끝나면 빈 단락 자동 1개 (호흡)
+                for j, phrase in enumerate(phrases):
                     current_text_paras.append(smart_p(phrase))
+                    # 마지막 어구가 아니고, 종결 부호로 끝나면 빈 단락 1개 추가
+                    if j < len(phrases) - 1 and phrase.rstrip().endswith(('.', '?', '!', '..', '...')):
+                        current_text_paras.append(blank_p())
 
             # 이미지 자리 체크
             if (section_label, para_idx) in IMAGE_MAP:
