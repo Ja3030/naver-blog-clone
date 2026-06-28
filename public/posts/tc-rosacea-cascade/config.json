@@ -1,0 +1,77 @@
+{
+  "blog": {
+    "name": "서연ㅣ주사피부염 cascade 회복기",
+    "title": "서연ㅣ주사피부염 cascade 회복기",
+    "profile_image": "",
+    "profile_color": "#f3d4d4"
+  },
+  "post": {
+    "title": "주사피부염 5년 만성 — Cascade Reset으로 4달 만에 잡은 이야기",
+    "category": "건강·뷰티",
+    "date": "2026. 6. 28. 14:30"
+  },
+  "social": {
+    "likes": 2143,
+    "shares": 187,
+    "views": 18420
+  },
+  "comments": [
+    {
+      "author": "주사피부염5년차",
+      "profile_color": "#f0d6e8",
+      "time": "2시간 전",
+      "text": "저랑 너무 똑같아요.. 수란트라 발랐다 끊으면 또 도지고. 결국 평생 관리라는 말만 들었거든요. cascade 얘기 처음 들어요",
+      "likes": 89
+    },
+    {
+      "author": "40대워킹맘",
+      "profile_color": "#d6e8f0",
+      "time": "4시간 전",
+      "text": "저도 5년차예요.. 거울 보기 싫어서 화장 두껍게 발라도 오후되면 또 빨개지고. 읽다가 울컥했네요",
+      "likes": 67
+    },
+    {
+      "author": "맨얼굴이소원",
+      "profile_color": "#e8f0d6",
+      "time": "7시간 전",
+      "text": "항생제 이소티논 다 해봤는데 끊으면 더 시뻘게져서 무서워서 또 바르고.. cascade 환경 얘기 더 알고싶어요",
+      "likes": 54
+    },
+    {
+      "author": "천만원날린사람",
+      "profile_color": "#f0e0d6",
+      "time": "11시간 전",
+      "text": "카드 명세서 부분.. 저도 세다가 그만뒀어요. 5년 만성으로 헛돈 쓴 거 진짜 답답해요",
+      "likes": 48
+    },
+    {
+      "author": "복직앞두고",
+      "profile_color": "#d6f0e0",
+      "time": "1일 전",
+      "text": "곰팡이 비유 진짜 찰떡이네요. 죽이는 게 아니라 환경을 바꾼다 — 이제야 이해돼요",
+      "likes": 37
+    },
+    {
+      "author": "아이엄마지수",
+      "profile_color": "#e0d6f0",
+      "time": "1일 전",
+      "text": "사진에 늘 본인만 없다는 거.. 저도 그래서 댓글 남겨요. 지금은 화장 30분 만에 끝나신다니 제일 부럽습니다",
+      "likes": 31
+    }
+  ],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=64&utm_source=naver&utm_medium=blog&utm_campaign=tc_cascade_v1",
+    "text": "티트리셀 자세히 보기"
+  }
+}
