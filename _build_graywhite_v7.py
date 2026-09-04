@@ -186,14 +186,21 @@ def oglink_block():
             '        <div class="se-og-site-name">soricare.com</div>\n'
             '      </a>\n    </div>\n  </div>\n</div>')
 
+LINK_IMG = []
+
 def link_text_block():
-    """「제품 링크」 텍스트 하이퍼링크 — 네이버 본문 인라인 링크 문법 (og 카드 X)"""
-    a = (f'<a href="{CTA_URL}" class="se-link __se_link" target="_blank" rel="noopener" '
-         "onclick=\"if(typeof fbq==='function'){fbq('track','Lead');}\" "
-         'style="color:#1a5fb4;text-decoration:underline;">제품 링크</a>')
-    p = ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
-         '        <span class="se-ff-system" style="font-size:18px;line-height:1.9;">'+a+'</span>\n      </p>')
-    return text_block([p])
+    """제품 링크 = og:image 썸네일만. 텍스트·제목·도메인 0 — 이미지 자체가 링크"""
+    fn = 'og1.jpg'
+    src = IMGSRC + '/raw/OG1.jpg'
+    if os.path.exists(src):
+        LINK_IMG.append((fn, src))
+    return ('<div class="se-component se-image se-l-default">\n  <div class="se-section se-section-image se-l-default">\n'
+            '    <div class="se-module se-module-image">\n'
+            f'      <a href="{CTA_URL}" class="se-module-image-link" target="_blank" rel="noopener" '
+            "onclick=\"if(typeof fbq==='function'){fbq('track','Lead');}\">\n"
+            f'        <img src="{IMG_REL}{fn}" alt="" class="se-image-resource" '
+            'style="max-width:444px;display:block;margin:0 auto;">\n'
+            '      </a>\n    </div>\n  </div>\n</div>')
 
 def build():
     raw = open(SRC, encoding='utf-8').read()
@@ -250,7 +257,8 @@ def build():
     blocks.append(hr_block()); blocks.append(text_block([p_blank()]))
     print(f"🖼  실제 이미지 {len(used_img)}장 · 플레이스홀더 {len(missing)}개")
     for lb in missing: print(f"   · {lb}")
-    return '\n\n'.join(blocks), used_img
+    if LINK_IMG: print(f"🔗  링크 썸네일 {len(LINK_IMG)}장")
+    return '\n\n'.join(blocks), used_img + LINK_IMG
 
 def copy_images(used):
     d = os.path.join(POST_DIR, 'images'); os.makedirs(d, exist_ok=True)
