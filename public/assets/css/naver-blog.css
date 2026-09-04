@@ -202,3 +202,14 @@ img::after { content: attr(alt); font-size: 13px; color: #999; display: block; p
 .compare-table th { background: #f5f5f5; padding: 10px 8px; text-align: center; font-weight: bold; border: 1px solid #e5e5e5; font-size: 12px; }
 .compare-table td { padding: 8px; text-align: center; border: 1px solid #e5e5e5; }
 .compare-table td:first-child { text-align: left; font-weight: bold; }
+
+/* === CUSTOM: 네이버 링크 카드 (og:link) === */
+.se-oglink { margin: 20px 0; }
+.se-oglink-card { display:block; border:1px solid #e5e5e5; border-radius:4px; overflow:hidden; background:#fff; text-decoration:none; }
+.se-oglink-thumb { width:100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center 22%; display:block; background:#f5f5f5; }
+.se-oglink-body { padding:16px 18px 18px; }
+.se-oglink-title { font-size:17px; font-weight:700; color:#111; line-height:1.4; margin-bottom:8px;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.se-oglink-desc { font-size:14px; color:#8b8b8b; line-height:1.5; margin-bottom:10px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.se-oglink-domain { font-size:14px; color:#03c75a; }

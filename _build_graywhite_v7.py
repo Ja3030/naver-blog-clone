@@ -14,6 +14,10 @@ POST_DIR = os.path.join(BASE, 'public', 'posts', SLUG)
 IMG_REL = f'/posts/{SLUG}/images/'
 PRODUCT_URL = "https://www.momsaju.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EB%9E%A9-%EA%B1%B4%ED%9A%A8%EB%AA%A8%ED%99%98/18/category/43/display/1/"
 CTA_URL = PRODUCT_URL + "?utm_source=naver&utm_medium=blog&utm_campaign=graywhite_v7"
+# 링크 카드에 뜨는 값 = momsaju 상품 페이지의 실제 og 태그
+OG_TITLE  = "뉴트리랩 건효모환 - NutriLab"
+OG_DESC   = "건조맥주효모·판토텐산·산화아연·셀레늄 · 뒷면 성분표로 확인하세요"
+OG_DOMAIN = "momsaju.com"
 
 IMGSRC = '/Users/juan/Brand Manager/anti-gray-hair/05_ADVERTORIAL/_images'
 # 📷 라벨 → [(파일명, 원본경로), ...]  ※ 리스트 = 연속 삽입 / 없는 건 자동 플레이스홀더
@@ -189,18 +193,22 @@ def oglink_block():
 LINK_IMG = []
 
 def link_text_block():
-    """제품 링크 = og:image 썸네일만. 텍스트·제목·도메인 0 — 이미지 자체가 링크"""
+    """네이버 링크 카드 — og:image 썸네일 + 제목 + 설명 + 도메인 (스마트에디터 se-oglink 재현)"""
     fn = 'og1.jpg'
     src = IMGSRC + '/raw/OG1.jpg'
     if os.path.exists(src):
         LINK_IMG.append((fn, src))
-    return ('<div class="se-component se-image se-l-default">\n  <div class="se-section se-section-image se-l-default">\n'
-            '    <div class="se-module se-module-image">\n'
-            f'      <a href="{CTA_URL}" class="se-module-image-link" target="_blank" rel="noopener" '
+    return ('<div class="se-component se-oglink se-l-default">\n'
+            '  <div class="se-section se-section-oglink">\n'
+            '    <div class="se-module se-module-oglink">\n'
+            f'      <a href="{CTA_URL}" class="se-oglink-card __se_link" target="_blank" rel="noopener" '
             "onclick=\"if(typeof fbq==='function'){fbq('track','Lead');}\">\n"
-            f'        <img src="{IMG_REL}{fn}" alt="" class="se-image-resource" '
-            'style="max-width:444px;display:block;margin:0 auto;">\n'
-            '      </a>\n    </div>\n  </div>\n</div>')
+            f'        <img src="{IMG_REL}{fn}" alt="" class="se-oglink-thumb">\n'
+            '        <div class="se-oglink-body">\n'
+            f'          <div class="se-oglink-title">{esc(OG_TITLE)}</div>\n'
+            f'          <div class="se-oglink-desc">{esc(OG_DESC)}</div>\n'
+            f'          <div class="se-oglink-domain">{esc(OG_DOMAIN)}</div>\n'
+            '        </div>\n      </a>\n    </div>\n  </div>\n</div>')
 
 def build():
     raw = open(SRC, encoding='utf-8').read()
