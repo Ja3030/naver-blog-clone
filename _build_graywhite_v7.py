@@ -16,7 +16,7 @@ PRODUCT_URL = "https://www.momsaju.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EB%9E
 CTA_URL = PRODUCT_URL + "?utm_source=naver&utm_medium=blog&utm_campaign=graywhite_v7"
 # 링크 카드에 뜨는 값 = momsaju 상품 페이지의 실제 og 태그
 OG_TITLE  = "뉴트리랩 건효모환 - NutriLab"
-OG_DESC   = "건조맥주효모·판토텐산·산화아연·셀레늄 · 뒷면 성분표로 확인하세요"
+OG_DESC   = "건조맥주효모·아미노산·발효효소·셀레늄 · 뒷면 성분표로 확인하세요"
 OG_DOMAIN = "momsaju.com"
 
 IMGSRC = '/Users/juan/Brand Manager/anti-gray-hair/05_ADVERTORIAL/_images'
@@ -76,7 +76,7 @@ IMAGE_MAP = {
     '유튜브 캡처 과산화수소':  [('y1.jpg', R('Y1.jpg'))],
     '해외 유튜브 유전':        [('y2.jpg', R('Y2.jpg'))],
     '유튜브 캡처 효소':        [('y3.jpg', R('Y3.jpg'))],
-    '해외 유튜브 판토텐산':    [('y4.jpg', R('Y4.jpg'))],
+    '해외 유튜브 아미노산':    [('y4.jpg', R('Y4.jpg'))],
     '유튜브 캡처 셀레늄':      [('y5.jpg', R('Y5.jpg'))],
     '유튜브 캡처 안돌아옴':    [('y6.jpg', R('Y6.jpg'))],
     '탈색 실험 영상':          [('s0.gif', f'{IMGSRC}/gif/S0_600.gif')],
@@ -112,7 +112,7 @@ BOLD_LINES = [
     "그래서 더 빨리", "시작하는 수밖에 없다",
     "백만원이다",
 ]
-RED_PHRASES = ["과산화수소", "468번", "백만원", "3단 분해", "건조맥주효모", "판토텐산", "산화아연", "셀레늄"]
+RED_PHRASES = ["과산화수소", "468번", "백만원", "3단 분해", "건조맥주효모", "혼합곡물발효효소분말", "아미노산", "발효효소", "셀레늄"]
 
 def esc(s):
     return s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;')
@@ -186,7 +186,7 @@ def oglink_block():
             f'      <a href="{CTA_URL}" class="se-oglink-info __se_link" target="_blank" rel="noopener" '
             "onclick=\"if(typeof fbq==='function'){fbq('track','Lead');}\">\n"
             '        <div class="se-og-title">내가 먹는 것 — 3단 분해 성분표</div>\n'
-            '        <div class="se-og-description">건조맥주효모·판토텐산·산화아연·셀레늄 · 뒷면 성분표로 확인하세요</div>\n'
+            '        <div class="se-og-description">건조맥주효모·아미노산·발효효소·셀레늄 · 뒷면 성분표로 확인하세요</div>\n'
             '        <div class="se-og-site-name">soricare.com</div>\n'
             '      </a>\n    </div>\n  </div>\n</div>')
 

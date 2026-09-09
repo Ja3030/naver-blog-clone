@@ -22,42 +22,120 @@ IMG_GEN = '/Users/juan/Brand Manager/demodex-rosacea/03_ADVERTORIAL/_working/img
 DL = '/Users/juan/Downloads'
 
 # ===== 이미지 파일 소스 (canonical 이름 → 원본 경로) =====
+# 전부 화자 1명 일치 (손=마스터핸드 / 얼굴=hf_ 앵커) · POV 자가촬영 · 저화질 톤
+def _dl(n): return os.path.join(DL, n)
 IMAGE_SRC = {
-    's05-vanity.png':    os.path.join(DL, 'ChatGPT Image 2026년 6월 16일 오후 11_09_16.png'),
-    's05-mirror.png':    os.path.join(DL, 'ChatGPT Image 2026년 6월 16일 오후 11_09_21.png'),
-    's06-meds.png':      os.path.join(DL, 'ChatGPT Image 2026년 6월 16일 오후 11_09_11.png'),
-    's06-statement.png': os.path.join(DL, 'ChatGPT Image 2026년 6월 17일 오전 12_27_32.png'),
-    's08-mosquito.png':  os.path.join(DL, 'ChatGPT Image 2026년 6월 16일 오후 11_09_25.png'),
-    's10-mold.png':      os.path.join(DL, 'ChatGPT Image 2026년 6월 16일 오후 11_09_30.png'),
-    's11-teatree.png':   os.path.join(DL, 'ChatGPT Image 2026년 6월 17일 오전 12_11_05.png'),
-    's04-checklist.png': os.path.join(IMG_GEN, 's4_checklist.png'),
-    's07-search.png':    os.path.join(IMG_GEN, 's7_yt_search.png'),
-    's10-pathway.png':   os.path.join(IMG_GEN, 'p10_figure.png'),
-    's11-ppm.png':       os.path.join(IMG_GEN, 'p11_figure.png'),
-    's12-timeline.png':  os.path.join(IMG_GEN, 's12_timeline.png'),
+    # 🔁 얼굴 (눈크롭/거울셀카)
+    's01-beforeafter.jpg': _dl('tc_face_before_after_lowq.jpg'),
+    's10-dieoff.jpg':      _dl('tc_face_dieoff_lowq.jpg'),
+    's12-progress.jpg':    _dl('tc_face_progression_lowq.jpg'),
+    # 🎬 장면 (손 일치 · POV)
+    's05-towelmirror.jpg': _dl('tc_scene_towelmirror_lowq.jpg'),
+    's05-mirrorred.jpg':   _dl('tc_scene_mirror_red_lowq.jpg'),
+    's05-makeup.jpg':      _dl('tc_scene_makeup_lowq.jpg'),
+    's05-gallery.jpg':     _dl('tc_scene_gallery_lowq.jpg'),
+    's05-blank.jpg':       _dl('tc_scene_blank_lowq.jpg'),
+    's06-meds.jpg':        _dl('tc_scene_meds_lowq.jpg'),
+    's06-receipts.jpg':    _dl('tc_scene_receipts_lowq.jpg'),
+    's08-night.jpg':       _dl('tc_scene_nightsearch_lowq.jpg'),
+    's08-realize.jpg':     _dl('tc_scene_realize_lowq.jpg'),
+    's12-wash.jpg':        _dl('tc_scene_wash_lowq.jpg'),
+    's12-walk.jpg':        _dl('tc_scene_walk_lowq.jpg'),
+    's12-event.jpg':       _dl('tc_scene_eventphoto_lowq.jpg'),
+    # 📊 도식 (.png · "받은 자료" 질감)
+    's08-mosquito.png':    _dl('tc_dia_redness.png'),
+    's08-order.png':       _dl('tc_dia_paths.png'),
+    's09-rebound.png':     _dl('tc_dia_rebound.png'),
+    's10-barrier.png':     _dl('tc_dia_barrier.png'),
+    's10-demodex.png':     _dl('tc_dia_demodex.png'),
+    's10-mold.png':        _dl('tc_dia_mold.png'),
+    's11-ppm.png':         _dl('tc_dia_ppm.png'),
+    's11-table.png':       _dl('tc_dia_table.png'),
+    # 🎬 효능 GIF (모낭충 못 살게 — 환경)
+    's11-efficacy.gif':    _dl('tc_efficacy_mites.gif'),
+    # 🗂️ 카드 (Canva 기존)
+    's04-checklist.png':   os.path.join(IMG_GEN, 's4_checklist.png'),
+    # 📸 신규 found-document (피드백 반영)
+    's06-diagnosis.jpg':   _dl('tc_scene_diagnosis_lowq.jpg'),
+    's08-pharmacy.jpg':    _dl('tc_scene_pharmacy_lowq.jpg'),
+    's08-overseas.jpg':    _dl('tc_scene_overseas_lowq.jpg'),
+    's10-demodextest.jpg': _dl('tc_scene_demodextest_lowq.jpg'),
+    's11-teatree.jpg':     _dl('tc_scene_teatree_lowq.jpg'),
 }
 
 # ===== Group A 이미지 트리거 (트리거 문자열 직후 삽입) =====
 GROUPA_TRIGGERS = [
-    ("괜히 시간 버릴 것 없다.",                          's04-checklist.png', "이런 분만 읽어주세요 체크리스트"),
-    ("언젠가부턴 현관 거울도 수건으로 반쯤 덮어놨다.",    's05-mirror.png',    "수건으로 반쯤 덮어둔 거울"),
-    ("그래도 비치는 덴 컨실러로 콕콕.",                  's05-vanity.png',    "매일 아침 30분 떡칠"),
-    ("약산성에 진정크림에, 좋다는 건 다 발라봤다.",      's06-meds.png',      "안 해본 게 없던 약·연고 더미"),
-    ("레이저값만 천만 원에 가까웠다.",                  's06-statement.png', "5년치 카드 명세서"),
-    ("몇 시간 동안 밤을 새며 찾아봤다.",                's07-search.png',    "그날 밤 검색 기록"),
-    ("빨간 게 가라앉을 틈이 없었던 거다.",              's08-mosquito.png',  "안 떨어지는 모기처럼"),
-    ("그 염증이 혈관을 건드려서 → 빨개지는 거.",         's10-pathway.png',   "[그림1] 주사피부염 발생 경로"),
-    ("내 얼굴도 딱 그랬다.",                            's10-mold.png',      "닦아도 또 생기는 곰팡이"),
-    ("거기선 옛날부터 상처나 벌레 물린 데 발라왔다더라.", 's11-teatree.png',   "호주 티트리 원물"),
-    ("10,670ppm.",                                     's11-ppm.png',       "[그림2] 티트리 농도 비교"),
-    ("그렇게 천천히, 빨갛던 날이 하루하루 줄었다.",      's12-timeline.png',  "천천히 줄어든 시간"),
+    # §1
+    ("혈관레이저까지 받았는데도.",                              's01-beforeafter.jpg', "5년 빨갰던 얼굴, 지금"),
+    # §4
+    ("괜히 시간 버리지 않길 바란다.",                          's04-checklist.png',   "이런 분만 읽어주세요"),
+    # §5
+    ("이게 심해지니 언젠가부턴 현관 거울도 수건으로 덮어두게 됐다.", 's05-towelmirror.jpg', "수건으로 덮어둔 거울"),
+    ("어두우면 그나마 덜 보이니까.",                            's05-mirrorred.jpg',   "불 꺼야 덜 보이던 볼"),
+    ("그래도 비치는 덴 컨실러로 콕콕.",                          's05-makeup.jpg',      "매일 아침 가리는 30분"),
+    ("나는 늘 카메라 뒤에 있었으니까.",                          's05-gallery.jpg',     "사진첩엔 늘 아이만"),
+    ("한참을 가만히 있었다.",                                    's05-blank.jpg',       "화장솜 쥔 채 멍하니"),
+    # §6
+    ("약산성에 진정크림에, 좋다는 건 다 발라봤다.",              's06-meds.jpg',        "안 해본 게 없던 약·연고"),
+    ("레이저값만 천만 원에 가까웠다.",                          's06-receipts.jpg',    "쌓인 영수증"),
+    # §8
+    ("식구들 다 자는 새벽, 나 혼자 핸드폰을 붙들고 밤을 새웠다.", 's08-night.jpg',       "그날 밤"),
+    ("다친 데나 모기 물린 자리를 보면, 빨갛게 부어오른다.",      's08-mosquito.png',    "자극 → 피 몰림 → 부풂"),
+    ("안 꺼지는 염증이, 그 혈관을 계속 부풀려온 거였다.",        's08-order.png',       "혈관은 결과, 염증이 원인"),
+    ("핸드폰을 든 채로 한참을 멍하니 앉아 있었다.",              's08-realize.jpg',     "그래서였구나"),
+    # §9
+    ("낫는 게 아니라, 못 끊게 되는 거였다.",                    's09-rebound.png',     "스테로이드 악순환"),
+    # §10
+    ("그래서 별것 아닌 데도, 염증이 가라앉질 않는 거다.",        's10-barrier.png',     "무너진 피부 장벽"),
+    ("이때 확 늘어나서, 그 염증을 더 들쑤신다고 했다.",          's10-demodex.png',     "약한 장벽에서 늘어나는 모낭충"),
+    ("시뻘게지고, 더 화끈거리고.",                              's10-dieoff.jpg',      "죽이려다 더 뒤집어진 얼굴"),
+    ("내 얼굴도 딱 그거였다.",                                  's10-mold.png',        "닦아도 또 생기는 곰팡이"),
+    # §11
+    ("이름만 어렵지, 그냥 모낭충이 못 늘게 만드는 거다.",        's11-efficacy.gif',    "환경이 바뀌니 모낭충이 못 버틴다"),
+    ("10,670ppm.",                                             's11-ppm.png',         "티트리 농도 비교"),
+    ("그래서 이 기준으로, 시중에 있는 걸 다 뒤졌다.",            's11-table.png',       "성분 기준 비교표"),
+    # §12
+    ("빨갛던 날이, 눈에 띄게 줄어갔다.",                        's12-progress.jpg',    "천천히 줄어든 시간"),
+    ("눈만 빼꼼 보던 그 버릇이, 어느새 없어졌다.",              's12-wash.jpg',        "아무렇지 않게 세수"),
+    ("이젠 선크림 하나 바르고 나간다.",                        's12-walk.jpg',        "맨얼굴로 등원"),
+    ("처음으로 사진을 안 피하고 같이 찍었다.",                  's12-event.jpg',       "드디어 같이 찍힌 사진"),
+    # 📸 신규 found-document (피드백 반영)
+    ("내 얼굴은 하난데, 의사마다 말이 다르더라.",               's06-diagnosis.jpg',   "병원마다 다른 진단"),
+    ("5년을 같은 약국만 다니다 보니, 약사님도 내 얼굴을 안다.",  's08-pharmacy.jpg',    "쌓인 약봉투"),
+    ("외국의 어느 피부과 의사가 한 말이었다.",                 's08-overseas.jpg',    "해외 연구 자료"),
+    ("나도 예전에 모낭충 검사를 해봤는데, 0마리였거든.",        's10-demodextest.jpg', "모낭충 검사 결과 — 0마리"),
+    ("호주에선 옛날부터 상처나 벌레 물린 데 발라온 풀이고.",     's11-teatree.jpg',     "호주 티트리 원물"),
 ]
 
-# ===== Group B 플레이스홀더 트리거 (실제 사진 필요) =====
+# ===== Group B 플레이스홀더 트리거 (비-AI 자산: 실제캡처/제품컷/카드/스티커) =====
 GROUPB_TRIGGERS = [
-    ("아침저녁으로 그냥 발라주기만 하면 됐다.", "티트리셀 제품 사진"),
-    ("나 같은 사람들 글을 한참 찾아 읽었다.",   "실제 후기 글 캡처 (나 같은 사람들 글)"),
-    ("처음으로 사진 안 피하고 같이 찍었다.",     "맨얼굴 등원 / 아이와 함께 찍은 사진"),
+    # §3
+    ("그건 절대 아니다.", "💬 스티커 (놀람/물음) [네이버]"),
+    # §5
+    ("웃으면서 돌아섰지만 사실 마음은 찢어졌다.", "💬 스티커 (걱정/슬픔) — '어디 아파요?' 비트 [네이버]"),
+    ("그렇게 처발라도 결국은 티가 난다.", "💬 스티커 (슬픔) [네이버]"),
+    # §6
+    ("혈관이 늘어나서, 영구적이다.", "🗂️ '평생 관리' 선고 카드 [Canva]"),
+    ("어느 순간부턴 내 생활 습관 모든 걸 의심하며 스스로를 한심하게 바라봤다.", "💬 스티커 (자책 바닥) [네이버]"),
+    # §8 후기
+    ("나 같은 사람들 글을 한참 찾아 읽었다.", "📸 실제 후기 글 캡처 [운영자·실제]"),
+    # §9
+    ("원인을 안 보니, 고칠 수가 없던 거다.", "🗂️ '평생관리=자백' 카드 [Canva]"),
+    ("다들 나처럼, 빨간 것만 쫓느라 몇 년씩 빙빙 돌고 있었다.", "💬 스티커 (분노) [네이버]"),
+    # §10
+    ("죽이는 게 아니라, 못 살게.", "🗂️ '죽이지 말고, 못 살게' 카드 [Canva]"),
+    # §11
+    ("독한 약처럼 뒤집어지진 않는다.", "📦 티트리셀 제품 컷 [실제 제품]"),
+    ("진짜 되려면, 딱 세 가지가 맞아야 했다.", "🗂️ 핵심3 기준 카드 [Canva]"),
+    # §12
+    ("좀 지나선 토너랑 패드도 같이 챙겼다.", "📦 티트리셀 크림+토너+패드 [실제 제품]"),
+    ("그 말 듣고, 좀 울컥했다.", "💬 스티커 (밝음/반가움) — '좋아졌네요?' 비트 [네이버]"),
+    ("그 평범한 게, 5년 만에 됐다.", "💬 스티커 (벅참/안도) [네이버]"),
+    # §13
+    ("5년 헤매고 안 게, 딱 이거였다.", "🗂️ 결론 카드 (빨간건 결과/염증/못살게) [Canva]"),
+    ("마지막 하나는, 그 고생 이미 다 한 사람이 찾은 걸 그냥 한 통 써보는 거.", "📊 세 갈래 길 도식 [GPT]"),
+    ("밑져야 본전인 거다.", "🗂️ 28일 환불 카드 [Canva]"),
+    ("(다음에 들어오면 또 언제 풀릴지 모른다.)", "🗂️ 품절·기한 카드 [Canva]"),
 ]
 
 THUMB_LABEL = "대표 사진 — 약·레이저 없이 호전된 현재 얼굴"
@@ -79,7 +157,6 @@ def p_tag(text, fs='fs15', bold=False, color=None):
 # ===== 강조 시스템 (레퍼런스 네이버 어드버토리얼 시각 위계 이식) =====
 HEADING_LINES = [
     "그 5년 동안, 안 해본 게 없다.",
-    "5년 내내 틀린 질문을 했다.",
     "내 얼굴은 고장난 게 아니었다.",
     "죽이지 말고, 못 살게.",
     "티트리였다.",
@@ -98,7 +175,6 @@ BOLD_LINES = [
     "그건 아니다.",
     "5년째, 똑바로 못 보고 살았다.",
     "혈관이 늘어나서, 영구적이다.",
-    "정작 원인엔 손도 안 댄 거였다.",
     "근데 그게 — 하나였다.",
     "그래서였구나.",
     "혈관은 결과다.",
@@ -167,7 +243,7 @@ def placeholder_block(label):
     <div class="se-module" style="border:2px dashed #c9ccd1;background:#f5f6f7;border-radius:6px;padding:54px 20px;text-align:center;">
       <div style="font-size:13px;font-weight:800;letter-spacing:2px;color:#aeb4ba;">📷 사진 자리</div>
       <div style="font-size:15px;font-weight:700;color:#6b7178;margin-top:10px;">{esc(label)}</div>
-      <div style="font-size:11px;color:#b8bdc2;margin-top:8px;">실제 사진 필요 · AI 생성 불가 (Group B)</div>
+      <div style="font-size:11px;color:#b8bdc2;margin-top:8px;">이미지 자리 · 생성/확보 후 교체</div>
     </div>
   </div>
 </div>'''
@@ -361,7 +437,7 @@ config_data = {
         {'author': '주사피부염5년차', 'profile_color': '#f0d6e8', 'time': '3시간 전',
          'text': '저랑 너무 똑같아요.. 레이저 받으면 잠깐 빠졌다가 며칠이면 또 올라오고. 결국 완치는 없다는 말만 들었거든요. 염증부터라는 말 처음 들어요', 'likes': 73},
         {'author': '40대워킹맘', 'profile_color': '#d6e8f0', 'time': '5시간 전',
-         'text': '아침마다 거울 눈만 보고 볼은 안 본다는 거.. 읽다가 울컥했네요. 화장으로 덮어도 오후되면 올라오는 것도 똑같고요 ㅠ', 'likes': 58},
+         'text': '저도 거울 보기 싫어서 화장실 불도 잘 안 켜고 살았어요.. 읽다가 울컥했네요. 화장으로 덮어도 오후되면 올라오는 것도 똑같고요 ㅠ', 'likes': 58},
         {'author': '맨얼굴이소원', 'profile_color': '#e8f0d6', 'time': '8시간 전',
          'text': '스테로이드 끊으면 더 시뻘게져서 무서워서 또 바르고.. 그 굴레 너무 공감돼요. 모낭충 환경 얘기 더 알고싶어요', 'likes': 49},
         {'author': '천만원날린사람', 'profile_color': '#f0e0d6', 'time': '12시간 전',
