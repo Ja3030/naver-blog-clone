@@ -12,10 +12,10 @@ SRC = '/Users/juan/Brand Manager/anti-gray-hair/05_ADVERTORIAL/_draft/v9_전문_
 SLUG = 'graywhite-v7'
 POST_DIR = os.path.join(BASE, 'public', 'posts', SLUG)
 IMG_REL = f'/posts/{SLUG}/images/'
-PRODUCT_URL = "https://www.momsaju.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EB%9E%A9-%EA%B1%B4%ED%9A%A8%EB%AA%A8%ED%99%98/18/category/43/display/1/"
+PRODUCT_URL = "https://www.momsaju.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EB%9E%A9-%EA%B1%B4%ED%9A%A8%EB%AA%A8%EC%A0%95/18/category/43/display/1/"
 CTA_URL = PRODUCT_URL + "?utm_source=naver&utm_medium=blog&utm_campaign=graywhite_v7"
 # 링크 카드에 뜨는 값 = momsaju 상품 페이지의 실제 og 태그
-OG_TITLE  = "뉴트리랩 건효모환 - NutriLab"
+OG_TITLE  = "뉴트리랩 건효모정 - NutriLab"
 OG_DESC   = "건조맥주효모·아미노산·발효효소·셀레늄 · 뒷면 성분표로 확인하세요"
 OG_DOMAIN = "momsaju.com"
 
