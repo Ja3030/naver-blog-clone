@@ -14,6 +14,7 @@ POST_DIR = os.path.join(BASE, 'public', 'posts', SLUG)
 IMG_REL = f'/posts/{SLUG}/images/'
 PRODUCT_URL = "https://www.momsaju.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EB%9E%A9-%EA%B1%B4%ED%9A%A8%EB%AA%A8%EC%A0%95/18/category/43/display/1/"
 CTA_URL = PRODUCT_URL + "?utm_source=naver&utm_medium=blog&utm_campaign=graywhite_v7"
+PIXEL_ID = '1957044568277876'   # momsaju_new — 흰머리 캠페인 최적화 픽셀
 # 링크 카드에 뜨는 값 = momsaju 상품 페이지의 실제 og 태그
 OG_TITLE  = "뉴트리랩 건효모정 - NutriLab"
 OG_DESC   = "건조맥주효모·아미노산·발효효소·셀레늄 · 뒷면 성분표로 확인하세요"
@@ -314,7 +315,7 @@ CONFIG = {
              'category': '헤어', 'date': '2026. 8. 27. 21:14'},
     'social': {'likes': 2041, 'shares': 168, 'views': 18720},
     'comments': secret_comments(197),
-    'tracking': {'meta_pixel_id': '1727184084578989', 'ga_id': '',
+    'tracking': {'meta_pixel_id': PIXEL_ID, 'ga_id': '',
                  'scroll_events': [25, 50, 75, 100], 'cta_event_name': 'Lead'},
     'cta': {'url': CTA_URL, 'text': '성분표 확인하기'},
 }
@@ -322,6 +323,7 @@ CONFIG = {
 def save(se_html, used):
     os.makedirs(os.path.join(POST_DIR, 'images'), exist_ok=True)
     t = open(TEMPLATE, encoding='utf-8').read()
+    t = t.replace('1727184084578989', PIXEL_ID)   # 공용 템플릿은 편도 픽셀 하드코딩 — 이 포스트만 교체
     a, b = '<!-- POST CONTENT START -->', '<!-- POST CONTENT END -->'
     si, ei = t.index(a), t.index(b)
     html = t[:si+len(a)] + '\n\n' + se_html + '\n\n' + t[ei:]
