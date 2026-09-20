@@ -1,0 +1,34 @@
+{
+  "blog": {
+    "name": "기록",
+    "title": "dr 피부 약학",
+    "profile_image": "",
+    "profile_color": "#a8d8ea"
+  },
+  "post": {
+    "title": "4년간 편도결석에 시달린 8만 먹방 유튜버가 3개월 동안 바꾼 것 (미국에선 이미 정설)",
+    "category": "..",
+    "date": "2025. 7. 16. 11:17"
+  },
+  "social": {
+    "likes": 2041,
+    "shares": 188,
+    "views": 38920
+  },
+  "comments": [],
+  "tracking": {
+    "meta_pixel_id": "1727184084578989",
+    "ga_id": "",
+    "scroll_events": [
+      25,
+      50,
+      75,
+      100
+    ],
+    "cta_event_name": "Lead"
+  },
+  "cta": {
+    "url": "https://soricare.com/product/detail.html?product_no=53&utm_source=naver_blog&utm_medium=advertorial&utm_campaign=Youtuber&utm_content=clone_v1b",
+    "text": "제품 보러가기"
+  }
+}

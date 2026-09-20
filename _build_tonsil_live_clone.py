@@ -45,6 +45,11 @@ POSTS = {
         social=dict(likes=2041, shares=188, views=38920),  # ⚠ 실측 아님 — 유저 조정
     ),
 }
+# β 첫 화면 변형 (유저 🟢 2026-09-20): 유튜버판 2막의 「"지금은 딱히 안 보이는데요"」 텍스트 블록 + 바로 앞 사진(IMG-13)을
+# 맨 위로 복제해 올린다. 2막 자리의 원문은 그대로 둔다. 새 문장 0.
+POSTS['tonsil-yt-v1b'] = dict(POSTS['tonsil-yt-v1'],
+    cta=POSTS['tonsil-yt-v1']['cta'].replace('clone_v1', 'clone_v1b'),
+    atf_marker='지금은 딱히 안 보이는데요')
 OG_DESC = ('임상 데이터 기반 설계 10,670 ppm 티트리 유효농도 학술 연구 확인 구간 · 시중 대비 5배 18 × 문제성 피부의 '
            '트러블 지수 정상 피부 대비 배율 12.8 민감성 홍조 피부 기준 정상 대비 트러블 빈도 REVIEWS 고객 후기 * 개인의 '
            '주관적 체험에 의한 후기이며, 효과는 개인차가 있을 수 있습니다')   # 라이브 링크 카드 문구 그대로(스토어 og 설명)
@@ -205,6 +210,11 @@ def build(slug):
             continue
         else:
             print('  ! 미처리 컴포넌트', kind)
+    if P.get('atf_marker'):   # 첫 화면 변형: 표식 문장이 든 텍스트 블록 + 바로 앞 이미지 블록을 맨 위로 복제
+        i = next(k for k, blk in enumerate(blocks) if blk.startswith('<div class="se-component se-text') and P['atf_marker'] in blk)
+        assert blocks[i - 1].startswith('<div class="se-component se-image'), '표식 블록 앞이 이미지가 아님'
+        blocks = [blocks[i], blocks[i - 1]] + blocks
+        print(f'   ↑ 첫 화면 변형: 블록 {i}(텍스트)·{i - 1}(이미지)을 맨 위로 복제')
     se_html = '\n\n'.join(blocks)
 
     t = open(TEMPLATE, encoding='utf-8').read()
