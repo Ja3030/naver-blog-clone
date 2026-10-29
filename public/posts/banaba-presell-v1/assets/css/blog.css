@@ -1,0 +1,229 @@
+/* ============================================
+   블로그 — Main Stylesheet
+   Imports 추출 규칙 + custom overrides
+   ============================================ */
+
+@import url('base.css');
+
+/* === CUSTOM: SE CSS Variables (missing from extracted) === */
+:root {
+  --se-content-side-padding-mobile: 0px;
+  --se-viewer-side-margin-mobile: 0px;
+  --se-reset-font-family: -apple-system, system-ui, Roboto, sans-serif;
+  --se-reset-font-size: 16px;
+  --se-viewer-background-color: #fff;
+  --se-text-list-margin-left: 20px;
+  --se-text-list-bullet-margin-left: 8px;
+  --se-text-list-decimal-margin-left: 8px;
+}
+
+/* === CUSTOM: Reset & Base === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body { font-family: -apple-system, system-ui, Roboto, sans-serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; padding-bottom: 60px; }
+
+/* === CUSTOM: Prevent visited link color change === */
+a, a:visited, a:active { color: inherit; }
+.gnb_title a, .gnb_title a:visited, .gnb_title a:active { color: #000 !important; text-decoration: none !important; }
+.blog_author a, .blog_author a:visited { color: #000; text-decoration: none; }
+.blog_category a, .blog_category a:visited { color: #000; text-decoration: none; }
+
+/* === CUSTOM: PC max-width (넓은 화면) === */
+@media (min-width: 768px) {
+  .tablet_end { max-width: 768px; margin: 0 auto; }
+}
+
+/* === CUSTOM: GNB Header — matched to 기본 === */
+.Ngnb { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 44px; background: #fff; border-bottom: 1px solid #c4c4c4; display: flex; align-items: center; justify-content: space-between; }
+@media (min-width: 768px) {
+  .Ngnb { max-width: 768px; margin: 0 auto; left: 0; right: 0; }
+}
+.Ngnb_service { display: flex; align-items: center; flex: 1; min-width: 0; height: 44px; }
+.Ngnb_service .Nservice_item { flex-shrink: 0; padding-left: 12px; display: flex; align-items: center; }
+.Ngnb_service .Nservice_item a { text-decoration: none; display: flex; align-items: center; line-height: 0; }
+/* blog SVG logo: 44x22px, matches 기본 */
+.Ngnb_service .Nservice_item .Nicon_service { font-size: 0; color: transparent; overflow: hidden; display: block; width: 44px; height: 22px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' fill='none'%3E%3Cpath fill='%23000' d='M38.056 5.926c1.437 0 2.62.483 3.327 1.235V6.118H44v9.606C44 19.929 41.505 22 38.053 22c-1.747 0-3.223-.483-4.138-1.004l.894-2.218c.664.378 1.872.803 3.264.803 1.747 0 3.14-1.27 3.16-2.904v-.435c-.48.564-1.496 1.256-3.076 1.256-3.431 0-5.76-2.343-5.76-5.754 0-3.41 2.329-5.818 5.659-5.818ZM2.787 7.212c.602-.647 1.81-1.298 3.327-1.298 3.348 0 5.513 2.323 5.513 5.776 0 3.452-2.269 5.796-5.697 5.796-1.437 0-2.641-.608-3.285-1.256v1.067H0V2.003h2.787v5.209ZM24.93 5.914c3.515 0 5.822 2.47 5.822 5.776 0 3.305-2.39 5.796-5.822 5.796-3.431 0-5.804-2.449-5.804-5.755 0-3.305 2.453-5.817 5.804-5.817Zm-8.485 7.616c0 1.19.4 1.43 1.041 1.43.206 0 .397-.022.397-.022l.065-.005v2.472l-.05.01a5.66 5.66 0 0 1-.856.066c-1.452 0-3.384-.366-3.384-3.55V2h2.787v11.53Zm21.818-5.125c-1.828 0-3.077 1.424-3.077 3.306 0 1.882 1.267 3.284 3.077 3.284 1.872 0 3.055-1.423 3.055-3.284 0-1.861-1.228-3.306-3.055-3.306Zm-32.502 0c-1.849 0-3.056 1.381-3.056 3.285 0 1.902 1.228 3.284 3.076 3.285 1.893 0 3.056-1.382 3.056-3.285 0-1.904-1.228-3.285-3.076-3.285Zm19.169.042c-1.789 0-3.017 1.382-3.017 3.264s1.247 3.242 3.038 3.242c1.83 0 3.017-1.381 3.017-3.242s-1.25-3.264-3.038-3.264Zm16.454-2.329h-.003l.003-.003v.003Z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: contain; }
+.Ngnb_service .gnb_title { flex: 1; min-width: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 44px; }
+.Ngnb_service .gnb_title .center { display: flex; align-items: center; justify-content: center; }
+.Ngnb_service .gnb_title .td { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.Ngnb_service .gnb_title .gnb_category_icon { flex-shrink: 0; }
+.Ngnb_service .gnb_title .ell { font-size: 16px; font-weight: 600; color: #000; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 44px; }
+.Ngnb_service .gnb_title a { text-decoration: none; color: #000; }
+.Ngnb_tool { display: flex; align-items: center; gap: 0; padding-right: 8px; flex-shrink: 0; height: 44px; }
+.Ngnb_tool .Ntool_button { background: none; border: none; padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; text-decoration: none; }
+/* Header icons — 기본 */
+.Nicon_search { display: inline-block; width: 24px; height: 24px; font-size: 0; overflow: hidden; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='25' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-width='1.6' d='M8 3H6a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h11a3 3 0 0 0 3-3v-2'/%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' d='M21.437 6.718a5.219 5.219 0 1 1-10.437 0 5.219 5.219 0 0 1 10.437 0ZM22.5 13 19.91 10.41'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: contain; }
+.Nicon_drawer { display: inline-block; width: 24px; height: 24px; font-size: 0; overflow: hidden; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4.224 11.136h15.552a.864.864 0 1 1 0 1.728H4.224a.864.864 0 0 1 0-1.728Zm0 7.296h15.552a.864.864 0 1 1 0 1.728H4.224a.864.864 0 0 1 0-1.728Zm0-14.592h15.552a.864.864 0 1 1 0 1.728H4.224a.864.864 0 1 1 0-1.728Z' clip-rule='evenodd'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: contain; }
+/* Category icon — 기본 */
+.gnb_category_icon { display: inline-block; width: 20px; height: 20px; font-size: 0; overflow: hidden; vertical-align: middle; background-image: url("data:image/svg+xml,%3Csvg width='26' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='translate(.5)' fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h25v25H0z'/%3E%3Cpath d='M19 3a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h13zm0 1.8H6a1.2 1.2 0 0 0-1.194 1.077L4.8 6v13a1.2 1.2 0 0 0 1.077 1.194L6 20.2h13a1.2 1.2 0 0 0 1.194-1.077L20.2 19V6a1.2 1.2 0 0 0-1.077-1.194L19 4.8z' fill='%23000' fill-rule='nonzero'/%3E%3Crect fill='%23000' x='10.75' y='15.15' width='7' height='1.5' rx='.75'/%3E%3Crect fill='%23000' x='10.75' y='11.75' width='7' height='1.5' rx='.75'/%3E%3Crect fill='%23000' x='10.75' y='8.35' width='7' height='1.5' rx='.75'/%3E%3Crect fill='%23000' x='7.25' y='8.35' width='2' height='1.5' rx='.75'/%3E%3Crect fill='%23000' x='7.25' y='11.75' width='2' height='1.5' rx='.75'/%3E%3Crect fill='%23000' x='7.25' y='15.15' width='2' height='1.5' rx='.75'/%3E%3C/g%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: contain; }
+
+/* === CUSTOM: Fixed header offset === */
+.ct_wrap { padding-top: 52px; }
+
+/* === CUSTOM: Category — 기본: 13px, weight 400, black === */
+.blog_category { font-size: 13px; color: #000; font-weight: 400; padding: 20px 20px 8px; }
+
+/* === CUSTOM: Post Title — matched to 기본 === */
+h3.post_title { font-size: 24px; font-weight: 600; color: #000; line-height: 1.45; padding: 4px 20px 16px; margin: 0; letter-spacing: -0.3px; }
+
+/* === CUSTOM: Author/Profile area with inline buddy button === */
+.blog_authorArea { display: flex; align-items: center; gap: 10px; padding: 12px 20px; }
+.blog_authorArea .blog_thumbnail { flex-shrink: 0; text-decoration: none; }
+.blog_authorArea .text_area { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.blog_author .ell { font-size: 14px; font-weight: 400; color: #555; }
+.blog_date { font-size: 12px; color: #8c8c8c; margin-top: 2px; font-family: Helvetica, -apple-system, sans-serif; }
+.btn_buddy_inline { border: 1px solid #03c75a; color: #03c75a; background: #fff; font-size: 12px; font-weight: 400; padding: 0 13px; height: 28px; line-height: 26px; border-radius: 0; cursor: pointer; flex-shrink: 0; white-space: nowrap; }
+.btn_more { background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 4px; flex-shrink: 0; letter-spacing: 1px; }
+
+/* === CUSTOM: Author divider === */
+.author_divider { height: 1px; background: #f0f0f0; margin: 0 20px; }
+
+/* === CUSTOM: Button area — hidden (기본 doesn't show this) === */
+.blog_btnArea { display: none; }
+
+/* === CUSTOM: Social Bar — fixed at bottom, matches 기본 === */
+.social_area { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: #fff; border-top: 1px solid #ebebeb; display: flex; align-items: center; height: 46px; padding: 0 15px; gap: 0; }
+@media (min-width: 768px) {
+  .social_area { max-width: 768px; margin: 0 auto; left: 50%; transform: translateX(-50%); }
+}
+.social_item { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #2e2e2e; cursor: pointer; height: 38px; padding: 0 5px; }
+.social_item .count { font-weight: 400; color: #2e2e2e; }
+/* Social bar icons — 기본 SVG sprites, 26px for comment, proportional for others */
+.social_icon { display: inline-block; background-repeat: no-repeat; background-position: center; background-size: contain; flex-shrink: 0; }
+/* Like: heart outline 26x26 */
+.social_icon_like { width: 26px; height: 26px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none'%3E%3Cpath fill='%232E2E2E' d='M4.246 6.582a6.554 6.554 0 0 1 9.362 0l1.396 1.416 1.39-1.409a6.553 6.553 0 0 1 9.362 0c2.585 2.623 2.585 6.872 0 9.495l-7.18 7.283c-.07.07-.14.136-.21.2l-.68.69a3.763 3.763 0 0 1-5.373 0l-8.064-8.179c-2.586-2.626-2.586-6.873 0-9.496Zm8.223 1.123a4.954 4.954 0 0 0-7.083 0c-1.971 2-1.973 5.247 0 7.25l8.064 8.18a2.163 2.163 0 0 0 3.093 0l.678-.69.067-.063 7.147-7.247c1.955-1.984 1.968-5.209.04-7.21l-.04-.04a4.953 4.953 0 0 0-7.082 0l-2.527 2.563a.4.4 0 0 1-.57 0l-1.787-1.743Z'/%3E%3C/svg%3E"); }
+/* Small filled red heart next to like count (좋아요가 있을 때) */
+.social_icon_like_filled { width: 14px; height: 14px; margin-left: -2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%23ff3d47' d='M7 12.5l-.76-.69C3.2 9.16 1.5 7.57 1.5 5.65 1.5 4.07 2.72 2.85 4.3 2.85c.89 0 1.74.41 2.3 1.07h.8c.56-.66 1.41-1.07 2.3-1.07 1.58 0 2.8 1.22 2.8 2.8 0 1.92-1.7 3.51-4.74 6.16L7 12.5z'/%3E%3C/svg%3E"); }
+/* Comment: speech bubble 26x26 */
+.social_icon_comment { width: 26px; height: 26px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='none'%3E%3Cpath fill='%232E2E2E' fill-rule='evenodd' d='M13 3.595c5.385 0 9.75 4.365 9.75 9.75s-4.365 9.75-9.75 9.75a9.7 9.7 0 0 1-5.084-1.429l-.296-.181-3.295.865a.27.27 0 0 1-.331-.33l.866-3.296-.181-.295a9.7 9.7 0 0 1-1.429-5.084c0-5.385 4.365-9.75 9.75-9.75m0 1.625a8.125 8.125 0 0 0-8.125 8.125c0 1.636.485 3.16 1.318 4.434l.233.357-.72 2.742 2.742-.72.357.233A8.09 8.09 0 0 0 13 21.47a8.125 8.125 0 0 0 0-16.25' clip-rule='evenodd'/%3E%3C/svg%3E"); }
+/* Share: paper airplane 26x26 */
+.social_icon_share { width: 26px; height: 26px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='none'%3E%3Cpath stroke='%232E2E2E' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' d='m13 3.25-5.687 5.688M13 3.25l5.688 5.688M13 3.25v13'/%3E%3Cpath stroke='%232E2E2E' stroke-linecap='round' stroke-width='1.6' d='M4.875 17.063v3.25a2.438 2.438 0 0 0 2.438 2.437h11.374a2.438 2.438 0 0 0 2.438-2.438v-3.25'/%3E%3C/svg%3E"); }
+
+/* === CUSTOM: Comments Section === */
+.comment_area { padding: 16px; border-top: 8px solid #f5f5f5; }
+.comment_title { font-size: 14px; font-weight: bold; margin-bottom: 12px; }
+.comment_title .count { color: #03c75a; }
+.comment_item { margin-bottom: 16px; }
+.comment_profile { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.comment_avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0; color: transparent; overflow: hidden; }
+.comment_avatar_default { background: #e8e8e8; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none'%3E%3Ccircle cx='14' cy='11' r='4.5' fill='%23c4c4c4'/%3E%3Cpath d='M5 24c0-4.2 3.8-7 9-7s9 2.8 9 7' fill='%23c4c4c4'/%3E%3C/svg%3E"); background-size: cover; }
+.comment_sheet_avatar.comment_avatar_default { background: #e8e8e8; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='none'%3E%3Ccircle cx='18' cy='14' r='5.5' fill='%23c4c4c4'/%3E%3Cpath d='M7 29c0-5 4.5-8.5 11-8.5s11 3.5 11 8.5' fill='%23c4c4c4'/%3E%3C/svg%3E"); background-size: cover; font-size: 0; color: transparent; }
+.comment_author { font-size: 12px; font-weight: bold; color: #000; }
+.comment_time { font-size: 11px; color: #bbb; }
+.comment_text { font-size: 13px; color: #555; padding-left: 36px; line-height: 1.5; }
+.comment_like { font-size: 11px; color: #bbb; padding-left: 36px; margin-top: 4px; }
+.comment_input { background: #f5f5f5; border-radius: 20px; padding: 10px 16px; font-size: 13px; color: #bbb; margin-top: 12px; border: none; width: 100%; }
+
+/* === CUSTOM: Buddy Add Button (old separate section — hidden) === */
+.buddy_area { display: none; }
+
+/* === CUSTOM: CTA Link === */
+a[data-cta] { color: #03c75a; text-decoration: underline; font-weight: bold; }
+
+/* === CUSTOM: Profile avatar fallback (기본 사람 아이콘) === */
+.blog_thumbnail .avatar_fallback,
+.blog_thumbnail .img:empty { display: inline-block; width: 36px; height: 36px; border-radius: 50%; background-color: #e8e8e8; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' fill='none'%3E%3Ccircle cx='18' cy='14' r='5.5' fill='%23c4c4c4'/%3E%3Cpath d='M7 29c0-5 4.5-8.5 11-8.5s11 3.5 11 8.5' fill='%23c4c4c4'/%3E%3C/svg%3E"); background-size: cover; background-repeat: no-repeat; font-size: 0; color: transparent; overflow: hidden; }
+
+/* === CUSTOM: SE editor content padding & spacing — font matched to 기본 === */
+.se-main-container { padding: 0 20px; margin-top: 20px; padding-bottom: 40px; font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
+.se-viewer .se-text-paragraph { line-height: 1.9; margin: 0; padding: 0; white-space: normal !important; font-family: inherit; }
+.se-viewer .se-text-paragraph:not(.se-text-paragraph-align-justify) { white-space: normal !important; }
+/* SE font size classes — match 기본 */
+.se-fs-fs11 { font-size: 11px; }
+.se-fs-fs13 { font-size: 13px; }
+.se-fs-fs15 { font-size: 15px; }
+.se-fs-fs17 { font-size: 17px; }
+.se-fs-fs18 { font-size: 18px; }
+.se-fs-fs19 { font-size: 19px; }
+.se-fs-fs24 { font-size: 24px; }
+.se-fs-fs28 { font-size: 28px; }
+.se-fs-fs34 { font-size: 34px; }
+.se-ff-system { font-family: Helvetica, "Apple SD Gothic Neo", "AppleSDGothicNeo", sans-serif; }
+.se-ff-nanumgothic { font-family: "NanumGothic", "나눔고딕", Helvetica, sans-serif; }
+.se-ff-nanummyeongjo { font-family: "NanumMyeongjo", "나눔명조", serif; }
+.se-viewer .se-component.se-text { margin-bottom: 0; }
+.se-viewer .se-component.se-horizontalLine { margin: 32px 0; }
+.se-viewer .se-component.se-image { margin: 26px 0; }
+
+/* === CUSTOM: paragraph rhythm — matched to 기본 === */
+.se-viewer .se-text-paragraph.se-blank { margin-top: 8px; }
+.se-section-break { display: block; height: 60px; }
+
+/* === CUSTOM: Image placeholder === */
+.se-module-image-link img { width: 100%; height: auto; display: block; border-radius: 0; }
+.se-module-image-link img[src*="placeholder"],
+.se-module-image-link img:not([src]),
+.se-module-image-link img[src=""] { display: none; }
+.se-module-image-link:has(img[src*="placeholder"]),
+.se-module-image-link:has(img:not([src])) { background: #f5f5f5; min-height: 200px; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; border-radius: 4px; margin: 8px 0; }
+.se-module-image-link:has(img[src*="placeholder"])::after { content: 'image placeholder'; }
+.image-placeholder { background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; min-height: 200px; border-radius: 4px; margin: 8px 0; }
+
+/* === CUSTOM: Broken image fallback === */
+img { font-size: 0; }
+img::after { content: attr(alt); font-size: 13px; color: #999; display: block; padding: 40px 16px; text-align: center; background: #f9f9f9; border-radius: 4px; }
+
+/* === CUSTOM: Comment Bottom Sheet (modal) === */
+.comment_overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 300; }
+.comment_overlay.active { display: block; }
+.comment_sheet { position: fixed; bottom: 0; left: 0; right: 0; z-index: 301; background: #fff; border-radius: 16px 16px 0 0; max-height: 85vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s ease; }
+.comment_sheet.active { transform: translateY(0); }
+@media (min-width: 768px) {
+  .comment_sheet { max-width: 768px; margin: 0 auto; }
+}
+.comment_sheet_handle { display: flex; justify-content: center; padding: 10px 0 6px; }
+.comment_sheet_handle span { width: 36px; height: 4px; border-radius: 2px; background: #ddd; }
+.comment_sheet_header { padding: 8px 20px 12px; border-bottom: 1px solid #f0f0f0; }
+.comment_sheet_header .sheet_title { font-size: 17px; font-weight: 700; color: #000; }
+.comment_sheet_header .sheet_count { color: #03c75a; font-weight: 700; }
+.comment_sheet_list { flex: 1; overflow-y: auto; padding: 0 20px; }
+.comment_sheet_item { padding: 16px 0; border-bottom: 1px solid #f5f5f5; }
+.comment_sheet_item:last-child { border-bottom: none; }
+.comment_sheet_profile { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.comment_sheet_avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; font-weight: bold; flex-shrink: 0; }
+.comment_sheet_avatar img { width: 36px; height: 36px; border-radius: 50%; }
+.comment_sheet_author { font-size: 14px; font-weight: 700; color: #000; }
+.comment_sheet_text { font-size: 15px; color: #333; line-height: 1.6; padding-left: 46px; margin-bottom: 8px; }
+.comment_sheet_meta { display: flex; align-items: center; justify-content: space-between; padding-left: 46px; }
+.comment_sheet_meta_left { display: flex; align-items: center; gap: 8px; }
+.comment_sheet_date { font-size: 12px; color: #999; }
+.comment_sheet_report { font-size: 12px; color: #999; cursor: pointer; }
+.comment_sheet_reply_btn { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #999; background: none; border: none; padding: 0; cursor: pointer; }
+.comment_sheet_reply_btn svg { width: 20px; height: 20px; }
+.comment_sheet_like_btn { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #999; background: none; border: none; padding: 0; cursor: pointer; }
+.comment_sheet_like_btn svg { width: 18px; height: 18px; }
+.comment_sheet_input_area { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-top: 1px solid #e5e5e5; background: #fff; }
+.comment_sheet_input { flex: 1; border: 1px solid #e5e5e5; border-radius: 4px; padding: 10px 14px; font-size: 14px; color: #333; outline: none; background: #fff; }
+.comment_sheet_input::placeholder { color: #bbb; }
+.comment_sheet_submit { background: #c4c4c4; color: #fff; border: none; padding: 10px 16px; font-size: 14px; font-weight: 700; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+
+/* === CUSTOM: Comparison table === */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+.compare-table th { background: #f5f5f5; padding: 10px 8px; text-align: center; font-weight: bold; border: 1px solid #e5e5e5; font-size: 12px; }
+.compare-table td { padding: 8px; text-align: center; border: 1px solid #e5e5e5; }
+.compare-table td:first-child { text-align: left; font-weight: bold; }
+
+/* === CUSTOM: 네이버 링크 카드 (og:link) === */
+.se-oglink { margin: 20px 0; }
+.se-oglink-card { display:block; border:1px solid #e5e5e5; border-radius:4px; overflow:hidden; background:#fff; text-decoration:none; }
+.se-oglink-thumb { width:100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center 22%; display:block; background:#f5f5f5; }
+.se-oglink-body { padding:16px 18px 18px; }
+.se-oglink-title { font-size:17px; font-weight:700; color:#111; line-height:1.4; margin-bottom:8px;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.se-oglink-desc { font-size:14px; color:#8b8b8b; line-height:1.5; margin-bottom:10px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.se-oglink-domain { font-size:14px; color:#03c75a; }
+
+/* 답글 · 작성자 표시 (술꾼판 10/13 · 옵션 필드 reply/owner — 없으면 예전과 같음) */
+.comment_reply { margin-left: 26px; padding: 10px 0 0 10px; background: #fafafa; border-radius: 6px; }
+.comment_reply_mark { font-size: 12px; color: #bbb; margin-right: -2px; }
+.comment_owner { font-size: 10px; color: #03c75a; border: 1px solid #03c75a; border-radius: 3px; padding: 0 4px; line-height: 15px; font-weight: 600; }
+.comment_sheet_item.comment_reply { margin-left: 28px; padding-left: 10px; }
+
+/* 10/20 댓글 ♥ · 더보기 · 링크 · 하단 ♥ */
+.comment_like { font-size: 11px; color: #bbb; padding: 2px 0 0 36px; margin-top: 2px; background: none; border: 0; cursor: pointer; font-family: inherit; }
+.comment_like.on { color: #ff3b48; }
+.comment_fold { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.comment_more { display: block; margin: 2px 0 0 36px; padding: 0; border: 0; background: none; color: #999; font-size: 12px; cursor: pointer; font-family: inherit; }
+.comment_link { color: #2b6be4; text-decoration: underline; word-break: break-all; }
+.social_item.like.on .social_icon_like { display: none; }

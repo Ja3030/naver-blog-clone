@@ -13,10 +13,11 @@
 - 단락 간격 = 빈 줄 2개 (뭉침 해소)
 """
 import os, re, json, shutil
+from PIL import Image
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(BASE, 'templates', 'post-template.html')
-SRC = '/Users/juan/Brand Manager/통풍/05_ADVERTORIAL/_draft/입구1_통합원고_v43_CTA확정_2026-09-21.md'
+SRC = '/Users/juan/Brand Manager/통풍/05_ADVERTORIAL/_draft/입구1_통합원고_v44_맨아래안내_2026-09-26.md'   # v44 = v43 + 제품 설명 끝 괄호 안내 3줄 (2026-09-26)
 FINAL = '/Users/juan/Brand Manager/통풍/05_ADVERTORIAL/_images/final'
 SLUG = 'gout-entry1'
 POST_DIR = os.path.join(BASE, 'public', 'posts', SLUG)
@@ -141,7 +142,8 @@ def red_phrases(inner):
 def styled_paragraph(s):
     n = _n(s)
     if s.startswith('(') and s.endswith(')'):
-        return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
+        pid = ' id="nl-addendum" style="scroll-margin-top:72px;"' if s == ADDENDUM_LINE else ''
+        return ('      <p class="se-text-paragraph se-text-paragraph-align- "' + pid + '>\n'
                 '        <span class="se-ff-system" style="color:#8a9098;font-size:15px;">' + esc(s) + '</span>\n      </p>')
     if n in _XL:
         return ('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
@@ -170,10 +172,14 @@ def quote_block(lines):
             '      <div class="se-module se-module-text se-quote">\n' + inner + '\n      </div>\n'
             '    </blockquote>\n  </div>\n</div>')
 
-def img_block(src, alt=''):
+EAGER_IMAGES = 2   # 첫 화면 사진(S01·S02)만 바로 불러오고 나머지는 스크롤할 때 (2026-09-28 로딩 수정)
+
+def img_block(src, alt='', size=None, lazy=False):
+    wh = f' width="{size[0]}" height="{size[1]}"' if size else ''   # 자리 미리 잡기 — 늦게 떠도 글이 밀리지 않게(스크롤 % 측정도 안 흔들림)
+    ld = ' loading="lazy" decoding="async"' if lazy else ''
     return ('<div class="se-component se-image se-l-default">\n  <div class="se-section se-section-image se-l-default">\n'
             '    <div class="se-module se-module-image">\n      <a class="se-module-image-link">\n'
-            f'        <img src="{esc(src)}" alt="{esc(alt)}" class="se-image-resource">\n'
+            f'        <img src="{esc(src)}" alt="{esc(alt)}" class="se-image-resource"{wh}{ld}>\n'
             '      </a>\n    </div>\n  </div>\n</div>')
 
 def placeholder_block(label):
@@ -188,6 +194,65 @@ def hr_block():
     return ('<div class="se-component se-horizontalLine se-l-default">\n  <div class="se-section se-section-horizontalLine se-l-default">\n'
             '    <div class="se-module se-module-horizontalLine">\n      <hr class="se-hr">\n    </div>\n  </div>\n</div>')
 
+ADDENDUM_LINE = '(7월 19일 추가)'          # PART 7 첫 줄 = 괄호 안내가 가리키는 곳 (id="nl-addendum")
+JUMP_PHRASES = ('맨 아래', '7월 19일에 추가한 부분')   # 괄호 안내 안에서 누르면 내려가는 말
+
+def note_block(lines):
+    """괄호 여러 줄 안내 (2026-09-26 v44) — 회색 작은 글씨 · 「맨 아래」「7월 19일에 추가한 부분」을 누르면 #nl-addendum 으로
+    스토어 직행이 아니라 PART 7로 내려가게 한다(3개월 근거를 읽고 카드를 누르도록)"""
+    ps = []
+    for l in lines:
+        inner = esc(l)
+        for ph in JUMP_PHRASES:
+            e = esc(ph)
+            if e in inner:
+                inner = inner.replace(e, '<a href="#nl-addendum" class="nl-jump" style="color:#8a9098;text-decoration:underline;text-underline-offset:3px;">' + e + '</a>', 1)
+        ps.append('      <p class="se-text-paragraph se-text-paragraph-align- ">\n'
+                  '        <span class="se-ff-system" style="color:#8a9098;font-size:15px;line-height:1.8;">' + inner + '</span>\n      </p>')
+    ps.extend(p_blank() for _ in range(STANZA_GAP))
+    return ('<div class="se-component se-text se-l-default" id="nl-note">\n  <div class="se-section se-section-text se-l-default">\n'
+            '    <div class="se-module se-module-text">\n' + '\n'.join(ps) + '\n    </div>\n  </div>\n</div>')
+
+# 통풍 글 전용 측정 (2026-09-26) — 공용 pixel.js의 ScrollDepth는 도메인 단위로만 집계돼 다른 글과 섞인다 → 이 글만 쓰는 이벤트 이름
+# GoutS25/50/75 = 글 높이 25·50·75% 도달 · GoutNoteView = 괄호 안내 화면에 보임 · GoutJump = 안내 눌러 내려감 · GoutCardView = 링크 카드 화면에 보임
+# (카드 클릭 = 기존 Lead)
+# 2026-09-28 추가: 앞 26화면 안 어디서 나가는지 — 문단 표시 지점 7개(폰 기준 화면 번호) + GoutT10(10초 머묾)
+GOUT_MARKS = [('GoutP03', '지금 저는'), ('GoutP06', '그러다가 한 3월 말에 한 번 왔는데'), ('GoutP09', '진짜 눈 뜨면은 이불부터 걷고'),
+              ('GoutP11', '하나도 안 빼고 다 적었거든요'), ('GoutP13', '근데 이불을 걷어보니까'), ('GoutP17', '아, 그럼 가족력이네 하고'),
+              ('GoutP21', '근데 또 이상한 게')]
+GOUT_TRACK_JS = """<script>
+(function(){
+  var MARKS = __MARKS__;
+  function fire(n){ try{ if(typeof fbq==='function'){ fbq('trackCustom', n); } }catch(e){} }
+  var once={};
+  function one(n){ if(once[n]) return; once[n]=1; fire(n); }
+  // 도달 판정 = 그 문단의 윗변이 화면 아래 90% 선을 지나갔는가 (빠르게 휙 내려도 지나간 지점은 센다 — 2026-09-28)
+  var targets=[];
+  function addTarget(el,name){ if(el) targets.push([el,name]); }
+  function check(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(h>0){ var p=window.scrollY/h; if(p>=0.25) one('GoutS25'); if(p>=0.5) one('GoutS50'); if(p>=0.75) one('GoutS75'); }
+    var line=window.innerHeight*0.9;
+    for(var i=0;i<targets.length;i++){ if(!once[targets[i][1]] && targets[i][0].getBoundingClientRect().top<=line) one(targets[i][1]); }
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(function(){ check(); tick=false; }); } },{passive:true});
+  function init(){
+    setTimeout(function(){ one('GoutT10'); }, 10000);
+    var ps=document.querySelectorAll('.se-main-container p');
+    MARKS.forEach(function(m){ for(var i=0;i<ps.length;i++){ if(ps[i].innerText.trim()===m[1]){ addTarget(ps[i],m[0]); return; } } });
+    addTarget(document.getElementById('nl-note'),'GoutNoteView'); addTarget(document.querySelector('a.se-oglink-card'),'GoutCardView');
+    document.addEventListener('click',function(ev){
+      var a=ev.target.closest&&ev.target.closest('a.nl-jump'); if(!a) return;
+      ev.preventDefault(); fire('GoutJump');
+      var t=document.getElementById('nl-addendum'); if(t){ try{ t.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ t.scrollIntoView(); } }
+    });
+    check();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>"""
+
 LINK_IMG = []
 
 def link_text_block():
@@ -197,7 +262,7 @@ def link_text_block():
     src = '/Users/juan/Brand Manager/통풍/05_ADVERTORIAL/_images/_references/product/og_link_card.jpg'
     thumb = ''
     if os.path.exists(src):
-        LINK_IMG.append((fn, src)); thumb = f'        <img src="{IMG_REL}{fn}" alt="" class="se-oglink-thumb">\n'
+        LINK_IMG.append((fn, src)); thumb = f'        <img src="{IMG_REL}{fn}" alt="" class="se-oglink-thumb" loading="lazy" decoding="async">\n'
     return ('<div class="se-component se-oglink se-l-default">\n'
             '  <div class="se-section se-section-oglink">\n'
             '    <div class="se-module se-module-oglink">\n'
@@ -210,7 +275,10 @@ def link_text_block():
             '        </div>\n      </a>\n    </div>\n  </div>\n</div>')
 
 def slot_file(slot):
-    """S## → (파일명, 원본경로) · GIF 우선 슬롯은 gif, 그 외 jpg"""
+    """S## → (파일명, 원본경로) · GIF 우선 슬롯은 움직이는 WebP(있으면) → gif, 그 외 jpg
+    WebP = final/_web/S##.webp (GIF를 Pillow로 변환, q80 · 2026-09-28 · 30.8MB→10.3MB, 화질 비교 통과)"""
+    if slot in GIF_SLOTS and os.path.exists(f'{FINAL}/_web/{slot}.webp'):
+        return (slot.lower() + '.webp', f'{FINAL}/_web/{slot}.webp')
     if slot in GIF_SLOTS and os.path.exists(f'{FINAL}/{slot}.gif'):
         return (slot.lower() + '.gif', f'{FINAL}/{slot}.gif')
     if os.path.exists(f'{FINAL}/{slot}.jpg'):
@@ -233,6 +301,8 @@ def build():
         if not stanza: return
         if _n(stanza[0]) in _Q:
             flush_paras(); blocks.append(quote_block(stanza))
+        elif len(stanza) > 1 and stanza[0].startswith('(') and stanza[-1].endswith(')'):
+            flush_paras(); blocks.append(note_block(stanza))
         else:
             for i, l in enumerate(stanza):
                 paras.append(styled_paragraph(l))
@@ -256,7 +326,9 @@ def build():
             slot, desc = m.group(1), m.group(2).strip()
             f = slot_file(slot)
             if f:
-                used_img.append(f); blocks.append(img_block(IMG_REL + f[0], slot))
+                used_img.append(f)
+                with Image.open(f[1]) as _im: _sz = _im.size
+                blocks.append(img_block(IMG_REL + f[0], slot, _sz, lazy=len(used_img) > EAGER_IMAGES))
             else:
                 missing.append(f'{slot} {desc[:40]}')
                 if not HIDE_MISSING:
@@ -343,6 +415,8 @@ def save(se_html, title):
     a, b = '<!-- POST CONTENT START -->', '<!-- POST CONTENT END -->'
     si, ei = t.index(a), t.index(b)
     html = t[:si + len(a)] + '\n\n' + se_html + '\n\n' + t[ei:]
+    assert html.count('</body>') == 1
+    html = html.replace('</body>', GOUT_TRACK_JS.replace('__MARKS__', json.dumps([list(m) for m in GOUT_MARKS], ensure_ascii=False)) + '\n</body>')
     open(os.path.join(POST_DIR, 'index.html'), 'w', encoding='utf-8').write(html)
     json.dump(make_config(title), open(os.path.join(POST_DIR, 'config.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 

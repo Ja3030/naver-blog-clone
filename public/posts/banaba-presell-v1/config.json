@@ -1,0 +1,24 @@
+{
+ "blog": {
+  "name": "당 관리 일기",
+  "title": "당 관리 일기",
+  "profile_image": "",
+  "profile_color": "#c9d2cc"
+ },
+ "post": {
+  "title": "당화 5점대인데 발이 저리던 당뇨 6년 차, 밤에 다시 푹 자게 된 방법.",
+  "category": "정보글",
+  "date": "2026. 10. 20. 23:41"
+ },
+ "social": {
+  "likes": 1647,
+  "shares": 288,
+  "views": 18930
+ },
+ "comments": [],
+ "tracking": {
+  "meta_pixel_id": "1957044568277876",
+  "scroll_events": [],
+  "cta_event_name": "Lead"
+ }
+}

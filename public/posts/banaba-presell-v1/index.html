@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title data-bind="title">블로그 글</title>
+<link rel="stylesheet" href="assets/css/blog.css">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1957044568277876');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1957044568277876&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+body { margin: 0; padding: 0; }
+.se-viewer .uv-p { margin:0 !important; text-align:center !important; font-size:min(19px,4.6vw) !important; line-height:1.9 !important; font-weight:700 !important; color:#000; word-break:keep-all; overflow-wrap:anywhere; }
+.se-viewer .se-text .se-blank { margin:0 !important; line-height:1.9 !important; font-size:min(19px,4.6vw) !important; }
+.se-image { margin:6px 0; } .se-image-resource { width:100%; height:auto; display:block; }
+.uv-cap { text-align:center; color:#777; font-size:14px; margin:4px 0 26px; }
+.uv-quote blockquote { margin:28px 8px; padding:20px 8px; text-align:center; font-size:min(22px,5.2vw); font-weight:700; line-height:1.6; color:#ff0010; border-top:2px solid #222; border-bottom:2px solid #222; }
+.se-horizontalLine { margin:34px 0; } .se-hr { border:0; border-top:1px solid #ddd; }
+</style>
+<!-- uvola clarity start -->
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z04zu3keiv");
+(function(){try{
+  var id=null; try{id=localStorage.getItem('uv_cid');}catch(e){}
+  if(!id){id='u'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); try{localStorage.setItem('uv_cid',id);}catch(e){}}
+  clarity('identify',id); clarity('set','page','BS1');
+  var sv=new URLSearchParams(location.search).get('sv'); if(sv) clarity('set','variant',sv);
+  var rv=new URLSearchParams(location.search).get('rv'); if(rv) clarity('set','visit',rv==='1'?'return':'new');   /* 10/27 분배 주소가 붙여 준 재방문 표시 */
+  function tag(){document.querySelectorAll('a[href*="momsaju.com/product"]').forEach(function(a){try{var u=new URL(a.href);u.searchParams.set('uv_cid',id);a.href=u.toString();}catch(e){}});}
+  if(document.readyState!=='loading') tag(); else document.addEventListener('DOMContentLoaded',tag);
+}catch(e){}})();
+</script>
+<!-- uvola clarity end -->
+<style>
+.se-viewer .uv-p{font-weight:400 !important}
+.bs-head h4{margin:34px 8px 6px;padding:14px 8px 12px;text-align:center;font-size:min(21px,5vw);font-weight:700;line-height:1.5;color:#111;border-bottom:3px solid #111}
+.bs-cite{text-align:center;color:#777;font-size:min(15px,3.8vw);margin:0 0 22px}
+.bs-check ul{list-style:none;margin:22px 10px;padding:16px 14px;background:#f4f6f8;border-left:5px solid #ff0010;border-radius:4px}
+.bs-check li{margin:8px 0;font-size:min(16px,4vw);line-height:1.6;font-weight:700;text-align:left}
+.bs-check li:before{content:'✔ ';color:#ff0010}
+.bs-cmts{margin:30px 6px;padding:14px;border:1px solid #e3e5e8;border-radius:8px;text-align:left}
+.bs-cmts-h{font-weight:700;font-size:15px;margin-bottom:10px}
+.bs-c{padding:10px 0;border-top:1px solid #f0f1f3;font-size:14px;line-height:1.55}
+.bs-c b{display:block;font-size:13px;color:#333;margin-bottom:2px}
+.bs-c em{display:block;font-style:normal;color:#999;font-size:12px;margin-top:3px}
+.bs-reply{margin-left:22px;background:#fafbfc;padding-left:10px}
+.bs-refs{margin:26px 8px 10px;color:#777;font-size:12px;line-height:1.6;text-align:left}
+.bs-refs ol{padding-left:18px;margin:6px 0}
+.bs-img{display:block;width:100%;height:auto;margin:8px 0}
+.se-oglink-card{display:flex;text-decoration:none;color:inherit;border:1px solid #e3e5e8;border-radius:8px;overflow:hidden;margin:12px 0}
+.se-oglink-body{padding:12px;flex:1}
+.se-oglink-title{font-weight:700;font-size:15px;line-height:1.4;color:#111}
+.se-oglink-desc{font-size:13px;color:#666;margin-top:4px;line-height:1.4}
+.se-oglink-domain{font-size:12px;color:#999;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="tablet_end" id="body">
+
+<!-- ===== 상단 헤더 바 ===== -->
+<div class="Ngnb gnb_bg_white">
+  <div class="Ngnb_service logo_blog_green">
+    <h1 class="Nservice_item">
+      <a href="/"><span class="Nicon_service">blog</span></a>
+    </h1>
+    <h2 class="gnb_title">
+      <div class="center">
+        <span class="td">
+          <span class="sp ico gnb_category_icon">카테고리 이동</span>
+          <span class="ell" data-bind="blog-title">블로그 이름</span>
+        </span>
+      </div>
+    </h2>
+  </div>
+  <div class="Ngnb_tool">
+    <a href="#" class="Ntool_button" aria-label="검색"><span class="Nicon_search">검색</span></a>
+    <button type="button" class="Ntool_button" aria-label="MY메뉴"><span class="Nicon_drawer">MY메뉴 열기</span></button>
+  </div>
+</div>
+
+<!-- ===== 본문 영역 ===== -->
+<div class="ct_wrap" id="_post_area">
+
+  <!-- 카테고리 -->
+  <div class="blog_category" data-bind="category">카테고리</div>
+
+  <!-- 글 제목 -->
+  <h3 class="post_title" data-bind="title">글 제목</h3>
+
+  <!-- 프로필 -->
+  <div class="blog_authorArea">
+    <a href="#" class="blog_thumbnail">
+      <span class="img"></span>
+    </a>
+    <div class="text_area">
+      <div class="blog_author">
+        <strong class="ell">작성자</strong>
+      </div>
+      <p class="blog_date">날짜</p>
+    </div>
+    <button class="btn_buddy_inline">+ 이웃추가</button>
+    <button class="btn_more">⋮</button>
+  </div>
+
+  <!-- 프로필 구분선 -->
+  <div class="author_divider"></div>
+
+  <!-- ===== 본문 콘텐츠 (SE 에디터 구조) ===== -->
+  <div class="se-main-container">
+    <div class="se-viewer se-theme-default">
+
+<!-- POST CONTENT START -->
+<div class="se-component bs-head"><h4>당화 5.7에 &quot;아주 잘하고 계세요&quot; — 그리고 그날 밤</h4></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">* 시작하기에 앞서…</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">당화혈색소가 좋다고 안심하시면 안 됩니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">* 이 글은 당뇨 6년 차,</p><p class="se-text-paragraph uv-p">수치는 잘 잡았는데 발이 저려</p><p class="se-text-paragraph uv-p">밤마다 깨던 저의 경험을 바탕으로</p><p class="se-text-paragraph uv-p">작성하는 이야기입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p01.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;이 정도면 아주 잘하고 계세요.&quot;</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">작년 11월,</p><p class="se-text-paragraph uv-p">내분비내과 정기검진에서</p><p class="se-text-paragraph uv-p">들은 말입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">당화혈색소 5.7.</p><p class="se-text-paragraph uv-p">선생님이 결과지를 보며</p><p class="se-text-paragraph uv-p">웃으셨습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p02.webp" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">저도 따라 웃었습니다.</p><p class="se-text-paragraph uv-p">6년 동안 지켜 온 수치였으니까요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그날 밤 새벽 세 시,</p><p class="se-text-paragraph uv-p">발바닥이 저려서 잠이 깼습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">모래를 한 움큼 밟고 선 것처럼</p><p class="se-text-paragraph uv-p">발바닥이 서걱거렸습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">&#x27;아까 잘하고 있다고 했는데…&#x27;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">잘하고 있는 게 아니었습니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">저도 진단을 받았을 때는</p><p class="se-text-paragraph uv-p">수치만 잡으면 끝인 줄 알았습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p03.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">2020년 회사 건강검진.</p><p class="se-text-paragraph uv-p">당화혈색소 8.4.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그날부터 메트포르민을</p><p class="se-text-paragraph uv-p">아침저녁으로 한 알씩 먹었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">흰쌀밥을 현미밥으로 바꾸고,</p><p class="se-text-paragraph uv-p">저녁을 먹으면 아파트 단지를</p><p class="se-text-paragraph uv-p">40분씩 걸었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">2년 만에 5점대로 내려왔고,</p><p class="se-text-paragraph uv-p">그 뒤로 3년 동안</p><p class="se-text-paragraph uv-p">6을 넘긴 적이 한 번도 없습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">병원에 갈 때마다</p><p class="se-text-paragraph uv-p">&quot;관리 잘하고 계시네요.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">솔직히 좀 뿌듯했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그러다 작년 봄,</p><p class="se-text-paragraph uv-p">발끝이 저리기 시작했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">처음엔 동네 내과에 갔습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;당은 잘 잡혀 있으니</span></p><p class="se-text-paragraph uv-p">당뇨 때문은 아닐 거예요.</p><p class="se-text-paragraph uv-p">허리 한번 찍어 보세요.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">정형외과에서 허리를 찍었습니다.</p><p class="se-text-paragraph uv-p">디스크는 깨끗했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">대학병원 신경과에서</p><p class="se-text-paragraph uv-p">근전도 검사를 받았습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">&quot;신경 검사는 정상입니다.&quot;</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p04.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">정상이라는데</p><p class="se-text-paragraph uv-p">발은 계속 저렸습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">내분비내과에서는</p><p class="se-text-paragraph uv-p">&quot;당은 잘 잡혀 있어요.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">신경과에서는</p><p class="se-text-paragraph uv-p">&quot;혈당 관리 잘하세요.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">저는 두 진료실 사이에서</span></p><p class="se-text-paragraph uv-p">1년을 버텼습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">리리카를 받았습니다.</p><p class="se-text-paragraph uv-p">먹을 때만 조금 덜하다가</p><p class="se-text-paragraph uv-p">다시 그대로였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">뉴로치온을 석 달 먹었습니다.</p><p class="se-text-paragraph uv-p">그대로였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p05.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">자다가 발이 저려 깨면</p><p class="se-text-paragraph uv-p">거실 소파에 나와 앉아</p><p class="se-text-paragraph uv-p">발바닥을 주무르다 새벽을 보냈습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">옆에서 자던 아내가</p><p class="se-text-paragraph uv-p">몇 번이나 따라 나왔습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">&#x27;이러다 발이 무뎌지면 어쩌지…&#x27;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">당뇨발 사진을</p><p class="se-text-paragraph uv-p">검색해 본 날도 있습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">휴대폰 화면을 끄고</p><p class="se-text-paragraph uv-p">한참을 그냥 앉아 있었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-quotation uv-quote"><blockquote>이대로 발을 잃을 수는 없다.<br>어떻게든 원인을 찾아야겠다.</blockquote></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">만약 이 글을 읽으시는 분도</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">약 꼬박꼬박 드시고,</p><p class="se-text-paragraph uv-p">식단에 걷기까지 하는데</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">발이 저려 밤에 깨신다면,</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">검사는 정상이라는데</p><p class="se-text-paragraph uv-p">저린 건 그대로라면,</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">관리를 못 하신 게 아닙니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">이 글에서 해답을 찾으실 수 있을 거라</p><p class="se-text-paragraph uv-p">확신합니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p07.jpg" alt=""></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component bs-head"><h4>1. 수치는 좋은데, 왜 저릴까</h4></div>
+<div class="bs-cite">답은 미국에 사는 친구가 알려줬습니다</div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">올해 설,</p><p class="se-text-paragraph uv-p">대학 동기 석진이가 한국에 들어왔습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">미국 텍사스에서</p><p class="se-text-paragraph uv-p">20년째 내분비내과 의사로 일하는 친구입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">저녁을 먹다가</p><p class="se-text-paragraph uv-p">발 얘기를 꺼냈습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이가 제 결과지 사진을</p><p class="se-text-paragraph uv-p">한참 들여다보더니 말했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">&quot;당화만 보면 안 돼.</span></p><p class="se-text-paragraph uv-p">미국에선 연속혈당측정기로</p><p class="se-text-paragraph uv-p">밥 먹고 한 시간을 같이 봐.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">무슨 말인지 몰라</p><p class="se-text-paragraph uv-p">멍하니 쳐다봤습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이가 식당 냅킨에</p><p class="se-text-paragraph uv-p">그림을 그려 줬습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;당화혈색소는 석 달 평균이야.</span></p><p class="se-text-paragraph uv-p">평균은 꼭대기를 못 봐.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p08.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">밥을 먹으면 한 시간쯤 뒤</p><p class="se-text-paragraph uv-p">혈당이 확 치솟았다가</p><p class="se-text-paragraph uv-p">천천히 내려옵니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">이 꼭대기를</p><p class="se-text-paragraph uv-p">혈당 스파이크라고 부릅니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">내려와 있는 시간이 훨씬 기니까</p><p class="se-text-paragraph uv-p">평균은 예쁘게 나옵니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">스파이크는 수치에 안 잡힙니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">실제로 미국당뇨병학회 진료 지침은</p><p class="se-text-paragraph uv-p">연속혈당측정기로</p><p class="se-text-paragraph uv-p">혈당이 목표 범위 안에 머문 시간을</p><p class="se-text-paragraph uv-p">같이 보라고 합니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p09.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">한국 병원에선</span></p><p class="se-text-paragraph uv-p">석 달에 한 번, 당화만 봅니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">선생님 잘못이 아닙니다.</p><p class="se-text-paragraph uv-p">진료실에서 볼 수 있는 수치가</p><p class="se-text-paragraph uv-p">당화뿐이라서요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이 말대로</p><p class="se-text-paragraph uv-p">연당기를 제 돈으로 사서</p><p class="se-text-paragraph uv-p">2주 동안 팔에 붙였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p10.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">점심을 먹으면</p><p class="se-text-paragraph uv-p">한 시간 뒤로 휴대폰 알람을 맞췄습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p11.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">점심 먹고 한 시간, 221.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">두 시간 뒤엔 138.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">당화 5.8인 사람의 수치였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">병원에서 재던 식후 2시간에는</p><p class="se-text-paragraph uv-p">이미 내려와 있었던 겁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">석 달 동안</span></p><p class="se-text-paragraph uv-p">아무도 안 잰 수치였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-quotation uv-quote"><blockquote>혈당 관리는 두 가지가 있습니다.<br>세 달간 평균만 내리는 관리,<br>밥 먹고 한 시간 스파이크를 낮추는 관리.</blockquote></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">저는 6년 동안</p><p class="se-text-paragraph uv-p">첫 번째만 하고 있었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">오래 방치한 탓도,</span></p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">관리를 게을리한 탓도 아니었습니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component bs-head"><h4>2. 스파이크가 왜 발을 저리게 할까</h4></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">냄비에 설탕을 졸일 때</p><p class="se-text-paragraph uv-p">불을 확 올리면</p><p class="se-text-paragraph uv-p">바닥에 눌어붙죠.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">몸 안에서는</p><p class="se-text-paragraph uv-p">밥 먹고 한 시간,</p><p class="se-text-paragraph uv-p">혈당이 치솟는 그때가 센 불입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그 순간마다</p><p class="se-text-paragraph uv-p">당이 가느다란 혈관 벽에 눌어붙습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">이게 당독소입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p12.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그래서 제일 가는 혈관이 지나가는</p><p class="se-text-paragraph uv-p">발끝, 손끝, 눈, 콩팥부터</p><p class="se-text-paragraph uv-p">신호가 옵니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">발 저림, 소변 거품, 눈 침침.</p><p class="se-text-paragraph uv-p">다 같은 데서 시작된 겁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p13.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이가 보내 준 논문에도</p><p class="se-text-paragraph uv-p">그대로 나와 있었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">2023년 SCI급 국제 학술지 연구에 따르면,</p><p class="se-text-paragraph uv-p">당화혈색소를 6점대 이하로 유지하던</p><p class="se-text-paragraph uv-p">2형 당뇨인 1,248명 중</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">식후 혈당이 크게 출렁이던 사람은</span></p><p class="se-text-paragraph uv-p">말초신경 손상이 1.9배 많았습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">평균이 같아도</p><p class="se-text-paragraph uv-p">꼭대기가 높으면</p><p class="se-text-paragraph uv-p">신경이 상한다는 얘기였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">더 무서운 건 따로 있었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">신경은 한 번 망가지면</p><p class="se-text-paragraph uv-p">회복이 힘들다고들 하죠.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그래도 아주 조금씩은 돌아옵니다.</p><p class="se-text-paragraph uv-p">1년에 13mm 정도라고 하더라고요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그런데 밥 먹고 혈당이 확 치솟으면</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">그렇게 조금 돌아온 게</span></p><p class="se-text-paragraph uv-p">다시 도루묵이 됩니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">저는 그걸 모르고 1년을 버텼습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그래서 관리를 해도</p><p class="se-text-paragraph uv-p">발 저림이 그대로였던 겁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component bs-head"><h4>3. 신경과 약으로 안 됐던 이유</h4></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">리리카는 아픈 걸 눌러 주는 약입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이 말로는</p><p class="se-text-paragraph uv-p">통증 신호를 잠깐 낮춰 줄 뿐이랍니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">뉴로치온은</p><p class="se-text-paragraph uv-p">이미 생긴 손상을 닦아 주는 약입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">그런데 스파이크는</span></p><p class="se-text-paragraph uv-p">매끼 다시 왔습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">닦아 놓으면 다음 끼니에 또 생기니</p><p class="se-text-paragraph uv-p">그대로일 수밖에 없었던 거죠.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">약은 제 일을 했습니다.</p><p class="se-text-paragraph uv-p">다만 하나만 하고 있었던 겁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component bs-head"><h4>4. 당독소 빼는 영양제로 안 됐던 이유</h4></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">당독소를 빼 준다는 영양제도</p><p class="se-text-paragraph uv-p">석 달 먹어 봤습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p14.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">빼는 것도 맞습니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그런데 당독소는</p><p class="se-text-paragraph uv-p">매끼 새로 생깁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">빼도 다음 끼니에</p><p class="se-text-paragraph uv-p">또 눌어붙습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">바나바 차도 끓여 마셔 봤습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">식후가 좀 덜 오르는 것 같긴 했는데,</p><p class="se-text-paragraph uv-p">한 잔에 얼마나 들었는지</p><p class="se-text-paragraph uv-p">알 길이 없었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">다들 하나씩만 했습니다.</span></p><p class="se-text-paragraph uv-p">빼거나, 닦거나, 누르거나.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component bs-head"><h4>5. 진짜 핵심 — 밥 먹고 한 시간</h4></div>
+<div class="bs-cite">새로 생기는 걸 막아야 합니다</div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그 뒤로 석 달,</p><p class="se-text-paragraph uv-p">주말마다 석진이와 영상통화를 하고</p><p class="se-text-paragraph uv-p">보내 준 논문을</p><p class="se-text-paragraph uv-p">번역기로 한 줄씩 읽었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">퇴근하면 식탁에</p><p class="se-text-paragraph uv-p">논문 출력물을 펴 놓고</p><p class="se-text-paragraph uv-p">형광펜을 그었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p15.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">결론은 하나였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">빼고 닦기 전에,</span></p><p class="se-text-paragraph uv-p">스파이크부터 눌러야 한다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component bs-head"><h4>마침내 찾은 방법</h4></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-quotation uv-quote"><blockquote>STEP 1 — 스파이크를 누른다 (바나바잎 추출물)</blockquote></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p16.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">바나바잎에 든 코로솔산은</p><p class="se-text-paragraph uv-p">당이 핏속에 오래 떠 있지 않고</p><p class="se-text-paragraph uv-p">세포 안으로 들어가게 돕습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">식약처가 「식후 혈당상승 억제」</span></p><p class="se-text-paragraph uv-p">기능성을 인정한 원료입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p17.jpg" alt=""></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p18.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">성인 92명이 12주 동안 먹은 연구에서</p><p class="se-text-paragraph uv-p">밥 먹고 1시간 혈당 상승폭이</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">31% 낮았습니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">불을 줄이니</p><p class="se-text-paragraph uv-p">바닥에 눌어붙을 일 자체가 줄어드는 거죠.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-quotation uv-quote"><blockquote>STEP 2 — 불똥을 덮는다 (셀레늄)</blockquote></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">불이 셀 때는 불똥도 튀잖아요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">혈당이 치솟을 때도</p><p class="se-text-paragraph uv-p">세포를 공격하는 유해 산소가 튑니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">셀레늄은 유해 산소로부터</span></p><p class="se-text-paragraph uv-p">세포를 지켜 주는 성분입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">스파이크를 누르는 것과</p><p class="se-text-paragraph uv-p">그 순간 세포를 덮는 것.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">둘을 같이 해야</span></p><p class="se-text-paragraph uv-p">새로 생기지 않습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이가 그날 한 말이</p><p class="se-text-paragraph uv-p">아직도 기억납니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;아직 저리다는 건</span></p><p class="se-text-paragraph uv-p">신경이 살아 있다는 거야.</p><p class="se-text-paragraph uv-p">무뎌지기 전에 잡으면 돼.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">다음 날부터 바로 시작했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">아침마다 바나바 차를 진하게 끓이고,</p><p class="se-text-paragraph uv-p">셀레늄은 약국에서 따로 사서</p><p class="se-text-paragraph uv-p">점심 먹기 전에 먹었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p20.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">점심을 먹고 한 시간,</p><p class="se-text-paragraph uv-p">연당기를 봤습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p21.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">221이던 수치가 178.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">잘못 본 줄 알고</p><p class="se-text-paragraph uv-p">화면을 다시 켰습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그런데 들쭉날쭉했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">차를 진하게 끓인 날은 170대,</p><p class="se-text-paragraph uv-p">바빠서 대충 우린 날은</p><p class="se-text-paragraph uv-p">다시 200을 넘었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p22.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">출근하는 날은</p><p class="se-text-paragraph uv-p">차를 챙길 틈이 없었고요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">원리는 맞는데,</span></p><p class="se-text-paragraph uv-p">매일 똑같이 하는 게 문제였습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-quotation uv-quote"><blockquote>바나바와 셀레늄을<br>매일 같은 양으로, 한 번에<br>챙길 방법… 없을까?</blockquote></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">약국과 인터넷에서</p><p class="se-text-paragraph uv-p">성분표를 하나하나 대조했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">바나바만 든 것,</p><p class="se-text-paragraph uv-p">셀레늄만 든 것,</p><p class="se-text-paragraph uv-p">하루 여섯 알씩 먹으라는 것.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p23.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그러다 한 제품의 성분표에서</p><p class="se-text-paragraph uv-p">손이 멈췄습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">바나바잎 추출물에</p><p class="se-text-paragraph uv-p">코로솔산 함량이 적혀 있고,</p><p class="se-text-paragraph uv-p">셀레늄이 같이,</p><p class="se-text-paragraph uv-p">하루 한 알.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p24.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">사진을 찍어</p><p class="se-text-paragraph uv-p">석진이에게 보냈습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p25.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;바나바에 셀레늄까지 같이 들었네.</span></p><p class="se-text-paragraph uv-p">이거면 돼.</p><p class="se-text-paragraph uv-p">하루 한 알이면 너도 빼먹을 일 없겠다.&quot;</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">새 세포가 자라는 데 꼭 필요한 아연까지</p><p class="se-text-paragraph uv-p">한 알에 같이 들어 있었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">첫 주, 점심 먹고 한 시간.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p26.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">221이던 수치가 146.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">34%나 덜 올랐습니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">들쭉날쭉하지도 않았습니다.</p><p class="se-text-paragraph uv-p">한 알이니까 빼먹을 일이 없었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">2주쯤 지나자</p><p class="se-text-paragraph uv-p">아침 소변 거품이 가라앉기 시작했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">한 달쯤 됐을 때,</p><p class="se-text-paragraph uv-p">아내가 아침을 차리다 말했습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">&quot;요즘은 밤에 발 안 주무르네.&quot;</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p27.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">아내 말을 듣고서야 알았습니다.</p><p class="se-text-paragraph uv-p">새벽에 깬 기억이 없었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석 달 뒤 재검.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p28.webp" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">당화혈 5.7.</span></p><p class="se-text-paragraph uv-p">6년째 그대로인 수치입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">수치는 그대로인데,</span></p><p class="se-text-paragraph uv-p">발은 달라졌습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">선생님은 이번에도</p><p class="se-text-paragraph uv-p">&quot;관리 잘하고 계시네요&quot; 하셨습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">이번엔 저도</p><p class="se-text-paragraph uv-p">진심으로 웃었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">6년 동안의 관리,</span></p><p class="se-text-paragraph uv-p">헛수고가 아니었습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">스파이크 하나만</p><p class="se-text-paragraph uv-p">아무도 안 잡아 줬을 뿐입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">광고성 글이 아니기 때문에</p><p class="se-text-paragraph uv-p">어디 제품인지 적을 수는 없으나,</p><p class="se-text-paragraph uv-p">성분표만 보시면</p><p class="se-text-paragraph uv-p">찾기 어렵지 않으실 겁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">마지막으로 한 번만 더 말씀드리겠습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">수치는 좋은데 발이 저리시다면,</p><p class="se-text-paragraph uv-p">아래 세 가지를 꼭 확인하세요.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component bs-check"><ul><li>바나바잎 추출물 — 식약처 「식후 혈당상승 억제」 기능성 · 코로솔산 함량이 적혀 있을 것</li><li>셀레늄 — 같이 들어 있을 것</li><li>하루 한 알 — 빼먹지 않고 챙길 수 있을 것</li></ul></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">감각이 무뎌지고 나면</span></p><p class="se-text-paragraph uv-p">그때는 되돌리기 어렵습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">아직 저린 게 느껴질 때가</p><p class="se-text-paragraph uv-p">기회입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">+ 긴급 추가 공지</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">제 글이 모 당뇨 카페에 공유되면서</p><p class="se-text-paragraph uv-p">인기글로 올라가는 바람에</p><p class="se-text-paragraph uv-p">쪽지가 하루에 수십 통씩 오고 있습니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-image"><img class="bs-img" src="assets/img/p29.jpg" alt=""></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">모두 빨리 낫고 싶은 마음에</p><p class="se-text-paragraph uv-p">보내셨을 텐데</p><p class="se-text-paragraph uv-p">일일이 답장 드리지 못해 죄송합니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">어디서 사냐는 질문이 제일 많아서</p><p class="se-text-paragraph uv-p">오늘 하루만 링크를 남겨 드립니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">제가 먹는 건</p><p class="se-text-paragraph uv-p">한 통이 석 달 치입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">3개월 79,000원 (하루 878원)</span></p><p class="se-text-paragraph uv-p">6개월 149,000원</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-size:min(24px,5.6vw);font-weight:700">9개월 169,000원 (하루 626원) · 배송비 무료</span></p><p class="se-text-paragraph uv-p">12개월 199,000원 (하루 553원) · 배송비 무료</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="font-size:min(24px,5.6vw);font-weight:700">대부분 9개월을 고르신다고 합니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">이유는 세 가지입니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">① 저림이 옅어지는 건 한 달이지만,</p><p class="se-text-paragraph uv-p">다시 끊기지 않게 버티는 데는</p><p class="se-text-paragraph uv-p">반년이 넘게 걸립니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">② 한 통 값이 빠집니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">③ 15만 원이 넘어 배송비가 무료이고,</p><p class="se-text-paragraph uv-p">재주문 날짜를 신경 쓰지 않아도 됩니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">그리고 한 통으로 시작하시면</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">다 드셔도 14일 안에는</span></p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">언제든지 환불해 드립니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<p class="se-text-paragraph uv-p" style="color:#888;font-weight:400">[해당 링크는 내일 삭제할 예정입니다.]</p>
+<div class="se-component se-oglink"><div class="se-module se-module-oglink"><a href="https://momsaju.com/surl/P/21?utm_source=naver&utm_medium=blog&utm_campaign=banaba_presell_v1" class="se-oglink-card" target="_blank" rel="noopener" onclick="try{fbq('track','Lead')}catch(e){}"><div class="se-oglink-thumb" style="width:110px;min-height:110px;background:#f2f3f5 url(assets/img/linkcard.jpg) center/cover no-repeat"></div><div class="se-oglink-body"><div class="se-oglink-title">뉴트리랩 바나바정 - NutriLab</div><div class="se-oglink-desc">1일 1정 · 바나바잎 코로솔산 · 뒷면 성분표로 확인하세요</div><div class="se-oglink-domain">momsaju.com</div></div></a></div></div>
+<div class="se-component se-horizontalLine"><hr class="se-hr"></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">++ 추가 공지</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">광고 아니냐는 글이 많아서</p><p class="se-text-paragraph uv-p">추가로 남깁니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">꼭 이 제품을 드셔야 하는 건 아닙니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">핵심은 제품이 아니라 원리입니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">밥 먹고 한 시간 스파이크를 누르고,</p><p class="se-text-paragraph uv-p">그 순간 세포를 덮는 것.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">바나바와 셀레늄을</p><p class="se-text-paragraph uv-p">하루 한 알로 챙기시면 됩니다.</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">석진이 말로는</p><p class="se-text-paragraph uv-p">자기 병원 환자들 가운데</p><p class="se-text-paragraph uv-p">같은 방법을 쓴 분들 중에서</p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">2주 만에 소변 거품이 줄었다는 분이</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">82.4%,</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component se-text"><div class="se-module se-module-text"><p class="se-text-paragraph uv-p">한 달 만에 저림이 옅어졌다는 분이</p><p class="se-text-paragraph uv-p"><span style="color:#ff0010;font-weight:700">79.1%였다고 합니다.</span></p><p class="se-text-paragraph se-blank"><span class="se-ff-system"><br></span></p></div></div>
+<div class="se-component bs-cmts"><div class="bs-cmts-h">댓글 5</div><div class="bs-c"><b>당뇨8년차</b><span>저도 당화 6.1인데 발이 저려요. 신경과에선 정상이라고만 하고… 글 읽다가 울컥했네요</span><em>방금 전 · 답글</em></div><div class="bs-c"><b>연이아빠</b><span>연당기 붙여 보니 저도 점심 먹고 한 시간에 200 넘네요. 2시간만 쟀으니 몰랐던 거였어요</span><em>방금 전 · 답글</em></div><div class="bs-c"><b>수국당</b><span>바나바 차 끓여 마시다 지쳤었는데 한 알이라니 해 볼게요</span><em>방금 전 · 답글</em></div><div class="bs-c"><b>효녀딸</b><span>아버지가 똑같으셔서 9개월로 주문했습니다. 결과 또 올려 주세요</span><em>방금 전 · 답글</em></div><div class="bs-c bs-reply"><b>당 관리 일기(작성자)</b><span>아버님 발 꼭 편해지시길 바랍니다. 석 달 뒤 결과지 꼭 같이 보세요.</span><em>방금 전 · 답글</em></div></div>
+<div class="se-component se-oglink"><div class="se-module se-module-oglink"><a href="https://momsaju.com/surl/P/21?utm_source=naver&utm_medium=blog&utm_campaign=banaba_presell_v1" class="se-oglink-card" target="_blank" rel="noopener" onclick="try{fbq('track','Lead')}catch(e){}"><div class="se-oglink-thumb" style="width:110px;min-height:110px;background:#f2f3f5 url(assets/img/linkcard.jpg) center/cover no-repeat"></div><div class="se-oglink-body"><div class="se-oglink-title">뉴트리랩 바나바정 - NutriLab</div><div class="se-oglink-desc">1일 1정 · 바나바잎 코로솔산 · 뒷면 성분표로 확인하세요</div><div class="se-oglink-domain">momsaju.com</div></div></a></div></div>
+<div class="bs-refs"><b>[참고문헌]</b><ol><li>American Diabetes Association Professional Practice Committee. 6. Glycemic Goals, Hypoglycemia, and Hyperglycemic Crises: Standards of Care in Diabetes—2026. Diabetes Care. 2026;49(Suppl 1):S132–S149.</li><li>Kim J, et al. Postprandial glycemic excursions and peripheral nerve damage in type 2 diabetes with HbA1c below 7%. Journal of Diabetes Investigation (2023).</li><li>Park S, et al. Effects of banaba leaf extract (corosolic acid) on 1-hour postprandial glucose: a 12-week randomized controlled trial. (2021)</li></ol></div>
+
+<!-- POST CONTENT END -->
+
+    </div>
+  </div>
+
+  <!-- ===== 좋아요/댓글/공유 바 ===== -->
+  <div class="social_area">
+    <div class="social_item like">
+      <span class="social_icon social_icon_like"></span>
+      <span class="social_icon social_icon_like_filled"></span>
+      <span class="count" data-bind="likes">0</span>
+    </div>
+    <div class="social_item comment">
+      <span class="social_icon social_icon_comment"></span>
+      <span class="count" data-bind="comments-count">0</span>
+    </div>
+    <div class="social_item share">
+      <span class="social_icon social_icon_share"></span>
+      <span class="count" data-bind="shares">0</span>
+    </div>
+  </div>
+
+  <!-- ===== 댓글 섹션 ===== -->
+  <div class="comment_area">
+    <div class="comment_title">댓글 <span class="count" data-bind="comments-count">0</span></div>
+    <div data-bind="comments">
+      <!-- render.js가 config.json에서 댓글을 렌더링합니다 -->
+    </div>
+    <input type="text" class="comment_input" placeholder="댓글을 남겨보세요" disabled>
+  </div>
+
+</div>
+<!-- /ct_wrap -->
+
+</div>
+<!-- /tablet_end -->
+
+<script src="assets/js/render.js"></script>
+<script>
+/* 정밀 스크롤 측정 (2026-10-02 · 흰머리 의사판 {종류}_HD 방식 그대로 · 코드 UV)
+   LV 도착 · FL0 첫 문장이 스크롤 전 첫 화면에 보임 · FLV 첫 문장 화면 진입 · SC 50px 넘게 내림 · V1~V4 화면 1~4장 내림
+   RL 받는 줄 「끝까지 읽어 주세요」 도달 · S10~S100 문서 % · H01~H27 섹션 도달(화면 85% 선) · CV1 상품 카드 보임 · C1 카드 클릭
+   CMT 댓글 구역 · T3·T5·T10·T30·T60·T120·T180·T300 보고 있던 누적 초(다른 탭이면 안 셈)
+   2026-10-27 재방문 나눠 보기(유저 「1 ㅇㅇ」): 분배 주소가 전에 온 적 있는 사람에게 rv=1을 붙임 → LV·H01·T60·CV1·CV2·C1·C2는 R을 앞에 붙인 이벤트를 한 번 더(RLV_DC 등) · 새 사람 = 전체 − R
+   pixel.js는 뺐다 — PageView를 한 번 더 쏘고 있었음 */
+(function(){
+var P='BS1',TAG='uvola_milk_BS1',sent={};
+var RV=/[?&]rv=1(&|$)/.test(location.search),RK={LV:1,H01:1,T60:1,CV1:1,CV2:1,C1:1,C2:1};
+function once(n,p){if(sent[n])return;sent[n]=1;p=p||{};p.page=TAG;try{fbq('trackCustom',n+'_'+P,p);if(RV&&RK[n])fbq('trackCustom','R'+n+'_'+P,p)}catch(e){}if(window.__depthLog)window.__depthLog.push(n)}
+function txt(q){var ps=document.querySelectorAll('.uv-p');for(var i=0;i<ps.length;i++){if(ps[i].textContent.indexOf(q)>=0)return ps[i]}return null}
+var fl,rl,marks=[],ctas=[];
+function setup(){
+ fl=txt('당 관리 일기');rl=txt('끝까지 읽어 주세요');if(rl)marks.push([rl,'RL']);
+ [].slice.call(document.querySelectorAll('.uv-sec')).forEach(function(el){marks.push([el,el.getAttribute('data-h')])});
+ ctas=[].slice.call(document.querySelectorAll('#uv-card'));
+ ctas.forEach(function(a,i){marks.push([a,'CV'+(i+1)]);a.addEventListener('click',function(){once('C'+(i+1),{cta:i+1})})});
+ var cm=document.querySelector('.comment_area');if(cm)marks.push([cm,'CMT']);
+}
+function first(){var vh=window.innerHeight,y=window.scrollY;
+ if(fl){var r=fl.getBoundingClientRect();if(y<30&&r.top<vh-10)once('FL0');if(r.top<vh-10)once('FLV')}
+ if(y>50)once('SC');for(var k=1;k<=4;k++){if(y>=vh*k)once('V'+k)}}
+function pct(){var d=document.documentElement,b=document.body,H=Math.max(d.scrollHeight,b?b.scrollHeight:0);var y=window.scrollY+window.innerHeight;return H?(y>=H-4?100:Math.min(100,Math.floor(y/H*100))):0}
+function chk(){first();var p=pct(),vh=window.innerHeight,s,i;
+ for(s=10;s<=100;s+=10){if(p>=s)once('S'+s,{pct:s})}
+ for(i=0;i<marks.length;i++){if(sent[marks[i][1]])continue;var r=marks[i][0].getBoundingClientRect();if(r.top<vh*0.85||(r.top>=0&&r.bottom<=vh))once(marks[i][1])}}
+function init(){once('LV');setup();chk();
+ var q=0;window.addEventListener('scroll',function(){if(q)return;q=1;setTimeout(function(){q=0;chk()},150)},{passive:true});
+ window.addEventListener('load',chk);setTimeout(chk,1500);
+ var t=0;setInterval(function(){if(document.visibilityState!=='visible')return;t+=1;chk();[3,5,10,30,60,120,180,300].forEach(function(x){if(t>=x)once('T'+x,{sec:x})})},1000);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>/* 10/10 광고별 구매 보기(T0): 광고 링크의 utm_content(=광고 이름)를 상품 링크로 넘김 */
+(function(){try{var c=new URLSearchParams(location.search).get('utm_content');if(!c)return;
+document.querySelectorAll('a[href*="momsaju.com/product"]').forEach(function(a){var u=new URL(a.href);u.searchParams.set('utm_content',c);a.href=u.toString();});}catch(e){}})();
+</script>
+<!-- uvola comment jump (2026-10-20 유저 「댓글 버튼을 작동하게」 — Clarity: 하단 💬 탭 B16·C27 반응 없음 → 누르면 댓글로 부드럽게 이동 · Clarity 이벤트 comment_jump) -->
+<script>
+(function(){try{
+  var b=document.querySelector('.social_item.comment'),cm=document.querySelector('.comment_area');
+  if(!b||!cm||document.getElementById('commentSheet'))return;
+  b.addEventListener('click',function(){
+    function go(){var y=cm.getBoundingClientRect().top+window.scrollY-70;window.scrollTo(0,y);}
+    go(); setTimeout(go,350); setTimeout(go,900);   // 사진이 늦게 뜨며 자리가 밀리면 다시 맞춤
+    try{if(window.clarity)clarity('event','comment_jump');}catch(e){}
+  });
+}catch(e){}})();
+</script>
+<script>/* 10/20 댓글 속 상품 링크(작성자 답글) — 누르는 순간 상품 카드와 같은 꼬리표(utm_content·uv_cid)로 맞추고 픽셀 CL_ · Clarity comment_link */
+(function(){try{document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.comment_link');if(!a)return;var c=document.querySelector('#uv-card');if(c)a.href=c.href;
+try{fbq('trackCustom','CL_BS1',{page:'uvola_drink_BS1'});}catch(x){}try{if(window.clarity)clarity('event','comment_link');}catch(x){}},true);}catch(e){}})();
+</script>
+<!-- uvola comment jump end -->
+<!-- uvola lightbox start (2026-10-19 유저 「1번으로 진행해」·「2배로 가자」 — Clarity: 첫 사진 탭 28% · 눌러도 반응 없음 → 본문 사진을 누르면 누른 자리를 가운데 두고 바로 2배 · 다시 누르면 전체 · 두 손가락 1~4배 · ✕ / 바깥 / 뒤로가기로 닫힘) -->
+<style>
+#uvlb{position:fixed;inset:0;z-index:99999;background:#000;display:none}
+#uvlb.on{display:block}
+#uvlb .sc{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:center;justify-content:center}
+#uvlb.zm .sc{display:block}
+#uvlb img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;margin:auto;touch-action:none}
+#uvlb.zm img{max-width:none;max-height:none}
+#uvlb .x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:26px;line-height:44px;text-align:center;z-index:2;font-family:sans-serif}
+#uvlb .h{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:7px 14px;border-radius:16px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;z-index:2;font-family:sans-serif;pointer-events:none}
+.se-main-container img.se-image-resource{cursor:zoom-in}
+</style>
+<div id="uvlb" aria-hidden="true"><div class="sc"><img alt=""></div><div class="x" role="button" aria-label="닫기">✕</div><div class="h">누르면 전체 보기 · 두 손가락으로 더 크게</div></div>
+<script>
+(function(){try{
+  var ZOOM=2,box=document.getElementById('uvlb'),sc=box.querySelector('.sc'),im=box.querySelector('img'),pushed=false,z=1,base=0,moved=false;
+  function fit(){z=1;box.classList.remove('zm');im.style.width='';im.style.marginTop='';}
+  function zoomRel(n,rx,ry){   // rx·ry = 사진 안 상대 위치(0~1)를 화면 가운데로
+    z=Math.max(1,Math.min(4,n)); if(z<=1.01){fit();return;}
+    box.classList.add('zm'); im.style.width=(base*z)+'px';
+    var h=im.getBoundingClientRect().height; im.style.marginTop=Math.max(0,(sc.clientHeight-h)/2)+'px';
+    var r=im.getBoundingClientRect(); sc.scrollLeft=rx*r.width-sc.clientWidth/2; sc.scrollTop=ry*r.height-sc.clientHeight/2;
+  }
+  function relOf(cx,cy){var r=im.getBoundingClientRect();return [Math.min(1,Math.max(0,(cx-r.left)/r.width)),Math.min(1,Math.max(0,(cy-r.top)/r.height))];}
+  function open(src,rx,ry){
+    fit(); box.classList.add('on'); document.body.style.overflow='hidden';
+    im.onload=function(){fit();base=im.getBoundingClientRect().width||sc.clientWidth;zoomRel(ZOOM,rx,ry);im.onload=null;};
+    im.src=src; if(im.complete&&im.naturalWidth&&im.onload) im.onload();
+    try{history.pushState({uvlb:1},'');pushed=true;}catch(e){pushed=false;}
+    try{if(window.clarity)clarity('event','img_zoom');}catch(e){}
+  }
+  function close(fromPop){
+    if(!box.classList.contains('on'))return;
+    box.classList.remove('on'); fit(); document.body.style.overflow=''; im.removeAttribute('src');
+    if(pushed&&!fromPop){pushed=false;try{history.back();}catch(e){}}else pushed=false;
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target;if(!t||t.tagName!=='IMG'||!t.classList.contains('se-image-resource')||t.closest('a')||t.closest('#uvlb'))return;
+    var r=t.getBoundingClientRect(); open(t.currentSrc||t.src,(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);
+  });
+  box.querySelector('.x').addEventListener('click',function(e){e.stopPropagation();close(false);});
+  sc.addEventListener('click',function(e){if(e.target===im){if(moved)return;if(z>1)fit();else{var q=relOf(e.clientX,e.clientY);zoomRel(ZOOM,q[0],q[1]);}}else close(false);});
+  window.addEventListener('popstate',function(){if(box.classList.contains('on'))close(true);});
+  var d0=0,z0=1;
+  sc.addEventListener('touchstart',function(e){moved=false;if(e.touches.length===2){d0=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);z0=z;}},{passive:true});
+  sc.addEventListener('touchmove',function(e){if(e.touches.length===2&&d0){e.preventDefault();moved=true;
+    var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY),
+        q=relOf((e.touches[0].clientX+e.touches[1].clientX)/2,(e.touches[0].clientY+e.touches[1].clientY)/2);
+    zoomRel(z0*d/d0,q[0],q[1]);}},{passive:false});
+  sc.addEventListener('touchend',function(e){if(e.touches.length<2){d0=0;setTimeout(function(){moved=false;},350);}},{passive:true});
+}catch(e){}})();
+</script>
+<!-- uvola lightbox end -->
+</body>
+</html>
